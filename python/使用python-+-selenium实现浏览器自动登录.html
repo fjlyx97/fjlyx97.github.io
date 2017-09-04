@@ -95,16 +95,30 @@
 
 
 
-<meta name="description" content="做一个热爱生活的程序猿">
+<meta name="description" content="使用python + selenium实现浏览器自动登录 python版本为3.6.2 系统为windows10 记录自己学习的心得，也是为了防止以后时间久了自己也遗忘了1.安装selinium安装的过程十分简单，只需要使用pip安装即可1pip install selenium    2.安装对应的webdriver（驱动）本文以edge浏览器为例子百度edge webdriver，搜索完第">
 <meta property="og:type" content="website">
-<meta property="og:title" content="凝墨洒泪">
-<meta property="og:url" content="http://fjlyx97.github.io/index.html">
+<meta property="og:title" content="使用python + selenium实现浏览器自动登录">
+<meta property="og:url" content="http://fjlyx97.github.io/python/使用python-+-selenium实现浏览器自动登录.html">
 <meta property="og:site_name" content="凝墨洒泪">
-<meta property="og:description" content="做一个热爱生活的程序猿">
+<meta property="og:description" content="使用python + selenium实现浏览器自动登录 python版本为3.6.2 系统为windows10 记录自己学习的心得，也是为了防止以后时间久了自己也遗忘了1.安装selinium安装的过程十分简单，只需要使用pip安装即可1pip install selenium    2.安装对应的webdriver（驱动）本文以edge浏览器为例子百度edge webdriver，搜索完第">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-8651f559291c75c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-c9affc27c1e378a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-17b2ba204988baeb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-5e8e415572bb8acd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-d1bbce6cafcbb70c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-38abe558858162f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-7d61525737a00cae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-85ac56693710d953.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-550f034798e9ef3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-6a33da589c485855.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-6f0d0010b8ff4e85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-1e0138d8e151b1cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-09-04T02:53:01.758Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="凝墨洒泪">
-<meta name="twitter:description" content="做一个热爱生活的程序猿">
+<meta name="twitter:title" content="使用python + selenium实现浏览器自动登录">
+<meta name="twitter:description" content="使用python + selenium实现浏览器自动登录 python版本为3.6.2 系统为windows10 记录自己学习的心得，也是为了防止以后时间久了自己也遗忘了1.安装selinium安装的过程十分简单，只需要使用pip安装即可1pip install selenium    2.安装对应的webdriver（驱动）本文以edge浏览器为例子百度edge webdriver，搜索完第">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2692660-8651f559291c75c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -134,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="http://fjlyx97.github.io/"/>
+  <link rel="canonical" href="http://fjlyx97.github.io/python/使用python-+-selenium实现浏览器自动登录.html"/>
 
 
 
 
 
-  <title>凝墨洒泪</title>
+  <title>使用python + selenium实现浏览器自动登录 | 凝墨洒泪</title>
   
 
 
@@ -159,8 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -206,12 +219,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-tags">
+        <li class="menu-item menu-item-categories">
           <a href="/python" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
-            标签
+            分类
           </a>
         </li>
       
@@ -233,102 +246,36 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://fjlyx97.github.io/2017/08/28/使用python-+-selenium实现浏览器自动登录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="成名人士">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="凝墨洒泪">
-    </span>
-
     
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/28/使用python-+-selenium实现浏览器自动登录/" itemprop="url">使用python + selenium实现浏览器自动登录</a></h1>
-        
+	<h1 class="post-title" itemprop="name headline">使用python + selenium实现浏览器自动登录</h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T17:02:31+08:00">
-                2017-08-28
-              </time>
-            
 
-            
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
       
-
       
+      <div class="post-body">
         
-          
-            <blockquote>
+        
+          <blockquote>
 <ul>
 <li>使用python + selenium实现浏览器自动登录</li>
 <li>python版本为3.6.2</li>
 <li>系统为windows10</li>
-<li>记录自己学习的心得，也是为了防止以后时间久了自己也遗忘了<br>#1.安装selinium<br>安装的过程十分简单，只需要使用<strong>pip</strong>安装即可<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install selenium</div></pre></td></tr></table></figure>
+<li>记录自己学习的心得，也是为了防止以后时间久了自己也遗忘了<h1 id="1-安装selinium"><a href="#1-安装selinium" class="headerlink" title="1.安装selinium"></a>1.安装selinium</h1>安装的过程十分简单，只需要使用<strong>pip</strong>安装即可<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install selenium</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </blockquote>
-<p>#2.安装对应的webdriver（驱动）<br>本文以edge浏览器为例子<br>百度edge webdriver，搜索完第一个就是微软的官网了。<br>这里附上链接:<a href="https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/" target="_blank" rel="external">WebDriver</a><br>如下图：<br><img src="http://upload-images.jianshu.io/upload_images/2692660-8651f559291c75c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="WebDriver.png"><br>选择对应的<strong>版本</strong>,<strong>这里十分重要!!</strong><br>版本可以通过windows的运行快速查看<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dxdiag</div></pre></td></tr></table></figure></p>
+<h1 id="2-安装对应的webdriver（驱动）"><a href="#2-安装对应的webdriver（驱动）" class="headerlink" title="2.安装对应的webdriver（驱动）"></a>2.安装对应的webdriver（驱动）</h1><p>本文以edge浏览器为例子<br>百度edge webdriver，搜索完第一个就是微软的官网了。<br>这里附上链接:<a href="https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/" target="_blank" rel="external">WebDriver</a><br>如下图：<br><img src="http://upload-images.jianshu.io/upload_images/2692660-8651f559291c75c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="WebDriver.png"><br>选择对应的<strong>版本</strong>,<strong>这里十分重要!!</strong><br>版本可以通过windows的运行快速查看<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dxdiag</div></pre></td></tr></table></figure></p>
 <p>如下图：</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2692660-c9affc27c1e378a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Dxdiag.png"><br>下载完毕之后，将<strong>MicrosoftWebDriver.exe</strong>复制到<strong>python</strong>安装目录下的<strong>scripts文件夹</strong>里面。至此安装环境配置完毕，开始实战。</p>
 <h1 id="3-实战"><a href="#3-实战" class="headerlink" title="3.实战"></a>3.实战</h1><ul>
@@ -398,43 +345,16 @@
 </ul>
 <p><a href="http://www.cnblogs.com/yoyoketang/p/6557421.html/" target="_blank" rel="external"><a href="http://www.cnblogs.com/yoyoketang/p/6557421.html" target="_blank" rel="external">Selenium2+python自动化45-18种定位方法</a></a><br><a href="http://www.cnblogs.com/BigFishFly/p/6380024.html" target="_blank" rel="external"><a href="http://www.cnblogs.com/BigFishFly/p/6380024.html" target="_blank" rel="external">Python爬虫利器五之Selenium的用法</a></a></p>
 
-          
         
+      </div>
+      
+      
       
     </div>
     
     
     
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -442,6 +362,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -462,8 +386,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <p class="site-author-name" itemprop="name">成名人士</p>
@@ -472,15 +405,6 @@
 
         <nav class="site-state motion-element">
 
-          
-            <div class="site-state-item site-state-posts">
-            
-              <a href="/archives">
-            
-                <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
           
 
           
@@ -515,6 +439,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-安装selinium"><span class="nav-number">1.</span> <span class="nav-text">1.安装selinium</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-安装对应的webdriver（驱动）"><span class="nav-number">2.</span> <span class="nav-text">2.安装对应的webdriver（驱动）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-实战"><span class="nav-number">3.</span> <span class="nav-text">3.实战</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-其它定位"><span class="nav-number">4.</span> <span class="nav-text">4.其它定位</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-终"><span class="nav-number">5.</span> <span class="nav-text">5. 终</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
