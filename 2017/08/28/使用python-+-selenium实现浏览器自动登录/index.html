@@ -3,18 +3,33 @@
 <head>
   <meta charset="utf-8">
   
-  <title>凝墨洒泪</title>
+  <title>使用python + selenium实现浏览器自动登录 | 凝墨洒泪</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="做一个热爱生活的程序猿">
-<meta property="og:type" content="website">
-<meta property="og:title" content="凝墨洒泪">
-<meta property="og:url" content="http://fjlyx97.github.io/index.html">
+  <meta name="description" content="使用python + selenium实现浏览器自动登录 python版本为3.6.2 系统为windows10 记录自己学习的心得，也是为了防止以后时间久了自己也遗忘了#1.安装selinium安装的过程十分简单，只需要使用pip安装即可1pip install selenium    #2.安装对应的webdriver（驱动）本文以edge浏览器为例子百度edge webdriver，搜索">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用python + selenium实现浏览器自动登录">
+<meta property="og:url" content="http://fjlyx97.github.io/2017/08/28/使用python-+-selenium实现浏览器自动登录/index.html">
 <meta property="og:site_name" content="凝墨洒泪">
-<meta property="og:description" content="做一个热爱生活的程序猿">
+<meta property="og:description" content="使用python + selenium实现浏览器自动登录 python版本为3.6.2 系统为windows10 记录自己学习的心得，也是为了防止以后时间久了自己也遗忘了#1.安装selinium安装的过程十分简单，只需要使用pip安装即可1pip install selenium    #2.安装对应的webdriver（驱动）本文以edge浏览器为例子百度edge webdriver，搜索">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-8651f559291c75c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-c9affc27c1e378a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-17b2ba204988baeb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-5e8e415572bb8acd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-d1bbce6cafcbb70c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-38abe558858162f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-7d61525737a00cae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-85ac56693710d953.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-550f034798e9ef3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-6a33da589c485855.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-6f0d0010b8ff4e85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-1e0138d8e151b1cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-09-04T01:44:05.268Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="凝墨洒泪">
-<meta name="twitter:description" content="做一个热爱生活的程序猿">
+<meta name="twitter:title" content="使用python + selenium实现浏览器自动登录">
+<meta name="twitter:description" content="使用python + selenium实现浏览器自动登录 python版本为3.6.2 系统为windows10 记录自己学习的心得，也是为了防止以后时间久了自己也遗忘了#1.安装selinium安装的过程十分简单，只需要使用pip安装即可1pip install selenium    #2.安装对应的webdriver（驱动）本文以edge浏览器为例子百度edge webdriver，搜索">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2692660-8651f559291c75c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternate" href="/atom.xml" title="凝墨洒泪" type="application/atom+xml">
   
@@ -67,45 +82,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-hello" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/04/hello/" class="article-date">
-  <time datetime="2017-09-04T01:42:31.000Z" itemprop="datePublished">2017-09-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/04/hello/">hello</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://fjlyx97.github.io/2017/09/04/hello/" data-id="cj75i6a570000sgu4hyjdq6z7" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-使用python-+-selenium实现浏览器自动登录" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-使用python-+-selenium实现浏览器自动登录" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/08/28/使用python-+-selenium实现浏览器自动登录/" class="article-date">
   <time datetime="2017-08-28T09:02:31.000Z" itemprop="datePublished">2017-08-28</time>
@@ -118,8 +95,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/28/使用python-+-selenium实现浏览器自动登录/">使用python + selenium实现浏览器自动登录</a>
+    <h1 class="article-title" itemprop="name">
+      使用python + selenium实现浏览器自动登录
     </h1>
   
 
@@ -217,10 +194,23 @@
     </footer>
   </div>
   
-</article>
-
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/04/hello/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          hello
+        
+      </div>
+    </a>
+  
+  
+</nav>
 
   
+</article>
 
 </section>
         
