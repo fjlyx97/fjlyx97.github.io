@@ -115,7 +115,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-6a33da589c485855.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-6f0d0010b8ff4e85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2692660-1e0138d8e151b1cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-09-04T03:42:04.024Z">
+<meta property="og:updated_time" content="2017-09-04T03:49:08.719Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用python + selenium实现浏览器自动登录">
 <meta name="twitter:description" content="使用python + selenium实现浏览器自动登录 python版本为3.6.2 系统为windows10 记录自己学习的心得，也是为了防止以后时间久了自己也遗忘了">
@@ -406,7 +406,7 @@
 </ul>
 <p>我们就可以定位到元素了</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2692660-5e8e415572bb8acd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="登录"></p>
-<p>可以查看到他有着<strong>name</strong>属性，<strong>id</strong>属性<br><strong>定位元素的方法多种多样，没有规定一定要用哪一种，适合即可。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">name = browser.find_element_by_name(&quot;user&quot;)</div><div class="line">#亦或者</div><div class="line">name = browser.find_element_by_id(&quot;username&quot;)</div></pre></td></tr></table></figure></p>
+<p>可以查看到他有着<strong>name</strong>属性，<strong>id</strong>属性<br><strong>定位元素的方法多种多样，没有规定一定要用哪一种，适合即可。</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">name = browser.find_element_by_name(<span class="string">"user"</span>)</div><div class="line"><span class="comment">#亦或者</span></div><div class="line">name = browser.find_element_by_id(<span class="string">"username"</span>)</div></pre></td></tr></table></figure></p>
 <ul>
 <li>于是乎，我们已经定位到账号的输入框了。<br>接下来是输入内容，输入内容可以使用<strong>send_keys</strong>的方法<br><code>name.send_keys(&quot;hello&quot;)</code><br>运行试试看，我们会发现已经成功在输入框中输入我们所要的内容。</li>
 </ul>
@@ -418,14 +418,14 @@
 <p><img src="http://upload-images.jianshu.io/upload_images/2692660-38abe558858162f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="登录"></p>
 <ul>
 <li><p>输入完账号密码，最后一步便是点击登录按钮了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">login_button = browser.find_element_by_id(&quot;login-button&quot;)</div><div class="line">login_button.click()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">login_button = browser.find_element_by_id(<span class="string">"login-button"</span>)</div><div class="line">login_button.click()</div></pre></td></tr></table></figure>
 </li>
 <li><p>运行试试，我们可以看到已经登录过了，当然账号密码是随便输入的。</p>
 </li>
 </ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/2692660-7d61525737a00cae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>最后附上代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">from selenium import webdriver</div><div class="line">import time</div><div class="line"></div><div class="line">browser = webdriver.Edge()</div><div class="line">browser.get(&quot;https://account.xiaomi.com/pass/serviceLogin?callback=https%3A%2F%2Forder.mi.com%2Flogin%2Fcallback%3Ffollowup%3Dhttps%253A%252F%252Fwww.mi.com%252F%26sign%3DNzY3MDk1YzczNmUwMGM4ODAxOWE0NjRiNTU5ZGQyMzFhYjFmOGU0Nw%2C%2C&amp;sid=mi_eshop&amp;_bannerBiz=mistore&amp;_qrsize=180&quot;)</div><div class="line">time.sleep(2)</div><div class="line">name = browser.find_element_by_name(&quot;user&quot;)</div><div class="line">name.send_keys(&quot;账号&quot;)</div><div class="line">passwd = browser.find_element_by_name(&quot;pwd&quot;)</div><div class="line">passwd.send_keys(&quot;密码&quot;)</div><div class="line">login_button = browser.find_element_by_id(&quot;login-button&quot;)</div><div class="line">login_button.click()</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2692660-7d61525737a00cae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>最后附上代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line">browser = webdriver.Edge()</div><div class="line">browser.get(<span class="string">"https://account.xiaomi.com/pass/serviceLogin?callback=https%3A%2F%2Forder.mi.com%2Flogin%2Fcallback%3Ffollowup%3Dhttps%253A%252F%252Fwww.mi.com%252F%26sign%3DNzY3MDk1YzczNmUwMGM4ODAxOWE0NjRiNTU5ZGQyMzFhYjFmOGU0Nw%2C%2C&amp;sid=mi_eshop&amp;_bannerBiz=mistore&amp;_qrsize=180"</span>)</div><div class="line">time.sleep(<span class="number">2</span>)</div><div class="line">name = browser.find_element_by_name(<span class="string">"user"</span>)</div><div class="line">name.send_keys(<span class="string">"账号"</span>)</div><div class="line">passwd = browser.find_element_by_name(<span class="string">"pwd"</span>)</div><div class="line">passwd.send_keys(<span class="string">"密码"</span>)</div><div class="line">login_button = browser.find_element_by_id(<span class="string">"login-button"</span>)</div><div class="line">login_button.click()</div></pre></td></tr></table></figure></p>
 <h1 id="4-其它定位"><a href="#4-其它定位" class="headerlink" title="4.其它定位"></a>4.其它定位</h1><ul>
-<li>###xpath定位</li>
+<li><h3 id="xpath定位"><a href="#xpath定位" class="headerlink" title="xpath定位"></a>xpath定位</h3></li>
 <li>通常情况下，我们不一定能通过<strong>name</strong>或<strong>id</strong>定位,这时候我们可以用其它方法，通过<strong>xpath</strong>就是一种不错的选择，这里以百度的输入框为例。<br>xpath可以通过谷歌浏览器或者其它浏览器直接查看，如图：</li>
 </ul>
 <p><img src="http://upload-images.jianshu.io/upload_images/2692660-85ac56693710d953.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="xpath"></p>
@@ -436,7 +436,7 @@
 </ul>
 <hr>
 <ul>
-<li>###使用elements定位<br>很多时候元素定位都很模糊，要定位到并不是十分容易，我们可以换个思路，同时定位一组元素，通过取下标的方法，读取元素，以百度的首页为例：</li>
+<li><h3 id="使用elements定位"><a href="#使用elements定位" class="headerlink" title="使用elements定位"></a>使用elements定位</h3>很多时候元素定位都很模糊，要定位到并不是十分容易，我们可以换个思路，同时定位一组元素，通过取下标的方法，读取元素，以百度的首页为例：</li>
 </ul>
 <p><img src="http://upload-images.jianshu.io/upload_images/2692660-550f034798e9ef3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="首页"></p>
 <ul>
@@ -444,10 +444,10 @@
 </ul>
 <p><img src="http://upload-images.jianshu.io/upload_images/2692660-6a33da589c485855.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="查看元素"></p>
 <ul>
-<li>上面一组元素具有许多相同的特征，于是我们可以使用如下代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">elements = browser.find_elements(&quot;css selector&quot; , &quot;.mnav&quot;)</div><div class="line">#或是</div><div class="line">elements = browser.find_elements_by_css_selector(&quot;.mnav&quot;)</div></pre></td></tr></table></figure>
+<li>上面一组元素具有许多相同的特征，于是我们可以使用如下代码：<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">elements = browser.find_elements(<span class="string">"css selector"</span> , <span class="string">".mnav"</span>)</div><div class="line"><span class="comment">#或是</span></div><div class="line">elements = browser.find_elements_by_css_selector(<span class="string">".mnav"</span>)</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>两个定位是相同的，不过写法不同而已，这个方法和之前的区别主要就是find_<strong>elements</strong>，使用的是<strong>复数</strong>定位，最后通过<strong>下标</strong>来选择元素。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">elements[0].click()</div></pre></td></tr></table></figure></p>
+<p>两个定位是相同的，不过写法不同而已，这个方法和之前的区别主要就是find_<strong>elements</strong>，使用的是<strong>复数</strong>定位，最后通过<strong>下标</strong>来选择元素。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">elements[<span class="number">0</span>].click()</div></pre></td></tr></table></figure></p>
 <p>这样便是点击第一个元素，也就是新闻的按钮。<br>附上测试代码:</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2692660-6f0d0010b8ff4e85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="测试"></p>
 <h1 id="5-终"><a href="#5-终" class="headerlink" title="5. 终"></a>5. 终</h1><blockquote>
@@ -619,7 +619,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-安装selinium"><span class="nav-text">1.安装selinium</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-安装对应的webdriver（驱动）"><span class="nav-text">2.安装对应的webdriver（驱动）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-实战"><span class="nav-text">3.实战</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-其它定位"><span class="nav-text">4.其它定位</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-终"><span class="nav-text">5. 终</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#大坑"><span class="nav-text">大坑</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-安装selinium"><span class="nav-text">1.安装selinium</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-安装对应的webdriver（驱动）"><span class="nav-text">2.安装对应的webdriver（驱动）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-实战"><span class="nav-text">3.实战</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-其它定位"><span class="nav-text">4.其它定位</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#xpath定位"><span class="nav-text">xpath定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用elements定位"><span class="nav-text">使用elements定位</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-终"><span class="nav-text">5. 终</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#大坑"><span class="nav-text">大坑</span></a></li></ol></div>
             
 
           </div>
