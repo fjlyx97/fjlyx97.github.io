@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="初步了解Git的使用，在此做下笔记。">
+<meta name="description" content="初步了解Git的使用，在此做下笔记。 涉及Git安装配置，创建版本库以及其他多方面内容，防止自己遗忘。">
 <meta name="keywords" content="编程,Git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git的初步体验">
 <meta property="og:url" content="http://fjlyx97.github.io/2017/09/17/Git的初步体验/index.html">
 <meta property="og:site_name" content="一米见方">
-<meta property="og:description" content="初步了解Git的使用，在此做下笔记。">
+<meta property="og:description" content="初步了解Git的使用，在此做下笔记。 涉及Git安装配置，创建版本库以及其他多方面内容，防止自己遗忘。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-17T04:30:30.045Z">
+<meta property="og:updated_time" content="2017-09-17T08:34:29.366Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git的初步体验">
-<meta name="twitter:description" content="初步了解Git的使用，在此做下笔记。">
+<meta name="twitter:description" content="初步了解Git的使用，在此做下笔记。 涉及Git安装配置，创建版本库以及其他多方面内容，防止自己遗忘。">
 
 
 
@@ -424,15 +424,18 @@
 
       
         <script src="\assets\js\APlayer.min.js"> </script><blockquote>
-<p>初步了解Git的使用，在此做下笔记。</p>
+<ul>
+<li>初步了解Git的使用，在此做下笔记。</li>
+<li>涉及Git安装配置，创建版本库以及其他多方面内容，防止自己遗忘。</li>
+</ul>
 </blockquote>
 <a id="more"></a>
 <h1 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h1><ul>
-<li><p>安装过程极度简单，不做记录</p>
+<li>安装过程极度简单，不做记录。</li>
+</ul>
 <h1 id="Git的账号配置"><a href="#Git的账号配置" class="headerlink" title="Git的账号配置"></a>Git的账号配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name &quot;你的名字&quot;</div><div class="line">git config --global user.email &quot;你的邮箱&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><p>git conifg命令中的–global参数，用了这个参数，表示这台机器所有用户都会使用这个配置，也可以不添加。</p>
-<h1 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h1></li>
+<ul>
+<li>git conifg命令中的–global参数，用了这个参数，表示这台机器所有用户都会使用这个配置，也可以不添加。<h1 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h1></li>
 </ul>
 <ol>
 <li>选择合适地方创建空目录</li>
@@ -506,6 +509,24 @@
 <li><strong>提交后，</strong>我们可以使用如下命令，来讲暂存区的修改回退为工作区：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset HEAD 文件名</div></pre></td></tr></table></figure>
 </li>
 </ul>
+<p>#删除文件</p>
+<p>##一般情况下</p>
+<ul>
+<li>一般情况下，直接将文件删除，这时可以使用如下代码，来查看状态：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git status</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这时Git知道我们删除了文件，工作区和版本库不一致，我们可以使用如下代码，来完成删除并提交：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git rm 文件名</div><div class="line">git commit -m &quot;删除注释&quot;</div></pre></td></tr></table></figure></p>
+<p>##误删的情况</p>
+<ul>
+<li>如果是误删了文件，我们可以使用如下代码来恢复文件：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -- 文件名</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li><strong>git checkout</strong> 其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</li>
+<li>恢复只能恢复到 <strong>最近一次</strong> 提交的内容。</li>
+</ul>
+</blockquote>
 
       
     </div>
