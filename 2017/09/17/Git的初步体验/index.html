@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="初步了解Git的使用，在此做下笔记。 涉及Git安装配置，创建版本库以及其他多方面内容，防止自己遗忘。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-17T08:34:29.366Z">
+<meta property="og:updated_time" content="2017-09-17T08:36:17.115Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git的初步体验">
 <meta name="twitter:description" content="初步了解Git的使用，在此做下笔记。 涉及Git安装配置，创建版本库以及其他多方面内容，防止自己遗忘。">
@@ -509,15 +509,12 @@
 <li><strong>提交后，</strong>我们可以使用如下命令，来讲暂存区的修改回退为工作区：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset HEAD 文件名</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>#删除文件</p>
-<p>##一般情况下</p>
-<ul>
+<h1 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h1><h2 id="一般情况下"><a href="#一般情况下" class="headerlink" title="一般情况下"></a>一般情况下</h2><ul>
 <li>一般情况下，直接将文件删除，这时可以使用如下代码，来查看状态：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git status</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>这时Git知道我们删除了文件，工作区和版本库不一致，我们可以使用如下代码，来完成删除并提交：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git rm 文件名</div><div class="line">git commit -m &quot;删除注释&quot;</div></pre></td></tr></table></figure></p>
-<p>##误删的情况</p>
-<ul>
+<h2 id="误删的情况"><a href="#误删的情况" class="headerlink" title="误删的情况"></a>误删的情况</h2><ul>
 <li>如果是误删了文件，我们可以使用如下代码来恢复文件：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -- 文件名</div></pre></td></tr></table></figure>
 </li>
 </ul>
@@ -758,7 +755,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Git的安装"><span class="nav-text">Git的安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git的账号配置"><span class="nav-text">Git的账号配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建版本库"><span class="nav-text">创建版本库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加文件"><span class="nav-text">添加文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看状态"><span class="nav-text">查看状态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看日志"><span class="nav-text">查看日志</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版本回退"><span class="nav-text">版本回退</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#获取回退后的ID"><span class="nav-text">获取回退后的ID</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跟踪修改"><span class="nav-text">跟踪修改</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#丢弃修改"><span class="nav-text">丢弃修改</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#未使用-add前"><span class="nav-text">未使用 add前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用了-add后"><span class="nav-text">使用了 add后</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Git的安装"><span class="nav-text">Git的安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git的账号配置"><span class="nav-text">Git的账号配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建版本库"><span class="nav-text">创建版本库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加文件"><span class="nav-text">添加文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看状态"><span class="nav-text">查看状态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看日志"><span class="nav-text">查看日志</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版本回退"><span class="nav-text">版本回退</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#获取回退后的ID"><span class="nav-text">获取回退后的ID</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跟踪修改"><span class="nav-text">跟踪修改</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#丢弃修改"><span class="nav-text">丢弃修改</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#未使用-add前"><span class="nav-text">未使用 add前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用了-add后"><span class="nav-text">使用了 add后</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除文件"><span class="nav-text">删除文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一般情况下"><span class="nav-text">一般情况下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#误删的情况"><span class="nav-text">误删的情况</span></a></li></ol></li></ol></div>
             
 
           </div>
