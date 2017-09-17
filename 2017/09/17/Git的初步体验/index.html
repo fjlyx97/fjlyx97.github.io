@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="初步了解Git的使用，在此做下笔记。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-17T03:34:49.003Z">
+<meta property="og:updated_time" content="2017-09-17T04:06:41.698Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git的初步体验">
 <meta name="twitter:description" content="初步了解Git的使用，在此做下笔记。">
@@ -424,14 +424,15 @@
 
       
         <script src="\assets\js\APlayer.min.js"> </script><blockquote>
-<p>初步了解Git的使用，在此做下笔记。<br><a id="more"></a></p>
-<h1 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h1><ul>
-<li>安装过程极度简单，不做记录<h1 id="Git的账号配置"><a href="#Git的账号配置" class="headerlink" title="Git的账号配置"></a>Git的账号配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name &quot;你的名字&quot;</div><div class="line">git config --global user.email &quot;你的邮箱&quot;</div></pre></td></tr></table></figure>
-</li>
-</ul>
+<p>初步了解Git的使用，在此做下笔记。</p>
 </blockquote>
-<ul>
-<li>git conifg命令中的–global参数，用了这个参数，表示这台机器所有用户都会使用这个配置，也可以不添加。<h1 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h1></li>
+<a id="more"></a>
+<h1 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h1><ul>
+<li><p>安装过程极度简单，不做记录</p>
+<h1 id="Git的账号配置"><a href="#Git的账号配置" class="headerlink" title="Git的账号配置"></a>Git的账号配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name &quot;你的名字&quot;</div><div class="line">git config --global user.email &quot;你的邮箱&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>git conifg命令中的–global参数，用了这个参数，表示这台机器所有用户都会使用这个配置，也可以不添加。</p>
+<h1 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h1></li>
 </ul>
 <ol>
 <li>选择合适地方创建空目录</li>
@@ -451,27 +452,37 @@
 <blockquote>
 <ul>
 <li>-m 后面为修改的注释，一般情况下最好添加，也方便自己以后查看修改记录。</li>
-<li>commit可以一次提交多个文件，所以最好 <strong>add</strong>多个文件后，使用commit提交。<h1 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h1></li>
+<li>commit可以一次提交多个文件，所以最好 <strong>add</strong>多个文件后，使用commit提交。</li>
+</ul>
+</blockquote>
+<h1 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h1><ul>
 <li>使用如下代码查看当前状态：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git status</div></pre></td></tr></table></figure>
 </li>
 </ul>
+<blockquote>
 <p>这条命令可以让我们掌握仓库的状态，产看那些文件已经更改过了。</p>
+</blockquote>
 <ul>
 <li>使用如下代码查看详细状态<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git diff 文件名</div></pre></td></tr></table></figure>
 </li>
 </ul>
+<blockquote>
 <p>此条命令可以让我们查询到文件做了哪些更改。</p>
+</blockquote>
 <h1 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h1><ul>
 <li>使用如下代码查看文件修改过的日志<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git log</div></pre></td></tr></table></figure>
 </li>
 </ul>
+<blockquote>
 <p>可以加上 <strong>–pretty=oneline</strong>,出现的是commit的版本号，有 <strong>Head</strong>的那一行为最新修改的版本。</p>
+</blockquote>
 <h1 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h1><ul>
-<li><p>使用如下代码回退版本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset --hard HEAD^</div></pre></td></tr></table></figure>
+<li>使用如下代码回退版本<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset --hard HEAD^</div></pre></td></tr></table></figure>
 </li>
-<li><p><strong>注意</strong>,在windows平台中的cmd下，符号 <strong>^</strong>应当使用双引号括起来，它是特殊字符，否则会出现 <strong>More?</strong> 的现象。</p>
-</li>
+</ul>
+<blockquote>
+<ul>
+<li><strong>注意</strong>,在windows平台中的cmd下，符号 <strong>^</strong>应当使用双引号括起来，它是特殊字符，否则会出现 <strong>More?</strong> 的现象。</li>
 <li>上一个版本是 <strong>HEAD^</strong>，上上个版本则是 <strong>HEAD^^</strong> ，以此类推。</li>
 <li>当版本数过多的时候，使用^容易数不过来，可以使用 <strong>HEAD~100</strong> 来回退版本。</li>
 <li>如果不小心回退错误，可以使用:  <strong>git reset –hard 版本号</strong>来回退版本。 只需写版本号前几位即可，系统会进行自动查找。</li>
