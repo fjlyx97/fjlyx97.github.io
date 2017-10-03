@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="初步了解Git的使用，在此做下笔记。 涉及Git安装配置，创建版本库以及其他多方面内容，防止自己遗忘。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-17T09:28:46.514Z">
+<meta property="og:updated_time" content="2017-10-03T06:16:21.424Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git的初步体验">
 <meta name="twitter:description" content="初步了解Git的使用，在此做下笔记。 涉及Git安装配置，创建版本库以及其他多方面内容，防止自己遗忘。">
@@ -480,7 +480,7 @@
 <p>可以加上 <strong>–pretty=oneline</strong>,出现的是commit的版本号，有 <strong>Head</strong>的那一行为最新修改的版本。</p>
 </blockquote>
 <h1 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h1><ul>
-<li>使用如下代码回退版本<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset --hard HEAD^</div></pre></td></tr></table></figure>
+<li>使用如下代码回退版本<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git reset --hard HEAD^</div><div class="line">#亦或者使用</div><div class="line">git reset --hard 回退后的id</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <blockquote>
@@ -496,7 +496,10 @@
 </li>
 </ul>
 <blockquote>
-<p>这条命令可以显示你之前输入的所有命令，以此来获得 <strong>commit id</strong>。</p>
+<ul>
+<li>这条命令可以显示你之前输入的所有命令，以此来获得 <strong>commit id</strong>。</li>
+<li>这条命令用于记录输入过的命令。</li>
+</ul>
 </blockquote>
 <h1 id="跟踪修改"><a href="#跟踪修改" class="headerlink" title="跟踪修改"></a>跟踪修改</h1><ul>
 <li>git跟踪的是修改内容而非文件本身，如果不使用 <strong>add</strong>将文件添加至暂存区， <strong>commit</strong>只会提交暂存区的内容，所以文件不会发生改变。<h1 id="丢弃修改"><a href="#丢弃修改" class="headerlink" title="丢弃修改"></a>丢弃修改</h1><h2 id="未使用-add前"><a href="#未使用-add前" class="headerlink" title="未使用 add前"></a>未使用 <strong>add</strong>前</h2></li>
@@ -548,6 +551,10 @@
 <li>以后可以使用 <strong>git push origin master</strong>来直接推送。</li>
 </ul>
 </blockquote>
+<ul>
+<li>可以使用如下代码来查看当前有的远程库<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote</div></pre></td></tr></table></figure>
+</li>
+</ul>
 <h1 id="从远程库克隆"><a href="#从远程库克隆" class="headerlink" title="从远程库克隆"></a>从远程库克隆</h1><ul>
 <li>从零开始时最好先创建远程库，并使用如下代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone 地址</div></pre></td></tr></table></figure>
 </li>
