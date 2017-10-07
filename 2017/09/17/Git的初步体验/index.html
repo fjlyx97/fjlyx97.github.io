@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="初步了解Git的使用，在此做下笔记。 涉及Git安装配置，创建版本库以及其他多方面内容，防止自己遗忘。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-04T10:52:02.264Z">
+<meta property="og:updated_time" content="2017-10-07T13:55:20.869Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git的初步体验">
 <meta name="twitter:description" content="初步了解Git的使用，在此做下笔记。 涉及Git安装配置，创建版本库以及其他多方面内容，防止自己遗忘。">
@@ -466,11 +466,14 @@
 <p>这条命令可以让我们掌握仓库的状态，产看那些文件已经更改过了。</p>
 </blockquote>
 <ul>
-<li>使用如下代码查看详细状态<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git diff 文件名</div></pre></td></tr></table></figure>
+<li>使用如下代码查看详细状态<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git diff HEAD --文件名</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <blockquote>
-<p>此条命令可以让我们查询到文件做了哪些更改。</p>
+<ul>
+<li>此条命令可以让我们查询到文件做了哪些更改。</li>
+<li>需要注意的是这是对比工作区和缓存区的差别，所以需要先使用add提交。</li>
+</ul>
 </blockquote>
 <h1 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h1><ul>
 <li>使用如下代码查看文件修改过的日志<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git log</div></pre></td></tr></table></figure>
