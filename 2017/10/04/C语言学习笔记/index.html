@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-07T11:44:42.883Z">
+<meta property="og:updated_time" content="2017-10-07T14:28:18.137Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言学习笔记">
 <meta name="twitter:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
@@ -474,6 +474,13 @@
 </li>
 </ol>
 <p>由此我们可以引申出，如果要从a[3]开始对b赋值的话<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">memcpy</span>(&amp;b[<span class="number">0</span>],&amp;b[<span class="number">3</span>],<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*<span class="number">2</span>);</div></pre></td></tr></table></figure></p>
+<ol>
+<li><p>数组指针和指针数组是不同的概念<br>```c<br>#include <stdio.h><br>int main(void)<br>{<br>int num[5] = {1,2,3,4,5};<br>int <em>p[5] = {&amp;num[0],&amp;num[1],&amp;num[2],&amp;num[3],&amp;num[4]}; //指针数组，生成五个指针分别指向num中的元素。p先和[]结合。<br>/</em>————————————————————-<em>/<br>//要生成一个指针指向数组，通过分解可以得到<br>//</em>p1 代表指针<br>//int[5]代表数组<br>//实际理解是int[5] <em>p1; 但是编译器不允许通过<br>//根据优先级int </em>p1[5]，会先和中括号结合，所以需要括号将p1括起来</stdio.h></p>
+<p>int (*p1)[5] = &num; //数组指针<br>//生成一个指针，指向数组，在C语言中，数组名是第一个元素的地址，但是数组本身也存在地址。<br>//元素个数一定要一样，否则就是不同类型</p>
+<p>//两者可以看成是运算符优先级的不同，[]的优先级大于*，但是()的优先级是最大的。</p>
+<p>return 0;<br>}</p>
+</li>
+</ol>
 <h1 id="大坑待填"><a href="#大坑待填" class="headerlink" title="大坑待填"></a>大坑待填</h1>
       
     </div>
