@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-14T13:53:58.545Z">
+<meta property="og:updated_time" content="2017-10-20T00:43:48.176Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言学习笔记">
 <meta name="twitter:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
@@ -482,9 +482,24 @@
 <li><p>除法使用向零取整，所以当使用： 1 / 10的时候，得到的答案是0。（刷Oj遇到的方法）</p>
 </li>
 <li><p>用到for循环的时候，需要注意到边界问题，否则有可能会超出时间限制。（刷oj遇到的超时问题）</p>
-<h1 id="大坑待填"><a href="#大坑待填" class="headerlink" title="大坑待填"></a>大坑待填</h1></li>
+</li>
+<li><p>写for循环时，一旦不小心在末尾加上分号，则初始化的值可能出现极大的偏差。（舍友遇到的大坑）</p>
+</li>
+<li><p>每个字符串末尾都需要加上\0,否则使用put或printf函数时，不会终止输出，出现乱码。（同学遇到的大坑，自己刷oj也碰到过）。</p>
+</li>
+<li><p>自增或自减运算符不能用于常量表达式，如5++，(a+b)++ 。且方向自右向。</p>
+</li>
+<li><p>转化时向高精度的方向转换，即int -&gt; float -&gt; double。</p>
+</li>
+<li><p>字符串和数字相互转换的函数:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//需要包含在头文件stdlib.h</span></div><div class="line">atof(str) <span class="comment">//返回double</span></div><div class="line">atoi(str) <span class="comment">//返回int</span></div><div class="line">atol(str) <span class="comment">//返回long</span></div><div class="line"><span class="comment">/*-------------------*/</span></div><div class="line">itoa(num,str,radix) <span class="comment">//radix是要求转换的进制数，int转str</span></div><div class="line">ltoa(num,str,radix) <span class="comment">//long转str</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>i <em>= k+2 ，k+2为一个整体，即 i = i </em> (k + 2);</p>
+</li>
+<li><p>a &gt; b &gt; c ，从左往右比较，并用0,1替换比较结果，即如果a &gt; b，会替换成： 1 &gt; c。</p>
+</li>
 </ol>
-
+<h1 id="大坑待填"><a href="#大坑待填" class="headerlink" title="大坑待填"></a>大坑待填</h1>
       
     </div>
     
