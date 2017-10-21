@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="根据网易web安全工程师所做笔记 记录学习之路 前文完结 本文为第二章">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-21T14:26:39.532Z">
+<meta property="og:updated_time" content="2017-10-21T14:53:09.029Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web安全基础">
 <meta name="twitter:description" content="根据网易web安全工程师所做笔记 记录学习之路 前文完结 本文为第二章">
@@ -432,6 +432,36 @@
 </ul>
 </blockquote>
 <a id="more"></a>
+<h1 id="利用搜索引擎关键字"><a href="#利用搜索引擎关键字" class="headerlink" title="利用搜索引擎关键字"></a>利用搜索引擎关键字</h1><ul>
+<li>intitle:Hacked by //网站被黑关键字，不过是黑客为了炫耀罢了</li>
+<li>intitle:keyword   //标题中含有关键字的网页</li>
+<li>intext:keyword    //正文中含有关键字的网页</li>
+<li>site:域名         //搜索某个域名或者子域名的网页</li>
+</ul>
+<h1 id="暗链"><a href="#暗链" class="headerlink" title="暗链"></a>暗链</h1><ul>
+<li>隐藏在网站当中链接</li>
+<li>网游/医疗/博彩/色情</li>
+<li>针对搜索引擎，提高在搜索引擎的排名（SEO）</li>
+</ul>
+<h1 id="Webshell"><a href="#Webshell" class="headerlink" title="Webshell"></a>Webshell</h1><ul>
+<li>网页</li>
+<li>功能强大（大部分的命令操作）</li>
+<li>asp/php/jsp</li>
+<li>后门程序</li>
+</ul>
+<h1 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h1><p>##什么是XSS?</p>
+<ul>
+<li>Cross Site Script</li>
+<li>跨站脚本</li>
+<li>危害：盗取用户信息，钓鱼，蠕虫</li>
+<li>针对前端语言的注入，可以盗取Cookie<br>##XSS分类？<br>###存储型</li>
+<li>访问网站，触发XSS</li>
+<li>从数据库中提取XSS<br>###反射型</li>
+<li>主动访问携带XSS脚本的链接</li>
+<li>触发XSS<br>###DOM型</li>
+<li>主动访问携带XSS脚本的链接</li>
+<li>触发XSS</li>
+</ul>
 
       
     </div>
@@ -556,8 +586,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -646,6 +685,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#利用搜索引擎关键字"><span class="nav-text">利用搜索引擎关键字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#暗链"><span class="nav-text">暗链</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Webshell"><span class="nav-text">Webshell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#XSS"><span class="nav-text">XSS</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
