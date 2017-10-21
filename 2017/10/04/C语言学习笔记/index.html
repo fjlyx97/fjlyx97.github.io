@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-20T14:33:16.875Z">
+<meta property="og:updated_time" content="2017-10-20T16:21:54.912Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言学习笔记">
 <meta name="twitter:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
@@ -501,6 +501,9 @@
 <li><p>字符串和字符指针的区别，参考如下代码：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">char</span> str1[] = <span class="string">"Hello World"</span>;</div><div class="line">    <span class="keyword">char</span> *str2 = <span class="string">"Hello World"</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%p\n"</span>,<span class="string">"Hello World"</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%p\n"</span>,str1);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%p\n"</span>,str2);</div><div class="line">    <span class="comment">/*这第一个和第三个结果是相同的。</span></div><div class="line"><span class="comment">     *第一个代表字符串地址</span></div><div class="line"><span class="comment">     *第三个代表生成一个指针指向字符串地址</span></div><div class="line"><span class="comment">     *而第二个代表新生成一片空间，与原先字符串的空间两者相独立，互不干扰，所以打印出的指针地址不同。</span></div><div class="line"><span class="comment">    */</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
+<li><p>数组作为函数参数，如下代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*当数组作为参数传入时，是可以直接修改数组内容的</span></div><div class="line"><span class="comment"> *即数组首地址指针被传入到函数当中。</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">input</span><span class="params">(<span class="keyword">double</span> score[])</span> <span class="comment">//不需要输入元素个数</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="comment">//函数实现;</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//亦或者使用如下写法</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">(<span class="keyword">double</span>* score)</span> <span class="comment">//两者等同，有细微差别，涉及底层机制。</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">double</span> score[<span class="number">10</span>];</div><div class="line">    input(score);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
 </ol>
 <h1 id="大坑待填"><a href="#大坑待填" class="headerlink" title="大坑待填"></a>大坑待填</h1>
       
@@ -658,7 +661,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -669,7 +672,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -680,7 +683,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
