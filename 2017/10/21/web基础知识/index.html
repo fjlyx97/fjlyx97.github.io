@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="在不断打代码的过程中，消遣生活 丰富课余生活 毕竟有着一个黑客梦 记录web安全学习之路 更新缓慢，大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-21T06:14:48.364Z">
+<meta property="og:updated_time" content="2017-10-21T09:43:04.522Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web基础知识">
 <meta name="twitter:description" content="在不断打代码的过程中，消遣生活 丰富课余生活 毕竟有着一个黑客梦 记录web安全学习之路 更新缓慢，大坑待填">
@@ -464,8 +464,27 @@
 <h1 id="什么是HTTP"><a href="#什么是HTTP" class="headerlink" title="什么是HTTP?"></a>什么是HTTP?</h1><ul>
 <li>web使用的协议，即超文本传输协议</li>
 <li>应用最广泛，web基础</li>
-<li>Hyper Text Transfer Protocol</li>
+<li>Hyper Text Transfer Protocol<h2 id="什么是HTTPS"><a href="#什么是HTTPS" class="headerlink" title="什么是HTTPS?"></a>什么是HTTPS?</h2></li>
+<li>可以简单来说，HTTPS = HTTP + SSL</li>
+<li>相对于HTTP来说，HTTPS更为安全</li>
+<li>HTTP标准端口是80，HTTPS标准端口则为443</li>
+<li>HTTP无需加密，HTTPS对传输的数据进行加密</li>
+<li>HTTP无需证书，HTTPS需要认证证书</li>
 </ul>
+<h1 id="Javascript-Bom"><a href="#Javascript-Bom" class="headerlink" title="Javascript Bom"></a>Javascript Bom</h1><ul>
+<li>警告弹窗 alert()</li>
+<li>确认弹窗 confirm()</li>
+<li>提示弹窗 prompt()<blockquote>
+<ul>
+<li>Bom浏览器对象模型</li>
+<li>以后测试可能会用到</li>
+<li>检验是否有漏洞</li>
+<li>建议熟记</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h1 id="HTML常用标签"><a href="#HTML常用标签" class="headerlink" title="HTML常用标签"></a>HTML常用标签</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span> 标题标签，最多到<span class="tag">&lt;<span class="name">h6</span>&gt;</span><span class="tag">&lt;/<span class="name">h6</span>&gt;</span>，标题依次从大小</div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span>   段落标签，浏览器会自动已排版的格式</div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://www.baidu.com"</span>&gt;</span>用了href属性<span class="tag">&lt;/<span class="name">a</span>&gt;</span>    链接标签</div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"path"</span> <span class="attr">width</span>=<span class="string">数字</span> <span class="attr">height</span>=<span class="string">数字</span> /&gt;</span>   插入图片的标签</div><div class="line"><span class="comment">&lt;!--注释--&gt;</span>   注释标签</div><div class="line"><span class="tag">&lt;<span class="name">hr</span> /&gt;</span>        插入水平线</div><div class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span>          换行标签</div><div class="line"><span class="tag">&lt;<span class="name">b</span>&gt;</span>           文本加粗标签</div><div class="line"><span class="tag">&lt;<span class="name">strong</span>&gt;</span>      文本加粗标签</div><div class="line"><span class="tag">&lt;<span class="name">big</span>&gt;</span>         文本放大标签</div><div class="line"><span class="tag">&lt;<span class="name">em</span>&gt;</span>          文本斜体标签</div><div class="line"><span class="tag">&lt;<span class="name">small</span>&gt;</span>       文本缩小标签</div><div class="line"><span class="tag">&lt;<span class="name">sub</span>&gt;</span><span class="tag">&lt;/<span class="name">sub</span>&gt;</span>   文本下标标签</div><div class="line"><span class="tag">&lt;<span class="name">sup</span>&gt;</span><span class="tag">&lt;/<span class="name">sup</span>&gt;</span>   文本上标标签</div><div class="line"><span class="tag">&lt;<span class="name">del</span>&gt;</span><span class="tag">&lt;/<span class="name">del</span>&gt;</span>   文本删除线标签</div><div class="line"><span class="tag">&lt;<span class="name">ins</span>&gt;</span><span class="tag">&lt;/<span class="name">ins</span>&gt;</span>   文本下划线标签</div><div class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span>   文本格式化标签，允许控制空行和空格</div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"mailto:webmaster@example.com"</span>&gt;</span>Mr L<span class="tag">&lt;/<span class="name">a</span>&gt;</span> 邮箱标签</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -699,7 +718,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#web是什么？"><span class="nav-text">web是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web的工作流程"><span class="nav-text">web的工作流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#url的详细格式"><span class="nav-text">url的详细格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是HTTP"><span class="nav-text">什么是HTTP?</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#web是什么？"><span class="nav-text">web是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web的工作流程"><span class="nav-text">web的工作流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#url的详细格式"><span class="nav-text">url的详细格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是HTTP"><span class="nav-text">什么是HTTP?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是HTTPS"><span class="nav-text">什么是HTTPS?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Javascript-Bom"><span class="nav-text">Javascript Bom</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML常用标签"><span class="nav-text">HTML常用标签</span></a></li></ol></div>
             
 
           </div>
