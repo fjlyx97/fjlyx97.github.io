@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[web基础知识]]></title>
     <url>%2F2017%2F10%2F21%2Fweb%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%2F</url>
-    <content type="text"><![CDATA[在不断打代码的过程中，消遣生活 丰富课余生活 毕竟有着一个黑客梦 记录web安全学习之路 更新缓慢，大坑待填 web是什么？ World Wide Web 万维网 非常普遍的互联网应用 平时流量的网页 经历了Web1.0，Web2.0等阶段 Web1.0主要是静态页面 Web2.0类似于博客等页面]]></content>
+    <content type="text"><![CDATA[在不断打代码的过程中，消遣生活 丰富课余生活 毕竟有着一个黑客梦 记录web安全学习之路 更新缓慢，大坑待填 web是什么？ World Wide Web 万维网 非常普遍的互联网应用 平时流量的网页 经历了Web1.0，Web2.0等阶段 Web1.0主要是静态页面 Web2.0类似于博客等页面 web的工作流程 通过dns请求，发送域名到dns服务器，得到解析后的ip地址，然后便可以通过解析完毕的ip地址来访问一个网址。 url的详细格式 schema://host[:port#]/path/…/[?query-string][#anchor] schema：底层协议，如:http,https,ftp host：服务器域名或者IP地址 port： 端口，默认80端口 path： 访问资源的路径 ?query-string： 发送给http服务器的数据 anchor： 锚 什么是HTTP? web使用的协议，即超文本传输协议 应用最广泛，web基础 Hyper Text Transfer Protocol]]></content>
       <categories>
         <category>web安全笔记</category>
       </categories>
