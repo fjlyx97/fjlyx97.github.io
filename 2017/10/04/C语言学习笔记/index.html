@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-24T08:38:51.213Z">
+<meta property="og:updated_time" content="2017-10-24T08:41:36.708Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言学习笔记">
 <meta name="twitter:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
@@ -538,10 +538,8 @@
 <li><p>再看另一组代码</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> i = <span class="number">3</span>;</div><div class="line"><span class="keyword">int</span> j = <span class="number">4</span>;</div><div class="line"><span class="keyword">int</span> a = i++ + i++ + i++;</div><div class="line"><span class="keyword">int</span> b = ++j + ++j + ++j;</div><div class="line"><span class="built_in">printf</span>(<span class="string">"%d, %d\n"</span>, a, b);</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> *这组结果为9，19</span></div><div class="line"><span class="comment"> *vs2017中为12，19</span></div><div class="line"><span class="comment"> *按上一组的理解，这一组应该为21</span></div><div class="line"><span class="comment"> *但是这一组存在两个同级+运算</span></div><div class="line"><span class="comment"> *根据+的左结合性，式子可看成(++j + ++j) + ++j;</span></div><div class="line"><span class="comment"> *即 (6 + 6) + 7;</span></div><div class="line"><span class="comment"> */</span></div></pre></td></tr></table></figure>
 </li>
-<li><p>最后一组代码<br>```c<br>int i=1;<br>int j=1;<br>int a = i++ + i++ + i++ + i++ + i++ + i++ + i++; // 七个<br>int b = ++j + ++j + ++j + ++j + ++j + ++j + ++j;<br>printf(“%d, %d\n”, a, b);<br>printf(“%d, %d\n”, i, j);<br>/<em>*
-</em>a = 1 + 1 + 1 + 1 + 1 + 1 + 1 = 7<br><em>b = 3 + 3 + 4 + 5 + 6 + 7 + 8 = 36
-</em>总的来说，后置++比较好看出来，前置++需要注意运算符的优先级<br><em>如果非应试教育，应当尽量不使用这种式子，造成误解
-</em>/</p>
+<li><p>最后一组代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> i=<span class="number">1</span>;</div><div class="line"><span class="keyword">int</span> j=<span class="number">1</span>;</div><div class="line"><span class="keyword">int</span> a = i++ + i++ + i++ + i++ + i++ + i++ + i++; <span class="comment">// 七个</span></div><div class="line"><span class="keyword">int</span> b = ++j + ++j + ++j + ++j + ++j + ++j + ++j;</div><div class="line"><span class="built_in">printf</span>(<span class="string">"%d, %d\n"</span>, a, b);</div><div class="line"><span class="built_in">printf</span>(<span class="string">"%d, %d\n"</span>, i, j); </div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> *a = 1 + 1 + 1 + 1 + 1 + 1 + 1 = 7</span></div><div class="line"><span class="comment"> *b = 3 + 3 + 4 + 5 + 6 + 7 + 8 = 36</span></div><div class="line"><span class="comment"> *总的来说，后置++比较好看出来，前置++需要注意运算符的优先级</span></div><div class="line"><span class="comment"> *如果非应试教育，应当尽量不使用这种式子，造成误解</span></div><div class="line"><span class="comment"> */</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
