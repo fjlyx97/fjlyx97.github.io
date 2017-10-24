@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-22T09:16:42.444Z">
+<meta property="og:updated_time" content="2017-10-24T08:37:53.121Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言学习笔记">
 <meta name="twitter:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
@@ -528,6 +528,20 @@
 <li>十进制转二进制，一般采用除2取余法，直到商为0，得到的余数从最尾巴倒着排回去</li>
 <li>转其他进制同样也可以采用除数取余法</li>
 <li>其他进制转十进制，可以将数字展开，一次乘以各个数字的次方</li>
+</ul>
+</li>
+<li><p>关于自增自减运算符的深入剖析（参考网络上的资料）</p>
+<ul>
+<li><p>在不同编译器中，这个结果可能出现不同。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> i = <span class="number">3</span>;</div><div class="line"><span class="keyword">int</span> j = <span class="number">4</span>;</div><div class="line"><span class="keyword">int</span> a = i++ + i++;</div><div class="line"><span class="keyword">int</span> b = ++j + ++j;</div><div class="line"><span class="built_in">printf</span>(<span class="string">"%d, %d\n"</span>, a, b);</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> *这个答案在VC6.0里面为6，12</span></div><div class="line"><span class="comment"> *但是在vs2017里面测试确为7，12</span></div><div class="line"><span class="comment"> *以以上的例子来说</span></div><div class="line"><span class="comment"> *i++的理解应该是执行完整个表达式的其他操作后，然后才自增</span></div><div class="line"><span class="comment"> *++j的理解为先自增再参与其他运算</span></div><div class="line"><span class="comment"> */</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>再看另一组代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> i = <span class="number">3</span>;</div><div class="line"><span class="keyword">int</span> j = <span class="number">4</span>;</div><div class="line"><span class="keyword">int</span> a = i++ + i++ + i++;</div><div class="line"><span class="keyword">int</span> b = ++j + ++j + ++j;</div><div class="line"><span class="built_in">printf</span>(<span class="string">"%d, %d\n"</span>, a, b);</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> *这组结果为9，19</span></div><div class="line"><span class="comment"> *vs2017中为12，19</span></div><div class="line"><span class="comment"> *按上一组的理解，这一组应该为21</span></div><div class="line"><span class="comment"> *但是这一组存在两个同级+运算</span></div><div class="line"><span class="comment"> *根据+的左结合性，式子可看成(++j + ++j) + ++j;</span></div><div class="line"><span class="comment"> *即 (6 + 6) + 7;</span></div><div class="line"><span class="comment"> */</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>最后一组代码<br>```c<br>int i=1;<br>int j=1;<br>int a = i++ + i++ + i++ + i++ + i++ + i++ + i++; // 七个<br>int b = ++j + ++j + ++j + ++j + ++j + ++j + ++j;<br>printf(“%d, %d\n”, a, b);<br>printf(“%d, %d\n”, i, j);<br>/<em>*
+</em>a = 1 + 1 + 1 + 1 + 1 + 1 + 1 = 7<br><em>b = 3 + 3 + 4 + 5 + 6 + 7 + 8 = 36
+</em>总的来说，后置++比较好看出来，前置++需要注意运算符的优先级<br>*/</p>
+</li>
 </ul>
 </li>
 </ol>
