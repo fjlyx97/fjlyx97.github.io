@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-24T08:41:36.708Z">
+<meta property="og:updated_time" content="2017-10-24T12:36:50.051Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言学习笔记">
 <meta name="twitter:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
@@ -542,6 +542,9 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> i=<span class="number">1</span>;</div><div class="line"><span class="keyword">int</span> j=<span class="number">1</span>;</div><div class="line"><span class="keyword">int</span> a = i++ + i++ + i++ + i++ + i++ + i++ + i++; <span class="comment">// 七个</span></div><div class="line"><span class="keyword">int</span> b = ++j + ++j + ++j + ++j + ++j + ++j + ++j;</div><div class="line"><span class="built_in">printf</span>(<span class="string">"%d, %d\n"</span>, a, b);</div><div class="line"><span class="built_in">printf</span>(<span class="string">"%d, %d\n"</span>, i, j); </div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> *a = 1 + 1 + 1 + 1 + 1 + 1 + 1 = 7</span></div><div class="line"><span class="comment"> *b = 3 + 3 + 4 + 5 + 6 + 7 + 8 = 36</span></div><div class="line"><span class="comment"> *总的来说，后置++比较好看出来，前置++需要注意运算符的优先级</span></div><div class="line"><span class="comment"> *如果非应试教育，应当尽量不使用这种式子，造成误解</span></div><div class="line"><span class="comment"> */</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
+</li>
+<li><p>当碰到：a += a <em>= a -= a </em>= 3这类式子时，应从右往左一次计算，如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a *= <span class="number">3</span>;</div><div class="line">a = a - a;</div><div class="line"><span class="comment">//......</span></div><div class="line"><span class="comment">//此后不再叙述</span></div></pre></td></tr></table></figure>
 </li>
 </ol>
 <h1 id="大坑待填"><a href="#大坑待填" class="headerlink" title="大坑待填"></a>大坑待填</h1>
