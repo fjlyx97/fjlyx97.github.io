@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-24T12:36:50.051Z">
+<meta property="og:updated_time" content="2017-10-26T11:19:35.354Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言学习笔记">
 <meta name="twitter:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
@@ -545,6 +545,10 @@
 </li>
 <li><p>当碰到：a += a <em>= a -= a </em>= 3这类式子时，应从右往左一次计算，如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a *= <span class="number">3</span>;</div><div class="line">a = a - a;</div><div class="line"><span class="comment">//......</span></div><div class="line"><span class="comment">//此后不再叙述</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>使用extern声明全局变量的时候，可以扩大变量的作用域。如在其他文件中存在一个整形变量a，在本文件中可以使用extern int a来申明全局变量，类型名可写可不写，如使用extern a</p>
+</li>
+<li><p>使用static声明全局变量时，只能用于本文件，即便在其他文件中使用了extern这个关键字，也无法调用，那一行只能调用一次，不可重复调用，所以声明时最好就一同初始化，static 函数也同理</p>
 </li>
 </ol>
 <h1 id="大坑待填"><a href="#大坑待填" class="headerlink" title="大坑待填"></a>大坑待填</h1>
