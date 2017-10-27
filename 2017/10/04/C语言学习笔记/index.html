@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-26T11:19:35.354Z">
+<meta property="og:updated_time" content="2017-10-27T09:13:33.917Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言学习笔记">
 <meta name="twitter:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
@@ -440,7 +440,7 @@
 </ul>
 </li>
 <li>变量最好在定义时就初始化，否则忘记赋值直接使用会出现特别大的奇怪数值。（刷OJ的时候碰到的坑）。</li>
-<li>单精度(float)七位有效数字，双精度(double)十六位有效数字。</li>
+<li>单精度(float)七位有效数字，双精度(double)十六位有效数字。小数有六位，逗号算一位</li>
 <li>转义字符参见表格。</li>
 <li>大小写ASCII码相差32。</li>
 <li>一旦有实数参与运算，结果也为实数。否则大多数机器采取“向零取整”的策略。</li>
@@ -494,7 +494,7 @@
 <li><p>字符串和数字相互转换的函数:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//需要包含在头文件stdlib.h</span></div><div class="line">atof(str) <span class="comment">//返回double</span></div><div class="line">atoi(str) <span class="comment">//返回int</span></div><div class="line">atol(str) <span class="comment">//返回long</span></div><div class="line"><span class="comment">/*-------------------*/</span></div><div class="line">itoa(num,str,radix) <span class="comment">//radix是要求转换的进制数，int转str</span></div><div class="line">ltoa(num,str,radix) <span class="comment">//long转str</span></div></pre></td></tr></table></figure>
 </li>
-<li><p>i *= k+2 ，k+2为一个整体，即 i = i ]* (k + 2);</p>
+<li><p>i *= k+2 ，k+2为一个整体，即 i = i * (k + 2);</p>
 </li>
 <li><p>a &gt; b &gt; c ，从左往右比较，并用0,1替换比较结果，即如果a &gt; b，会替换成： 1 &gt; c。</p>
 </li>
@@ -520,7 +520,7 @@
 </li>
 <li><p>转义字符中，存在八进制和十六进制</p>
 <ul>
-<li>\ddd 三位八进制    不能超过三位</li>
+<li>\ddd 三位八进制    不能超过三位，且数字为0-7</li>
 <li>\xhh 二位十六进制   不能超过两位</li>
 </ul>
 </li>
@@ -549,6 +549,13 @@
 <li><p>使用extern声明全局变量的时候，可以扩大变量的作用域。如在其他文件中存在一个整形变量a，在本文件中可以使用extern int a来申明全局变量，类型名可写可不写，如使用extern a</p>
 </li>
 <li><p>使用static声明全局变量时，只能用于本文件，即便在其他文件中使用了extern这个关键字，也无法调用，那一行只能调用一次，不可重复调用，所以声明时最好就一同初始化，static 函数也同理</p>
+</li>
+<li><p>找到字符串结束符</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">char</span> *str = <span class="string">"hello world"</span>;</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (str[i] != <span class="string">'\0'</span>)</div><div class="line">    &#123;</div><div class="line">        i++;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>注释不允许嵌套（练习大坑）</p>
+</li>
+<li><p>++允许使用在float上面，但是%必须是两个整型</p>
 </li>
 </ol>
 <h1 id="大坑待填"><a href="#大坑待填" class="headerlink" title="大坑待填"></a>大坑待填</h1>
