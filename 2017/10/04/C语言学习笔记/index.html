@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-27T09:13:33.917Z">
+<meta property="og:updated_time" content="2017-10-31T11:57:15.203Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言学习笔记">
 <meta name="twitter:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
@@ -512,7 +512,7 @@
 </li>
 <li><p>声明一个负数，使用%u，即无符号整数打印</p>
 <ul>
-<li>先将该数绝对值已二进制的方式表达出来</li>
+<li>先将该数绝对值以二进制的方式表达出来</li>
 <li>再将位数所有按位取反</li>
 <li>最后将得到的二进制加1</li>
 <li>逆推回十进制</li>
@@ -528,6 +528,7 @@
 <li>十进制转二进制，一般采用除2取余法，直到商为0，得到的余数从最尾巴倒着排回去</li>
 <li>转其他进制同样也可以采用除数取余法</li>
 <li>其他进制转十进制，可以将数字展开，一次乘以各个数字的次方</li>
+<li>二进制转八进制，从后往前，三位一组，不够用0补，然后以十进制方法转化，如(11001.101)<sub>2</sub>，其中001代表1，011代表3，所以这个数值就是31。</li>
 </ul>
 </li>
 <li><p>关于自增自减运算符的深入剖析（参考网络上的资料）</p>
@@ -556,6 +557,12 @@
 <li><p>注释不允许嵌套（练习大坑）</p>
 </li>
 <li><p>++允许使用在float上面，但是%必须是两个整型</p>
+</li>
+<li><ul>
+<li>原码：符号位加上真值的绝对值，即第一位是符号，其余位为值。符号位1代表符号，0代表正号</li>
+<li>反码：整数的反码是本身。负数是在原码的基础上，符号位不变，其他位取反</li>
+<li>补码：正数的补码是本身。负数的补码是在原码的基础上，符号位不变，其他位取反，最后+1。（即反码+1）</li>
+</ul>
 </li>
 </ol>
 <h1 id="大坑待填"><a href="#大坑待填" class="headerlink" title="大坑待填"></a>大坑待填</h1>
