@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-09T06:21:01.611Z">
+<meta property="og:updated_time" content="2017-11-09T06:28:53.699Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言学习笔记">
 <meta name="twitter:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
@@ -597,7 +597,14 @@
 <ol>
 <li><p>结构体类型定义的时候并不分配内存空间，只有申明变量的时候才分配内存。</p>
 </li>
-<li><p>结构体里面允许嵌套结构体，使用.（成员运算符）来访问</p>
+<li><p>结构体里面允许嵌套结构体，使用.（成员运算符）来逐级访问。</p>
+</li>
+<li><p>共用体的大小取决于最长成员所占用的存储空间，而结构体则是所有成员之和。如下例子</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">union</span> data</div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> a;</div><div class="line">    <span class="keyword">float</span> b;</div><div class="line">    <span class="keyword">double</span> c;</div><div class="line">    <span class="keyword">char</span> d;</div><div class="line">&#125;obj;</div><div class="line"><span class="comment">//这个data所占的空间为double所占的8字节。、</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>不能同时引用两个或两个以上的共用体成员，否则出错。</p>
+</li>
+<li><p>枚举序号默认从0开始排列，但是也可以初始化，不允许后面复制。 </p>
 </li>
 </ol>
 <h1 id="大坑待填"><a href="#大坑待填" class="headerlink" title="大坑待填"></a>大坑待填</h1>
