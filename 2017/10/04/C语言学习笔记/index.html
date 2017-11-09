@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-07T12:39:10.431Z">
+<meta property="og:updated_time" content="2017-11-09T04:32:52.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言学习笔记">
 <meta name="twitter:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
@@ -570,7 +570,18 @@
 </li>
 <li><p>逻辑与运算符优先级大于逻辑或</p>
 </li>
+<li><p>逻辑运算问题，查看如下代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">int</span>  a = <span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span>  b = <span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span>  c = <span class="number">1</span>;</div><div class="line"> </div><div class="line">    ++a || ++b &amp;&amp; ++c;</div><div class="line"> </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"a = %d , b = %d, c = %d\n"</span>, a, b, c);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
 </ol>
+<ul>
+<li>运算符高是表示: ++a || (++b &amp;&amp; ++c)，但是运算顺序依旧从左往右</li>
+<li>举四则运算的例子：</li>
+<li>1 + (2 * 3)</li>
+<li>而不是 ( 1 + 2 ) * 3</li>
+<li>但他们是从左往右运算，即就从+而言，它先算1</li>
+<li>所以回归问题，先演算++a，于是||出现短路</li>
+</ul>
 <h1 id="大坑待填"><a href="#大坑待填" class="headerlink" title="大坑待填"></a>大坑待填</h1>
       
     </div>
