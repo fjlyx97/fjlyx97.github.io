@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-09T06:28:53.699Z">
+<meta property="og:updated_time" content="2017-11-18T15:10:26.138Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言学习笔记">
 <meta name="twitter:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
@@ -606,7 +606,18 @@
 </li>
 <li><p>枚举序号默认从0开始排列，但是也可以初始化，不允许后面复制。 </p>
 </li>
+<li><p>异或的独特用法</p>
+</li>
 </ol>
+<ul>
+<li>四种定义：</li>
+<li>0 ^ 0 = 0</li>
+<li>0 ^ 1 = 1</li>
+<li>1 ^ 0 = 0</li>
+<li>1 ^ 1 = 1</li>
+<li>来看如下示例：<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//交换律</span></div><div class="line">a ^ b = b ^ a</div><div class="line"><span class="comment">//结合律</span></div><div class="line">( a ^ b ) ^ c = a ^ ( b ^ c ) </div><div class="line"><span class="comment">//逆运算</span></div><div class="line">( a ^ b ) ^ b = a; <span class="comment">//这个可以用来判断：假设一堆数组里面其他数字出现两次，找出只出现一次的那一个。</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
 <h1 id="大坑待填"><a href="#大坑待填" class="headerlink" title="大坑待填"></a>大坑待填</h1>
       
     </div>
