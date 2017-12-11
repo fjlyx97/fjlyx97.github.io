@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[C++STL初步]]></title>
+    <url>%2F2017%2F12%2F11%2FC%2B%2BSTL%E5%88%9D%E6%AD%A5%2F</url>
+    <content type="text"><![CDATA[竞赛中常用到STL模板库来提升速度 在此记录平日里做题用到的常用的函数及其模板 大坑待填 sort函数 函数包含在algorithm头文件中 sort可以对任意对象进行排序，默认以元素从小到大进行排序12345678910111213141516171819202122vector &lt;int&gt; vect;sort(vect.begin(),vect.end());//或者int num[10];sort(num,num+10);/* 运行自定义函数进行排序 */bool cmp(int a, int b)&#123; return a &gt; b; // a&gt;b为true,不交换 // a&lt;b为false,交换&#125;sort(num,num+10,cmp);/* 允许使用其他模板进行排序 */equal_to 相等not_equal_to 不相等less 小于greater 大于less_equal 小于等于greater_equal 大于等于sort(num,num+1,greater&lt;int&gt;()); lower_bound 以及 upper_bound函数 函数包含在algorithm头文件中 查找第一个大于或者等于x的第一个位置 查找最后一个大于或者等于x的第一个位置12int num[10];int tmp = lower_bound(num,num+10); 不定长数组vector 函数包含在vector头文件中123456789vector&lt;int&gt; a; //申明一个向量vector&lt;int&gt; a(10); //申明一个向量包含十个元素vector&lt;vector&lt;int&gt;&gt; a; //申明一个二维向量a.size(); //读取大小a.resize(); //改变大小a.push_back(); //向尾部添加元素a.pop_back(); //删除尾部元素a.clear(); //清空向量，只清空内容，不包括大小//允许使用下标进行赋值运算等 set集合 函数包含于set头文件中1234567891011set &lt;string&gt; s;begin() //返回set容器的第一个元素end() //返回set容器的最后一个元素clear() //删除set容器中的所有的元素empty() //判断set容器是否为空max_size() // 返回set容器可能包含的元素最大个数size() //返回当前set容器中的元素个数rbegin() // 返回的值和end()相同rend() // 返回的值和rbegin()相同count() // 判断是否存在，0，1erase() //删除元素 map映射 函数包含于set头文件中1234567map &lt;string,int&gt; mouth_name //表示月份名字到月份编号mouth_name["july"] = 7;map&lt;string,int&gt;::iterator it;for ( it = mouth_name.begin (); it != mouth_name.end();++it)&#123; //允许通过it-&gt;first或者it-&gt;second来访问数据&#125;]]></content>
+      <categories>
+        <category>C语言记录</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>学习</tag>
+        <tag>C家族</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[web安全工具]]></title>
     <url>%2F2017%2F10%2F23%2Fweb%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%2F</url>
     <content type="text"><![CDATA[根据网易web安全工程师所做笔记 记录学习之路 前文完结 本文为第三章 大坑待填 浏览器拓展初级 可以将阻止弹出式窗口关闭，便于测试 Firefox四个插件 Firebug HackBar Advanced Cookie Manager Proxy Switcher #代理的工作原理 “代理”可对经过的数据包进行记录，拦截，修改，再次发送，丢弃等操作 ##浏览器的代理设置 可以手动设置 常用HTTP代理工具：Burpsuite ， Charles ， Fiddler #敏感文件探测实践 猜测文件名，根据返回的HTTP状态码判断文件是否存在 200：文件存在 301：文件发生跳转 用”御剑”扫描敏感文件 通过判断index的文件类型确定网站脚本类型，如在网址中访问index.asp、index.php、index.aspx、index.jsp来选择字典]]></content>
@@ -8,8 +21,8 @@
         <category>web安全笔记</category>
       </categories>
       <tags>
-        <tag>安全</tag>
         <tag>学习</tag>
+        <tag>安全</tag>
         <tag>web</tag>
       </tags>
   </entry>
@@ -21,8 +34,8 @@
         <category>web安全笔记</category>
       </categories>
       <tags>
-        <tag>安全</tag>
         <tag>学习</tag>
+        <tag>安全</tag>
         <tag>web</tag>
       </tags>
   </entry>
@@ -34,8 +47,8 @@
         <category>web安全笔记</category>
       </categories>
       <tags>
-        <tag>安全</tag>
         <tag>学习</tag>
+        <tag>安全</tag>
         <tag>web</tag>
       </tags>
   </entry>
@@ -47,8 +60,8 @@
         <category>数据结构和算法</category>
       </categories>
       <tags>
-        <tag>学习</tag>
         <tag>编程</tag>
+        <tag>学习</tag>
         <tag>算法</tag>
       </tags>
   </entry>
@@ -60,8 +73,8 @@
         <category>C语言记录</category>
       </categories>
       <tags>
-        <tag>学习</tag>
         <tag>编程</tag>
+        <tag>学习</tag>
         <tag>C家族</tag>
       </tags>
   </entry>
@@ -73,8 +86,8 @@
         <category>Git</category>
       </categories>
       <tags>
-        <tag>Git</tag>
         <tag>编程</tag>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -99,8 +112,8 @@
         <category>python记录</category>
       </categories>
       <tags>
-        <tag>学习</tag>
         <tag>编程</tag>
+        <tag>学习</tag>
         <tag>python</tag>
       </tags>
   </entry>
