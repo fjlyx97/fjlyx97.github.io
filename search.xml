@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[QT自学之路（一）]]></title>
+    <url>%2F2018%2F01%2F01%2FQT%E8%87%AA%E5%AD%A6%E4%B9%8B%E8%B7%AF%EF%BC%88%E4%B8%80%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[QT作为一个图形库，可以以简单的代码构造出图形界面 在此记录QT的学习记录 内容较长，大坑待填 QDialog 对话框有模态与非模态对话框 模态对话框窗口置顶，必须先点击它1234567//模态对话框QDialog dialog(this);dialog.exec();//非模态对话框QDialog * dialog = new QDialog(this);dialog-&gt;show();//dialog-&gt;setModal(ture);这种写法也可创建模态对话框]]></content>
+      <categories>
+        <category>QT学习记录</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>学习</tag>
+        <tag>图形</tag>
+        <tag>QT</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[C++STL初步]]></title>
     <url>%2F2017%2F12%2F11%2FC%2B%2BSTL%E5%88%9D%E6%AD%A5%2F</url>
     <content type="text"><![CDATA[竞赛中常用到STL模板库来提升速度 在此记录平日里做题用到的常用的函数及其模板 大坑待填 sort函数 函数包含在algorithm头文件中 sort可以对任意对象进行排序，默认以元素从小到大进行排序12345678910111213141516171819202122vector &lt;int&gt; vect;sort(vect.begin(),vect.end());//或者int num[10];sort(num,num+10);/* 运行自定义函数进行排序 */bool cmp(int a, int b)&#123; return a &gt; b; // a&gt;b为true,不交换 // a&lt;b为false,交换&#125;sort(num,num+10,cmp);/* 允许使用其他模板进行排序 */equal_to 相等not_equal_to 不相等less 小于 greater 大于 less_equal 小于等于greater_equal 大于等于sort(num,num+1,greater&lt;int&gt;()); lower_bound 以及 upper_bound函数 函数包含在algorithm头文件中 查找第一个大于或者等于x的第一个位置 查找最后一个大于或者等于x的第一个位置12int num[10];int tmp = lower_bound(num,num+10); 不定长数组vector 函数包含在vector头文件中123456789vector&lt;int&gt; a; //申明一个向量vector&lt;int&gt; a(10); //申明一个向量包含十个元素vector&lt;vector&lt;int&gt;&gt; a; //申明一个二维向量a.size(); //读取大小a.resize(); //改变大小a.push_back(); //向尾部添加元素a.pop_back(); //删除尾部元素a.clear(); //清空向量，只清空内容，不包括大小//允许使用下标进行赋值运算等 set集合 函数包含于set头文件中1234567891011set &lt;string&gt; s;begin() //返回set容器的第一个元素end() //返回set容器的最后一个元素clear() //删除set容器中的所有的元素empty() //判断set容器是否为空max_size() // 返回set容器可能包含的元素最大个数size() //返回当前set容器中的元素个数rbegin() // 返回的值和end()相同rend() // 返回的值和rbegin()相同count() // 判断是否存在，0，1erase() //删除元素 map映射 函数包含于set头文件中1234567map &lt;string,int&gt; mouth_name //表示月份名字到月份编号mouth_name["july"] = 7;map&lt;string,int&gt;::iterator it;for ( it = mouth_name.begin (); it != mouth_name.end();++it)&#123; //允许通过it-&gt;first或者it-&gt;second来访问数据&#125; 栈 包含在stack头文件中123456push() //将元素压入栈顶pop() //将元素弹出top() //访问栈顶元素empty() //判断是否栈空size() //返回元素个数stack&lt;int&gt; s; //声明一个栈 队列 包含在queue头文件中1234567push() //将元素入队pop() //将元素出队front() //取队首元素但不删除back() //取队尾元素但不删除empty() //判断是否栈空size() //返回元素个数queue&lt;int&gt; s; //声明一个队列 优先队列1234567priority_queue&lt;int&gt; pq; //数字越大优先级越大pq.top() //访问优先级最高的元素pq.push() //入队pq.pop() //出队/* 定义优先级 */prioiry_queue &lt;int,vector&lt;int&gt;,greater&lt;int&gt;&gt; pq; //数字越小优先级越大，最小堆/* greater 大的在底下 less小的在底下]]></content>
