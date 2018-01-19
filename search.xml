@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[信息安全铁三赛write_up]]></title>
     <url>%2F2018%2F01%2F19%2F%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E9%93%81%E4%B8%89%E8%B5%9Bwrite-up%2F</url>
-    <content type="text"><![CDATA[信息安全铁三赛write_up 题目共有六题]]></content>
+    <content type="text"><![CDATA[信息安全铁三赛write_up 题目共有六题 权限 题目描述：你是管理员吗？ 解题链接：http://ctf4.shiyanbar.com/web/root/index.php 答案格式：flag{} 步骤 首先先浏览网页源代码，易于发现在源代码底部有提示如下： 1&lt;!--password.txt&gt; 可以发现存在password.txt，在地址栏构造出地址如下： 1http://ctf4.shiyanbar.com/web/root/password.txt 可以进入包含一个许多密码的页面，由此可以推测出密码是其中的一个。 密码框长度默认只有5个长度，手动用审查元素找到maxlength=5，将数据改成999 由于密码过多，我们可以需要使用buresuite进行爆破，使用教程可以参考:使用教程 通过爆破以后，我们可以发现Nsf0cuS这个密码有些与众不同。它的提示是这里没有flag哦！ 再次抓包发现Response当中有一项： 1Set-Cookie: newpage=MjkwYmNhNzBjN2RhZTkzZGI2NjQ0ZmEwMGI5ZDgzYjkucGhw; 使用base64解码后得到一个php文件，如下： 1290bca70c7dae93db6644fa00b9d83b9.php 构造URL后可以看到小黑留言板，再次抓包尝试 通过分析发现Cookie中有个IsLogin=0这个参数，并且userlevel为guest 将IsLogin改为1，userlevel改为root，点击go再次尝试 可以得到flag为： 1Flag=flag%7BC0ngratulati0n%7D 使用url解码得到flag为 1Flag=flag&#123;C0ngratulati0n&#125;]]></content>
       <categories>
         <category>信息安全</category>
       </categories>
