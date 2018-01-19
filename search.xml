@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[信息安全铁三赛write_up]]></title>
+    <url>%2F2018%2F01%2F19%2F%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E9%93%81%E4%B8%89%E8%B5%9Bwrite-up%2F</url>
+    <content type="text"><![CDATA[信息安全铁三赛write_up 题目共有六题]]></content>
+      <categories>
+        <category>信息安全</category>
+      </categories>
+      <tags>
+        <tag>信息安全</tag>
+        <tag>write_up</tag>
+        <tag>渗透</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[QT自学之路（一）]]></title>
     <url>%2F2018%2F01%2F01%2FQT%E8%87%AA%E5%AD%A6%E4%B9%8B%E8%B7%AF%EF%BC%88%E4%B8%80%EF%BC%89%2F</url>
     <content type="text"><![CDATA[QT作为一个图形库，可以以简单的代码构造出图形界面 在此记录QT的学习记录 内容较长，大坑待填 QDialog 对话框有模态与非模态对话框 模态对话框窗口置顶，必须先点击它 1234567//模态对话框QDialog dialog(this);dialog.exec();//非模态对话框QDialog * dialog = new QDialog(this);dialog-&gt;show();//dialog-&gt;setModal(ture);这种写法也可创建模态对话框 QDialog如果按下后，QDialog.exec() == QDialog::Accepted 颜色对话框 包含在 QColorDialog头文件当中1QColor color = QColorDialog::getColor(Qt::red,this,"颜色对话框"); 文件对话框 包含在 QFileDialog头文件当中123//返回文件路径QString filename = QFileDialog::getOpenFileName(this,"文件对话框","D","文件图片(*.jpg *.png");qDebug() &lt;&lt; "filename is :" &lt;&lt; filename &lt;&lt; endl; 字体对话框 包含在 QFontDialog头文件当中1234567891011121314bool ok;QFont font = QFontDialog::getCont(&amp;ok,this);if (ok)&#123; ui-&gt;pushButton-&gt;setFont(font); else qDebug() &lt;&lt; "没有选择字体";&#125;## 输入对话框- 包含在头文件 QInputDialog当中```cppbool ok;QString string = QInputDialog::getText(this,"输入字符串对话框","请输入用户名",Q)LineEdit::Normal,"admin",&amp;ok); 消息对话框 包含QMessageBox头文件中1int ret1 = QMessageBox::question(this,"问题对话框","你了解qt吗？",QMessageBox::Yes,QMessageBox::No); 进度对话框 包含在 QProgressDialog当中 一般是模态对话框，如果要非模态对话框，需要借助定时器的帮助1234567891011121314//QProgressDialog* dialog = new QProgressDialog("文件对话框","取消",0,100,this);QProgressDialog dialog("文件复制进度","取消",0,50000,this);//dialog-&gt;show();dialog.show();for ( int i = 0 ; i &lt; 500000 ; i++)&#123; dialog.setValue(i); QCoreApplication::processEvents(); if (dialog.wasCanceled()) &#123; break; &#125;&#125;dialog.setValue(50000) 信号与槽 槽一般以public slot修饰，写在头文件当中，在源文件中实现定义 可以使用alt+enter来快速添加定义 使用connect来连接，具体代码如下123456//button是一个指针变量//第二个参数是按钮自带的选项//第三个参数代表按钮与当前窗口相连接//第四个参数代表已经定义的槽函数//复杂点说依次为：发射信号的对象，发射的信号，接受信号的对象，要执行的槽函数connect(button,&amp;QPushButton::clicked,this,&amp;MainWindow::showChildDialog); QLabel]]></content>
