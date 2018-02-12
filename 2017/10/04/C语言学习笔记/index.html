@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-09T12:34:57.517Z">
+<meta property="og:updated_time" content="2018-02-12T14:30:51.138Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言学习笔记">
 <meta name="twitter:description" content="日常学习中难免遇到一些坑 在此记录自己学习C语言时的笔记 更新缓慢，大坑待填">
@@ -632,6 +632,9 @@
 <li><p>register保存在CPU寄存器当中，用以加快程序运行，常用于频繁使用的变量之上。</p>
 </li>
 <li><p>对未赋初值的静态局部变量，C编译程序将自动给予初值为0</p>
+</li>
+<li><p>当使用头文件时候，要防止重定义</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _H_</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> _H_</span></div><div class="line"><span class="comment">//Your Code</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
 </li>
 </ol>
 <h1 id="大坑待填"><a href="#大坑待填" class="headerlink" title="大坑待填"></a>大坑待填</h1>
