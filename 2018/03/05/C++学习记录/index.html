@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="学校课程新增C++ 记录易错知识点以及易忘知识点 大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-07T08:36:52.799Z">
+<meta property="og:updated_time" content="2018-03-07T12:44:49.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++学习记录">
 <meta name="twitter:description" content="学校课程新增C++ 记录易错知识点以及易忘知识点 大坑待填">
@@ -507,6 +507,10 @@
 <li><p>如果将一个对象申明为常对象(类名 const 名字)，则不能调用该对象的非const的成员函数，否则报错。常成员函数例子如下：void print() const;</p>
 </li>
 <li><p>常成员函数只能用于类中，并且可以和同名非常函数进行重载。</p>
+</li>
+<li><p>继承如果不指定类型，默认以private继承。</p>
+</li>
+<li><p>子类可以继承父类的private成员，但是需要父类提供的public函数才能访问。</p>
 </li>
 </ol>
 
