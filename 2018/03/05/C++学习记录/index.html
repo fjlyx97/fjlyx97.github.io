@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="学校课程新增C++ 记录易错知识点以及易忘知识点 大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-07T12:44:49.640Z">
+<meta property="og:updated_time" content="2018-03-10T09:13:22.036Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++学习记录">
 <meta name="twitter:description" content="学校课程新增C++ 记录易错知识点以及易忘知识点 大坑待填">
@@ -511,6 +511,8 @@
 <li><p>继承如果不指定类型，默认以private继承。</p>
 </li>
 <li><p>子类可以继承父类的private成员，但是需要父类提供的public函数才能访问。</p>
+</li>
+<li><p>如果一个函数的参数为int&amp; ，则它不可以传入类似i<em>3这样的变量。如果这样做了，在内部可以近似认为生成了一个const int&amp; temp@ = i\</em>3。所以如果参数为const int&amp;，则可以传入不报错。</p>
 </li>
 </ol>
 
