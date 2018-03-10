@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="学校课程新增C++ 记录易错知识点以及易忘知识点 大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-10T09:13:22.036Z">
+<meta property="og:updated_time" content="2018-03-10T16:44:01.657Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++学习记录">
 <meta name="twitter:description" content="学校课程新增C++ 记录易错知识点以及易忘知识点 大坑待填">
@@ -496,7 +496,7 @@
 </li>
 <li><p>静态成员函数主要用于访问静态数据成员。并且如果是private，则不能被外部访问。</p>
 </li>
-<li><p>静态成员没有this指针，并且只能通过对象名来访问静态成员。（重要）</p>
+<li><p>静态成员函数没有this指针，并且只能通过对象名来访问静态成员。（重要）</p>
 </li>
 <li><p>类外定义友元函数，可以不必加上类名，只需保证参数相同。友元函数必须通过入口参数传递进对象名。</p>
 </li>
@@ -513,6 +513,8 @@
 <li><p>子类可以继承父类的private成员，但是需要父类提供的public函数才能访问。</p>
 </li>
 <li><p>如果一个函数的参数为int&amp; ，则它不可以传入类似i<em>3这样的变量。如果这样做了，在内部可以近似认为生成了一个const int&amp; temp@ = i\</em>3。所以如果参数为const int&amp;，则可以传入不报错。</p>
+</li>
+<li><p>static在c++和c中有细微的差别，如果在C中加上static代表只能在本文件中访问。</p>
 </li>
 </ol>
 
