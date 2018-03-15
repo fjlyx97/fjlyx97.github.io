@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="偶然发现自己一些常用的命令经常忘记 在此做一些笔记 记录学习linux的琐事">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-15T14:19:58.417Z">
+<meta property="og:updated_time" content="2018-03-15T14:43:21.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux小记">
 <meta name="twitter:description" content="偶然发现自己一些常用的命令经常忘记 在此做一些笔记 记录学习linux的琐事">
@@ -445,6 +445,17 @@
 <li>使用chmod变更权限</li>
 <li>w权限主要用于修改目录，增删文件这类操作，而r用于查看目录，最后x用于是否可以进入这个目录</li>
 </ul>
+<h1 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h1><ul>
+<li><p>使用useradd 添加用户，常用选项如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-c comment 指定一段注释性描述。</div><div class="line">-d 目录 指定用户主目录，如果此目录不存在，则同时使用-m选项，可以创建主目录。</div><div class="line">-g 用户组 指定用户所属的用户组。</div><div class="line">-G 用户组，用户组 指定用户所属的附加组。</div><div class="line">-s Shell文件 指定用户的登录Shell。</div><div class="line">-u 用户号 指定用户的用户号，如果同时有-o选项，则可以重复使用其他用户的标识号。</div><div class="line">用户名 指定新账号的登录名。</div></pre></td></tr></table></figure>
+</li>
+<li><p>可以使用如下代码生成一个用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">useradd -d /home/<span class="built_in">test</span> -m <span class="built_in">test</span> -s /bin/bash</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="Vim强行保存"><a href="#Vim强行保存" class="headerlink" title="Vim强行保存"></a>Vim强行保存</h1><ul>
+<li>如果以普通用户编写了文件，但是发现权限不足时，可以使用强行保存：<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:w !suod tee %</div></pre></td></tr></table></figure></li>
+</ul>
 
       
     </div>
@@ -676,7 +687,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#fsck修复"><span class="nav-text">fsck修复</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件权限变更"><span class="nav-text">文件权限变更</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#fsck修复"><span class="nav-text">fsck修复</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件权限变更"><span class="nav-text">文件权限变更</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加用户"><span class="nav-text">添加用户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vim强行保存"><span class="nav-text">Vim强行保存</span></a></li></ol></div>
             
 
           </div>
