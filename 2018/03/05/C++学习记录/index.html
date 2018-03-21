@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="学校课程新增C++ 记录易错知识点以及易忘知识点 大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-12T09:21:28.857Z">
+<meta property="og:updated_time" content="2018-03-21T04:48:52.813Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++学习记录">
 <meta name="twitter:description" content="学校课程新增C++ 记录易错知识点以及易忘知识点 大坑待填">
@@ -423,7 +423,7 @@
       
 
       
-        <script src="\assets\js\APlayer.min.js"> </script><blockquote>
+        <blockquote>
 <ul>
 <li>学校课程新增C++</li>
 <li>记录易错知识点以及易忘知识点</li>
@@ -516,10 +516,24 @@
 </li>
 <li><p>static在c++和c中有细微的差别，如果在C中加上static代表只能在本文件中访问。</p>
 </li>
-<li><p>在运算符重载当中，如果运算符右边为整数，则会尝试调用重载函数参数中类的构造函数。</p>
+<li><p>在运算符重载当中，如果运算符右边为整数，则会尝试调用重载函数参数中类的构造函数。（重要，可以使用构造函数将数字转换成类对象）</p>
 </li>
 <li><p>继承当中，如果父类成员是private，不管使用哪一种继承限定词，子类都是无法直接访问父类成员。</p>
 </li>
+<li><p>C++推荐使用int(a)这种方式进行强制转换，而不是使用(int)a，进行强制转换，前者更像调用一个函数。</p>
+</li>
+<li><p>explicit在构造函数之前添加，可以告诉编译器这就是一个构造函数，不能用来强制转换。</p>
+</li>
+<li><p>operator 目标类型() ，可以用来指定数据类型转换为类的对象</p>
+</li>
+<li><p>构造函数首先调用基类，然后是类对象成员，最后是派生类的构造函数体。</p>
+</li>
+<li><p>父类指针可以指向子类，但是只能访问子类从父类继承而来的成员。</p>
+</li>
+<li><p>虚函数必须是成员函数，不能是友元函数或者是静态成员函数。因为需要特定的对象才能激活虚函数。</p>
+</li>
+<li><p>输入输出流拥有各种成员函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cout</span>.put() <span class="comment">//输出字符，可以是ASCII码</span></div><div class="line"><span class="built_in">cin</span>.get()   <span class="comment">//读取一个字符</span></div><div class="line"><span class="built_in">cin</span>.getline() <span class="comment">//读取一行</span></div><div class="line"><span class="built_in">cin</span>.ignore(n,终止字符)  <span class="comment">//跳过n个字符读取，可以只含一个参数</span></div></pre></td></tr></table></figure></li>
 </ol>
 
       
