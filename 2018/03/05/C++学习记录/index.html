@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="学校课程新增C++ 记录易错知识点以及易忘知识点 大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-21T04:48:52.813Z">
+<meta property="og:updated_time" content="2018-04-06T03:00:52.919Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++学习记录">
 <meta name="twitter:description" content="学校课程新增C++ 记录易错知识点以及易忘知识点 大坑待填">
@@ -533,7 +533,20 @@
 <li><p>虚函数必须是成员函数，不能是友元函数或者是静态成员函数。因为需要特定的对象才能激活虚函数。</p>
 </li>
 <li><p>输入输出流拥有各种成员函数：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cout</span>.put() <span class="comment">//输出字符，可以是ASCII码</span></div><div class="line"><span class="built_in">cin</span>.get()   <span class="comment">//读取一个字符</span></div><div class="line"><span class="built_in">cin</span>.getline() <span class="comment">//读取一行</span></div><div class="line"><span class="built_in">cin</span>.ignore(n,终止字符)  <span class="comment">//跳过n个字符读取，可以只含一个参数</span></div></pre></td></tr></table></figure></li>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cout</span>.put() <span class="comment">//输出字符，可以是ASCII码</span></div><div class="line"><span class="built_in">cin</span>.get()   <span class="comment">//读取一个字符</span></div><div class="line"><span class="built_in">cin</span>.getline() <span class="comment">//读取一行</span></div><div class="line"><span class="built_in">cin</span>.ignore(n,终止字符)  <span class="comment">//跳过n个字符读取，可以只含一个参数</span></div><div class="line"><span class="comment">//....</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>流成员函数进行格式控制：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">setf(flags) <span class="comment">//设置格式</span></div><div class="line">unsetf(flags) <span class="comment">//取消格式</span></div><div class="line">width(n) <span class="comment">//指定宽度</span></div><div class="line">fill(ch) <span class="comment">//填充字符</span></div><div class="line">precision(n) <span class="comment">//设置小数精度</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>数组作为函数参数时候，如果使用sizeof计算其大小，会得到指针的大小。</p>
+</li>
+<li><p>在VC6.0的时候，输入输出流返回必须是引用，因为ostream和istream对象是不可复制的。</p>
+</li>
+<li><p>函数调用选择顺序如下：非模板函数，显式具体化，模板函数。显式具体化的例子:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">include &lt;iostream&gt;</div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">swaper</span><span class="params">(T&amp; a , T&amp; b)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    T temp = a;</div><div class="line">    a = b;</div><div class="line">    b= temp;</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">template</span>&lt;&gt; <span class="keyword">void</span> swaper&lt;<span class="keyword">double</span>&gt;(<span class="keyword">double</span>&amp;a , <span class="keyword">double</span>&amp; b)</div><div class="line">&#123;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; a + b &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//调用</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">double</span> a = <span class="number">10</span> , b = <span class="number">20</span>;</div><div class="line">    swaper(a,b);    <span class="comment">//显式具体化后，调用的其实是cout&lt;&lt; a+b;</span></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="string">" "</span> &lt;&lt; b;</div><div class="line">    system(<span class="string">"pause"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>const修饰的成员函数可以改变static的变量，因为static变量储存在静态区而不属于类。</p>
+</li>
 </ol>
 
       
@@ -682,7 +695,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
