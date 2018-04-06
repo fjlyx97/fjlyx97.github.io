@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Effective c++ 记录]]></title>
     <url>%2F2018%2F04%2F06%2FEffective-c%2B%2B-%E8%AE%B0%E5%BD%95%2F</url>
-    <content type="text"><![CDATA[改善程序与设计55个具体做法 防止阅后遗忘 再次记录易于遗忘的条款 条款2：尽量使用const，enum,inline替换#define 取一个const地址是合法的，但取一个enum，和#define的地址就不合法。 12enum &#123;NumTurn = 5&#125;;//近似看成#define NumTurn 5 单纯常量：最好以const对象或enum替换#define，对于宏，使用inline函数替换#define。 const出现在类型前面和类型和后面表达的意思相同，如下： const int a; int const a; const出现在指针*前面代表物是常量，在*后面代表指针自身是常量。]]></content>
+    <content type="text"><![CDATA[改善程序与设计55个具体做法 防止阅后遗忘 再次记录易于遗忘的条款 条款2：尽量使用const，enum,inline替换#define 取一个const地址是合法的，但取一个enum，和#define的地址就不合法。 12enum &#123;NumTurn = 5&#125;;//近似看成#define NumTurn 5 单纯常量：最好以const对象或enum替换#define，对于宏，使用inline函数替换#define。 const出现在类型前面和类型和后面表达的意思相同，如下： 12345678910111213141516171819202122232425const int a;int const a;``` - const出现在指针\*前面代表物是常量，在\*后面代表指针自身是常量。- 如果一个变量申明有mutable，即便在const的成员函数当中，也可以修改。- const_cast的使用```cpp#include &lt;iostream&gt;using namespace std;int main()&#123; /*似乎发生了常量折叠，在编译阶段，对该变量进行值替换，同时，该常量拥有自己的内存空间，并非像宏定义一样不分配空间。*/ const int a = 20; int&amp; b = const_cast&lt;int&amp;&gt;(a); cout &lt;&lt; b &lt;&lt; endl; //20 b = 30; cout &lt;&lt; b &lt;&lt; endl; //30 cout &lt;&lt; a &lt;&lt; endl; //20 return 0;&#125;]]></content>
       <categories>
         <category>C家族</category>
       </categories>
