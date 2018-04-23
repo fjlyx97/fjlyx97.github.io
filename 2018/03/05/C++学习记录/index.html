@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="学校课程新增C++ 记录易错知识点以及易忘知识点 大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-23T12:32:15.556Z">
+<meta property="og:updated_time" content="2018-04-23T13:23:59.228Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++学习记录">
 <meta name="twitter:description" content="学校课程新增C++ 记录易错知识点以及易忘知识点 大坑待填">
@@ -552,6 +552,10 @@
 <li><p>拷贝构造时，基类会被调用，需要自己在初始化列表中调用</p>
 </li>
 <li><p>引用不允许指向不同的对象，独一无二。</p>
+</li>
+<li><p>对象在基类构造函数执行之前不会成为一个真正的对象（成品）</p>
+</li>
+<li><p>析构函数一旦开始执行，所有成员变量便成为未确定的值</p>
 </li>
 </ol>
 
