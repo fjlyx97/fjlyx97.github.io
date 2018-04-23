@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="学校课程新增C++ 记录易错知识点以及易忘知识点 大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-06T03:00:52.919Z">
+<meta property="og:updated_time" content="2018-04-23T12:32:15.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++学习记录">
 <meta name="twitter:description" content="学校课程新增C++ 记录易错知识点以及易忘知识点 大坑待填">
@@ -546,6 +546,12 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">include &lt;iostream&gt;</div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">swaper</span><span class="params">(T&amp; a , T&amp; b)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    T temp = a;</div><div class="line">    a = b;</div><div class="line">    b= temp;</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">template</span>&lt;&gt; <span class="keyword">void</span> swaper&lt;<span class="keyword">double</span>&gt;(<span class="keyword">double</span>&amp;a , <span class="keyword">double</span>&amp; b)</div><div class="line">&#123;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; a + b &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//调用</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">double</span> a = <span class="number">10</span> , b = <span class="number">20</span>;</div><div class="line">    swaper(a,b);    <span class="comment">//显式具体化后，调用的其实是cout&lt;&lt; a+b;</span></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="string">" "</span> &lt;&lt; b;</div><div class="line">    system(<span class="string">"pause"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>const修饰的成员函数可以改变static的变量，因为static变量储存在静态区而不属于类。</p>
+</li>
+<li><p>使用string类，如果使用&lt;或&gt;比较符，是从左往右比较，与字符长度大小无关</p>
+</li>
+<li><p>拷贝构造时，基类会被调用，需要自己在初始化列表中调用</p>
+</li>
+<li><p>引用不允许指向不同的对象，独一无二。</p>
 </li>
 </ol>
 
