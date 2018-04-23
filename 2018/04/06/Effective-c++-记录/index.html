@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="改善程序与设计55个具体做法 防止阅后遗忘 再次记录易于遗忘的条款">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-23T15:17:24.930Z">
+<meta property="og:updated_time" content="2018-04-23T15:43:35.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Effective c++ 记录">
 <meta name="twitter:description" content="改善程序与设计55个具体做法 防止阅后遗忘 再次记录易于遗忘的条款">
@@ -468,7 +468,7 @@
 <li>所以确保构造函数和析构函数当中没有虚函数，哪怕是他们调用的函数也要服从该约定</li>
 </ul>
 <h1 id="条款10：令operator-返回一个reference-to-this"><a href="#条款10：令operator-返回一个reference-to-this" class="headerlink" title="条款10：令operator=返回一个reference to *this"></a>条款10：令operator=返回一个reference to *this</h1><ul>
-<li>赋值操作符尽量返回的是reference to *this（<em>this的引用），如 **return \</em>this **</li>
+<li>赋值操作符尽量返回的是reference to *this（<em>this的引用），如 **return \</em>this**</li>
 </ul>
 <h1 id="条款11：在operator-中处理“自我赋值“"><a href="#条款11：在operator-中处理“自我赋值“" class="headerlink" title="条款11：在operator=中处理“自我赋值“"></a>条款11：在operator=中处理“自我赋值“</h1><ul>
 <li><p>先查看一份不安全代码</p>
@@ -478,7 +478,29 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="keyword">this</span> == &amp;rhs) <span class="keyword">return</span> *<span class="keyword">this</span>;</div></pre></td></tr></table></figure>
 </li>
 <li><p>我们只需在复制pb时无需删除pb即可改进代码，如下</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Widget&amp; Widget::<span class="keyword">operator</span>=(<span class="keyword">const</span> Widget&amp; rhs)</div><div class="line">&#123;</div><div class="line">    Bitmap* pOrig = pb;    </div><div class="line">    pb = <span class="keyword">new</span> Bitmap(*rhs.pb);</div><div class="line">    <span class="keyword">delete</span> pOrig;</div><div class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Widget&amp; Widget::<span class="keyword">operator</span>=(<span class="keyword">const</span> Widget&amp; rhs)</div><div class="line">&#123;</div><div class="line">    Bitmap* pOrig = pb;    </div><div class="line">    pb = <span class="keyword">new</span> Bitmap(*rhs.pb);</div><div class="line">    <span class="keyword">delete</span> pOrig;</div><div class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>所以确定任何函数操作<strong>一个以上的对象</strong>时候，并且多个对象是同一个对象的时候，其行为依然正确。</p>
+</li>
+</ul>
+<h1 id="条款12：复制对象时勿忘其每一个部分"><a href="#条款12：复制对象时勿忘其每一个部分" class="headerlink" title="条款12：复制对象时勿忘其每一个部分"></a>条款12：复制对象时勿忘其每一个部分</h1><ul>
+<li>在任何时候只要你承担起“为派生类编写构造函数的”责任，必须保证基类所有的成分都被复制。</li>
+<li>由于大多数时候基类成员为private，所以应让派生类的构造函数调用相应的基类函数。</li>
+<li><p>在派生类中重载=，需要对基类的成分同样将进行赋值，使用如下代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">PriorityCustomer&amp; PriorityCustomer::<span class="keyword">operator</span>=(<span class="keyword">const</span> PriorityCustomer&amp; rhs)</div><div class="line">&#123;</div><div class="line">    <span class="comment">//假设基类为Customer</span></div><div class="line">    Customer::<span class="keyword">operator</span>=(rhs);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在派生类构造函数当中调用copy assignment是不合法的，以至于根本没有这样的语法。</p>
+</li>
+</ul>
+<h1 id="条款13：以对象管理资源"><a href="#条款13：以对象管理资源" class="headerlink" title="条款13：以对象管理资源"></a>条款13：以对象管理资源</h1><ul>
+<li><p>可以使用auto_ptr智能指针进行释放内存</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function">Investment* <span class="title">createInvestment</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">auto_ptr</span>&lt;Investment&gt; pInv(createInvestment());   </div><div class="line">&#125;</div><div class="line"><span class="comment">// 多个auto_ptr不允许指向相同的对象</span></div><div class="line"><span class="comment">// 若是通过拷贝构造函数或使用赋值运算符复制auto_ptr，它们会变成NULL</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>auto_ptr的替代方案为shared_ptr，如下代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="built_in">std</span>::tr1::<span class="built_in">shared_ptr</span>&lt;Investment&gt; pInv(createInvestment());</div><div class="line">&#125;</div><div class="line"><span class="comment">//shared_ptr允许复制</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>但是两个指针销毁时候都是使用delete，而不是delete[]，所以不允许指向动态分配而得的数组</p>
+</li>
 </ul>
 
       
@@ -713,7 +735,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#条款2：尽量使用const，enum-inline替换-define"><span class="nav-text">条款2：尽量使用const，enum,inline替换#define</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款4：确定对象被使用前已被初始化"><span class="nav-text">条款4：确定对象被使用前已被初始化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款6：若不想使用编译器自动生成的函数，就该明确拒绝"><span class="nav-text">条款6：若不想使用编译器自动生成的函数，就该明确拒绝</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款7：为多态基类声明virtual析构函数"><span class="nav-text">条款7：为多态基类声明virtual析构函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款8：别让异常逃离析构函数"><span class="nav-text">条款8：别让异常逃离析构函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款09：绝不在构造和析构函数中调用virtual函数"><span class="nav-text">条款09：绝不在构造和析构函数中调用virtual函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款10：令operator-返回一个reference-to-this"><span class="nav-text">条款10：令operator=返回一个reference to *this</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款11：在operator-中处理“自我赋值“"><span class="nav-text">条款11：在operator=中处理“自我赋值“</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#条款2：尽量使用const，enum-inline替换-define"><span class="nav-text">条款2：尽量使用const，enum,inline替换#define</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款4：确定对象被使用前已被初始化"><span class="nav-text">条款4：确定对象被使用前已被初始化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款6：若不想使用编译器自动生成的函数，就该明确拒绝"><span class="nav-text">条款6：若不想使用编译器自动生成的函数，就该明确拒绝</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款7：为多态基类声明virtual析构函数"><span class="nav-text">条款7：为多态基类声明virtual析构函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款8：别让异常逃离析构函数"><span class="nav-text">条款8：别让异常逃离析构函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款09：绝不在构造和析构函数中调用virtual函数"><span class="nav-text">条款09：绝不在构造和析构函数中调用virtual函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款10：令operator-返回一个reference-to-this"><span class="nav-text">条款10：令operator=返回一个reference to *this</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款11：在operator-中处理“自我赋值“"><span class="nav-text">条款11：在operator=中处理“自我赋值“</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款12：复制对象时勿忘其每一个部分"><span class="nav-text">条款12：复制对象时勿忘其每一个部分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款13：以对象管理资源"><span class="nav-text">条款13：以对象管理资源</span></a></li></ol></div>
             
 
           </div>
