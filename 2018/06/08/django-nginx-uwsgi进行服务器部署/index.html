@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="django的服务器配置可以说是十分繁琐的部分 哪怕严格按照步骤也会有不明错误 再此详细记录操作步骤 版本Ubuntu 16.04 LTS 64位 服务器：腾讯云学生机">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-08T06:10:30.559Z">
+<meta property="og:updated_time" content="2018-06-08T06:29:11.167Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="django+nginx+uwsgi进行服务器部署">
 <meta name="twitter:description" content="django的服务器配置可以说是十分繁琐的部分 哪怕严格按照步骤也会有不明错误 再此详细记录操作步骤 版本Ubuntu 16.04 LTS 64位 服务器：腾讯云学生机">
@@ -466,7 +466,7 @@
 <li>确保是在虚拟环境当中，注意命令行前的test<h3 id="配置setting文件"><a href="#配置setting文件" class="headerlink" title="配置setting文件"></a>配置setting文件</h3></li>
 <li>首先要让服务器知道静态文件的位置以及允许访问的ip</li>
 <li><p>进入Blog目录中，编辑setting.py文件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#找到ALLOWED_HOSTS = []</span></div><div class="line"><span class="comment">#将其配置为</span></div><div class="line">ALLOWED_HOSTS = [<span class="string">'*'</span>]</div><div class="line"><span class="comment">#配置静态文件目录，在文件尾部直接添加</span></div><div class="line">STATIC_ROOT = os.path.join(BASE_DIR , <span class="string">"static/"</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#找到ALLOWED_HOSTS = []</span></div><div class="line"><span class="comment">#将其配置为</span></div><div class="line">ALLOWED_HOSTS = [<span class="string">'*'</span>]</div><div class="line"><span class="comment">#配置静态文件目录，在文件尾部直接添加</span></div><div class="line">STATIC_ROOT = os.path.join(BASE_DIR , <span class="string">"static/"</span>)</div><div class="line"><span class="comment">#找到DEBUG = True，改为False，亦可最后再来改动方便定位错误</span></div><div class="line">DEBUG = <span class="keyword">False</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>配置完毕之后，回到根目录执行收集静态文件操作</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python manage.py collectstatic</div></pre></td></tr></table></figure>
@@ -493,6 +493,45 @@
 <li><p>通过访问IP地址加端口号进行测试，例如118.25.3.239:8001（例子虚拟，自行替换IP）</p>
 </li>
 <li>如果访问正常我们应该看到的是不带CSS样式的界面</li>
+</ul>
+<h2 id="配置uwsgi文件"><a href="#配置uwsgi文件" class="headerlink" title="配置uwsgi文件"></a>配置uwsgi文件</h2><ul>
+<li>为了让服务器可以运行，我们需要手动在根目录创建一个uwsgi.ini的文件</li>
+<li><p>内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[uwsgi]</div><div class="line">#chidr用于指定自己的网站根目录（自行更改）</div><div class="line">chdir =  /home/ubuntu/Blog</div><div class="line">#module指定网站中APP的文件（自行更改）</div><div class="line">module = Blog.wsgi</div><div class="line">#home用于指定python的虚拟环境，即我们最初创建的虚拟环境位置（自行更改）</div><div class="line">home = /home/ubuntu/env27</div><div class="line">#master不用更改</div><div class="line">master = true</div><div class="line">#socket用于指定端口号，可以不更改</div><div class="line">socket = :8001</div><div class="line">#以下两个可以不用更改</div><div class="line">chmod-socket = 666</div><div class="line">vacuum = true</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置完内容之后可以在shell中运行，并访问网站观察十分成功运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo uwsgi --ini uwsgi.ini</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="配置nginx"><a href="#配置nginx" class="headerlink" title="配置nginx"></a>配置nginx</h1><ul>
+<li><p>安装过程很简单，一句命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install nginx</div></pre></td></tr></table></figure>
+</li>
+<li><p>nginx安装完默认是启动的，可以通过直接在浏览器访问ip的方式观察到nginx的欢迎界面</p>
+<blockquote>
+<ul>
+<li>这里我原先使用的Chrome浏览器，不知为何会强制重定向到https，导致网站无法访问</li>
+<li>更换浏览器以后访问便正常了</li>
+<li>推荐使用edge或者自带的ie进行简单的测试 </li>
+</ul>
+</blockquote>
+</li>
+<li><p>nginx默认会读取/etc/nginx/sites-enabled/default文件中的配置，修改其中配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">upstream django &#123;</div><div class="line">        server 127.0.0.1:8001; #此处端口可以替换，需与uwsgi.ini之中的端口一致</div><div class="line">&#125;</div><div class="line">server &#123;</div><div class="line">        listen 80;</div><div class="line">        server_name 118.25.3.239; #此处需要自行替换成自己的IP地址</div><div class="line">        charset utf-8;</div><div class="line">        client_max_body_size 75M;</div><div class="line">        #django配置文件</div><div class="line">        location /static &#123;</div><div class="line">                alias /home/ubuntu/Blog/static; #此处需要自行替换为网站根目录下的静态文件夹</div><div class="line">        &#125;</div><div class="line">        #以下不必改动</div><div class="line">        location / &#123;</div><div class="line">                uwsgi_pass django;</div><div class="line">                include /etc/nginx/uwsgi_params;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="重启服务器"><a href="#重启服务器" class="headerlink" title="重启服务器"></a>重启服务器</h2><ul>
+<li><p>一切配置完毕之后，执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo /etc/init.d/nginx restart</div></pre></td></tr></table></figure>
+</li>
+<li><p>浏览器中输入IP即可发现网站成功构建完毕</p>
+</li>
+</ul>
+<h1 id="参考文章及视频"><a href="#参考文章及视频" class="headerlink" title="参考文章及视频"></a>参考文章及视频</h1><h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><ul>
+<li>很详细的一篇文章<br><a href="https://www.cnblogs.com/jhao/p/6071790.html" target="_blank" rel="external">Ubuntu上通过nginx部署Django笔记</a><h2 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h2></li>
+<li>视频讲解非常透彻，如果一步一步跟着执行出错可能性极低</li>
+<li><a href="https://www.bilibili.com/video/av10247256?t=1838" target="_blank" rel="external">【教程】Nginx + uWsgi 部署 Django + Mezzanine 生产服务器(「自由小径」自由软件教程) - 1/2</a></li>
+<li><a href="https://www.bilibili.com/video/av10244432?t=996" target="_blank" rel="external">【教程】Nginx + uWsgi 部署 Django + Mezzanine 生产服务器(「自由小径」自由软件教程) - 2/2</a></li>
 </ul>
 
       
@@ -727,7 +766,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备django文件"><span class="nav-text">准备django文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置环境"><span class="nav-text">配置环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装依赖"><span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进行django测试"><span class="nav-text">进行django测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置setting文件"><span class="nav-text">配置setting文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#登录网站测试"><span class="nav-text">登录网站测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装uwsgi"><span class="nav-text">安装uwsgi</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备django文件"><span class="nav-text">准备django文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置环境"><span class="nav-text">配置环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装依赖"><span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进行django测试"><span class="nav-text">进行django测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置setting文件"><span class="nav-text">配置setting文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#登录网站测试"><span class="nav-text">登录网站测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装uwsgi"><span class="nav-text">安装uwsgi</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置uwsgi文件"><span class="nav-text">配置uwsgi文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置nginx"><span class="nav-text">配置nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#重启服务器"><span class="nav-text">重启服务器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文章及视频"><span class="nav-text">参考文章及视频</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文章"><span class="nav-text">文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视频"><span class="nav-text">视频</span></a></li></ol></li></ol></div>
             
 
           </div>
