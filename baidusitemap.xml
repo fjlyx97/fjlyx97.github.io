@@ -4,15 +4,26 @@
 
     
   <url>
-    <loc>http://www.codeforme.cn/2018/06/13/makefile%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2018-06-13T13:51:29.635Z</lastmod>
+    <loc>http://www.codeforme.cn/2018/06/13/makefile%E7%9A%84%E7%BC%96%E5%86%99/</loc>
+    <lastmod>2018-06-13T13:56:47.779Z</lastmod>
     <data>
         <display>
-        <title>makefile的使用</title>
+        <title>makefile的编写</title>
         <pubTime>2018-06-13T13:51:29.000Z</pubTime>
         
+        <tag>编程</tag>
+         
+        <tag>学习</tag>
+         
+        <tag>C家族</tag>
+         
+        <tag>makefile</tag>
+         
          
            
+             
+              <breadCrumb title="C家族" url="http://www.codeforme.cn/categories/C%E5%AE%B6%E6%97%8F/"/>
+          
         </display>
     </data>
     </url>

@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[makefile的使用]]></title>
-    <url>%2F2018%2F06%2F13%2Fmakefile%E7%9A%84%E4%BD%BF%E7%94%A8%2F</url>
+    <title><![CDATA[makefile的编写]]></title>
+    <url>%2F2018%2F06%2F13%2Fmakefile%E7%9A%84%E7%BC%96%E5%86%99%2F</url>
     <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>C家族</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>学习</tag>
+        <tag>C家族</tag>
+        <tag>makefile</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[gdb调试]]></title>
