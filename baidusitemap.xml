@@ -4,6 +4,32 @@
 
     
   <url>
+    <loc>http://www.codeforme.cn/2018/06/13/gdb%E8%B0%83%E8%AF%95/</loc>
+    <lastmod>2018-06-13T13:35:09.200Z</lastmod>
+    <data>
+        <display>
+        <title>gdb调试</title>
+        <pubTime>2018-06-13T13:21:46.000Z</pubTime>
+        
+        <tag>编程</tag>
+         
+        <tag>学习</tag>
+         
+        <tag>C家族</tag>
+         
+        <tag>调试</tag>
+         
+         
+           
+             
+              <breadCrumb title="C家族" url="http://www.codeforme.cn/categories/C%E5%AE%B6%E6%97%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.codeforme.cn/2018/06/08/django-nginx-uwsgi%E8%BF%9B%E8%A1%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/</loc>
     <lastmod>2018-06-08T06:31:27.761Z</lastmod>
     <data>
