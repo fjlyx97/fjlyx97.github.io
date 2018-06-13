@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[gdb调试]]></title>
     <url>%2F2018%2F06%2F13%2Fgdb%E8%B0%83%E8%AF%95%2F</url>
-    <content type="text"><![CDATA[在linux下面使用gdb进行断点调试 介绍如何操作gdb 编译文件 平时调试代码直接使用gcc或g++即可编译 1gcc test.c -o test 需要使用gdb编译需要加上-g参数 1gcc -g test.c -o test 调试文件 使用gdb命令打开文件1gdb test 常用命令 设置断点 使用b设置断点1b main //在main函数设置断点 运行命令 使用r运行程序 单步运行 使用n进入下一行（不进入的单步执行） 使用s为进入的单步执行，finish为单步跳出 显示变量 p可以显示变量名1p 变量名 查看代码 使用list，简写l 查看断点，监视 info b //断点 info watch //监视 运行到下一个断点 continue 简写为c 终止运行 使用kill来终止 删除断点 使用delete breakpoint 1 //需先使用info进行查看]]></content>
+    <content type="text"><![CDATA[在linux下面使用gdb进行断点调试 介绍如何操作gdb 编译文件 平时调试代码直接使用gcc或g++即可编译 1gcc test.c -o test 需要使用gdb编译需要加上-g参数 1gcc -g test.c -o test 调试文件 使用gdb命令打开文件1gdb test 常用命令设置断点 使用b设置断点1b main //在main函数设置断点 运行命令 使用r运行程序 单步运行 使用n进入下一行（不进入的单步执行） 使用s为进入的单步执行，finish为单步跳出 显示变量 p可以显示变量名1p 变量名 查看代码 使用list，简写l 查看断点，监视 info b //断点 info watch //监视 运行到下一个断点 continue 简写为c 终止运行 使用kill来终止 删除断点 使用delete breakpoint 1 //需先使用info进行查看]]></content>
       <categories>
         <category>C家族</category>
       </categories>
