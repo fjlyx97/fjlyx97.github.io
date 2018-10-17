@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="学校课程新增C++ 记录易错知识点以及易忘知识点 大坑待填">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-26T02:10:35.046Z">
+<meta property="og:updated_time" content="2018-06-15T12:35:17.382Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++学习记录">
 <meta name="twitter:description" content="学校课程新增C++ 记录易错知识点以及易忘知识点 大坑待填">
@@ -567,8 +567,11 @@
 </li>
 <li><p>ostream对象不允许拷贝构造，即返回值必须为ostream&amp;</p>
 </li>
-<li><p>operator++为前置运算符，operator++(int)为后置运算符。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//example</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>;</span></div><div class="line">Base Base::<span class="keyword">operator</span>++(<span class="keyword">int</span>)</div><div class="line">&#123;</div><div class="line">    <span class="function">Base <span class="title">t</span><span class="params">(*<span class="keyword">this</span>)</span></span>;</div><div class="line">    <span class="keyword">this</span>-&gt;num++;</div><div class="line">    <span class="keyword">return</span> t;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+<li><p>operator++为前置运算符，operator++(int)为后置运算符</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//example</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>;</span></div><div class="line">Base Base::<span class="keyword">operator</span>++(<span class="keyword">int</span>)</div><div class="line">&#123;</div><div class="line">    <span class="function">Base <span class="title">t</span><span class="params">(*<span class="keyword">this</span>)</span></span>;</div><div class="line">    <span class="keyword">this</span>-&gt;num++;</div><div class="line">    <span class="keyword">return</span> t;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>缺省构造函数即代表没有参数列表的构造函数，一旦手动定义带参数的构造函数，编译器则不会帮我们生成缺省的构造函数</p>
+</li>
 </ol>
 
       
@@ -717,7 +720,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -728,7 +731,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
