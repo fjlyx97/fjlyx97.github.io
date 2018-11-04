@@ -1,3 +1,4 @@
+http://www.codeforme.cn/2018/11/04/cmake的使用/
 http://www.codeforme.cn/2018/06/17/archlinux下的QQ配置/
 http://www.codeforme.cn/2018/06/13/makefile的编写/
 http://www.codeforme.cn/2018/06/13/gdb调试/
