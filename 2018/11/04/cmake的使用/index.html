@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="编程,学习,C家族,makefile,">
 
 
 
@@ -95,14 +95,18 @@
 
 
 
+<meta name="description" content="使用开源框架SeetaFaceEngine需要手动改写CMakeList.txt 简要入门cmake的使用">
+<meta name="keywords" content="编程,学习,C家族,makefile">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cmake的使用">
 <meta property="og:url" content="http://www.codeforme.cn/2018/11/04/cmake的使用/index.html">
 <meta property="og:site_name" content="一米见方">
+<meta property="og:description" content="使用开源框架SeetaFaceEngine需要手动改写CMakeList.txt 简要入门cmake的使用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-04T08:42:06.262Z">
+<meta property="og:updated_time" content="2018-11-04T11:18:27.218Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cmake的使用">
+<meta name="twitter:description" content="使用开源框架SeetaFaceEngine需要手动改写CMakeList.txt 简要入门cmake的使用">
 
 
 
@@ -357,6 +361,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/C家族/" itemprop="url" rel="index">
+                    <span itemprop="name">C家族</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -389,7 +415,33 @@
       
 
       
-        
+        <blockquote>
+<ul>
+<li>使用开源框架SeetaFaceEngine需要手动改写CMakeList.txt</li>
+<li>简要入门cmake的使用</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<h1 id="单个源文件"><a href="#单个源文件" class="headerlink" title="单个源文件"></a>单个源文件</h1><ul>
+<li><p>目录树如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cpp</span><br><span class="line">├── build</span><br><span class="line">├── CMakeLists.txt</span><br><span class="line">└── main.cpp</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>源文件放置于根目录，进行CMakeLists.txt的编写</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CMake 最低版本号要求</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span> (VERSION <span class="number">2.8</span>)</span><br><span class="line"><span class="comment"># 项目信息</span></span><br><span class="line"><span class="keyword">project</span> (Hello)</span><br><span class="line"><span class="comment"># 指定生成目标</span></span><br><span class="line"><span class="keyword">add_executable</span>(Hello main.cpp)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>切换到目录build，使用cmake .. &amp;&amp; make进行编译，即可得到可执行文件Hello</p>
+</li>
+</ul>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CMake 最低版本号要求</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span> (VERSION <span class="number">2.8</span>)</span><br><span class="line"><span class="comment"># 项目信息</span></span><br><span class="line"><span class="keyword">project</span> (Hello)</span><br><span class="line"><span class="comment"># 指定生成目标</span></span><br><span class="line"><span class="comment"># 这里指定目录，得到变量</span></span><br><span class="line"><span class="comment"># 格式：aux_source_directory(&lt;dir&gt; &lt;variable&gt;)</span></span><br><span class="line"><span class="keyword">aux_source_directory</span>(. DIR_SRCS)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(Hello <span class="variable">$&#123;DIR_SRCS&#125;</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="多个目录多个源文件"><a href="#多个目录多个源文件" class="headerlink" title="多个目录多个源文件"></a>多个目录多个源文件</h1><ul>
+<li><p>现有目录如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cpp</span><br><span class="line">├── CMakeLists.txt</span><br><span class="line">├── include</span><br><span class="line">│   └── temp.h</span><br><span class="line">└── src</span><br><span class="line">    ├── main.cpp</span><br><span class="line">    └── temp.cpp</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>temp中含有一个say函数，再main函数中进行调用，编写CMakeLists如下：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">2.6</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">project</span>(hello)</span><br><span class="line"></span><br><span class="line"><span class="comment">#引入头文件</span></span><br><span class="line"><span class="keyword">include_directories</span>(./<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#导入目录</span></span><br><span class="line"><span class="keyword">aux_source_directory</span>(. PROJECT_ROOT)</span><br><span class="line"><span class="keyword">aux_source_directory</span>(./src SRC)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(hello <span class="variable">$&#123;PROJECT_ROOT&#125;</span> <span class="variable">$&#123;SRC&#125;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
       
     </div>
     
@@ -432,6 +484,18 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/编程/" rel="tag"># 编程</a>
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+            <a href="/tags/C家族/" rel="tag"># C家族</a>
+          
+            <a href="/tags/makefile/" rel="tag"># makefile</a>
+          
+        </div>
       
 
       
@@ -503,8 +567,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image" src="/images/background.jpg" alt="成名人士">
@@ -602,6 +675,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#单个源文件"><span class="nav-text">单个源文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多个目录多个源文件"><span class="nav-text">多个目录多个源文件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

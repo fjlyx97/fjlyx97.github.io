@@ -5,14 +5,25 @@
     
   <url>
     <loc>http://www.codeforme.cn/2018/11/04/cmake%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2018-11-04T08:42:06.262Z</lastmod>
+    <lastmod>2018-11-04T11:18:27.218Z</lastmod>
     <data>
         <display>
         <title>cmake的使用</title>
         <pubTime>2018-11-04T08:42:06.000Z</pubTime>
         
+        <tag>编程</tag>
+         
+        <tag>学习</tag>
+         
+        <tag>C家族</tag>
+         
+        <tag>makefile</tag>
+         
          
            
+             
+              <breadCrumb title="C家族" url="http://www.codeforme.cn/categories/C%E5%AE%B6%E6%97%8F/"/>
+          
         </display>
     </data>
     </url>

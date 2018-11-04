@@ -3,7 +3,16 @@
   <entry>
     <title><![CDATA[cmake的使用]]></title>
     <url>%2F2018%2F11%2F04%2Fcmake%E7%9A%84%E4%BD%BF%E7%94%A8%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <content type="text"><![CDATA[使用开源框架SeetaFaceEngine需要手动改写CMakeList.txt 简要入门cmake的使用 单个源文件 目录树如下： 1234cpp├── build├── CMakeLists.txt└── main.cpp 源文件放置于根目录，进行CMakeLists.txt的编写 123456# CMake 最低版本号要求cmake_minimum_required (VERSION 2.8)# 项目信息project (Hello)# 指定生成目标add_executable(Hello main.cpp) 切换到目录build，使用cmake .. &amp;&amp; make进行编译，即可得到可执行文件Hello 12345678910# CMake 最低版本号要求cmake_minimum_required (VERSION 2.8)# 项目信息project (Hello)# 指定生成目标# 这里指定目录，得到变量# 格式：aux_source_directory(&lt;dir&gt; &lt;variable&gt;)aux_source_directory(. DIR_SRCS)add_executable(Hello $&#123;DIR_SRCS&#125;) 多个目录多个源文件 现有目录如下： 1234567cpp├── CMakeLists.txt├── include│ └── temp.h└── src ├── main.cpp └── temp.cpp temp中含有一个say函数，再main函数中进行调用，编写CMakeLists如下： 123456789101112cmake_minimum_required(VERSION 2.6)project(hello)#引入头文件include_directories(./include)#导入目录aux_source_directory(. PROJECT_ROOT)aux_source_directory(./src SRC)add_executable(hello $&#123;PROJECT_ROOT&#125; $&#123;SRC&#125;)]]></content>
+      <categories>
+        <category>C家族</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>学习</tag>
+        <tag>C家族</tag>
+        <tag>makefile</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[archlinux下的QQ配置]]></title>
