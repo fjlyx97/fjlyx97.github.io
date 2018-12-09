@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[c++并发与多线程（一）]]></title>
     <url>%2F2018%2F12%2F09%2FC%2B%2B%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[C++小白进阶之路 了解多线程是如何编写的 跟随网易云课堂视频学习 并发，进程，线程基本概念两个或者更多的任务同时发生进行，一个程序同时执行多个任务，由操作系统统一调度]]></content>
+    <content type="text"><![CDATA[C++小白进阶之路 了解多线程是如何编写的 跟随网易云课堂视频学习 并发，进程，线程两个或者更多的任务同时发生进行，一个程序同时执行多个任务，由操作系统统一调度 进程与主线程唇齿相依，线程可以近似理解成执行代码的通路，且主线程唯一 线程并不是越多越好，每个线程都需要一个独立的堆栈空间（1M理论值），线程需要保存中间状态，耗费本该属于程序运行的时间 多进程并发进程之间的通信（同一个电脑：管道，文件，消息队列，共享内存）（不同电脑：socket通信技术） 多线程并发每个线程都有自己独立的路径，但是一个进程所有线程共享地址空间（共享内存），全局变量，指针，引用都可以在线程之间传递，因此使用多线程的开销远远小于多进程 共享内存带来新问题，数据是否为一致性（线程锁等） 多进程并发和多线程并发虽然可以混合使用，但是建议优先考虑多线程技术而不是多进程 C++11新标准线程库以往Windows：CreateThread() , _beginthread(),_beginthreadexe() 以往Linux:pthread_create() 以往多线程不能跨平台，C++11新标准允许。 线程创建，启动，结束进程结束的标志是主线程是否执行完毕，如果主线程执行完毕了，代表整个进程执行完毕。（一般情况）如果其他子线程还没有执行完毕，那么这些子线程也会被操作系统强行终止。因此得出结论：如果想保持子线程的运行状态，需要保持主线程一直运行。（但是有例外情况） 范例1234567891011121314151617181920#include &lt;iostream&gt;//包含thread头文件#include &lt;thread&gt;//创建一个函数void myprint()&#123; std::cout &lt;&lt; "Thread begin.." &lt;&lt; std::endl; std::cout &lt;&lt; "Thread end.." &lt;&lt; std::endl; return;&#125;int main()&#123; std::thread myobj(myprint); myobj.join(); std::cout &lt;&lt; "I love China!" &lt;&lt; std::endl; system("pause"); return 0;&#125;]]></content>
       <categories>
         <category>C家族</category>
       </categories>
