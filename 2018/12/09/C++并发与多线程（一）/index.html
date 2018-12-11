@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="C++小白进阶之路 了解多线程是如何编写的 跟随网易云课堂视频学习">
+<meta name="description" content="C++小白进阶之路 了解多线程是如何编写的 跟随网易云课堂视频学习 内容涵盖线程启动，创建，传参以及detach的坑点">
 <meta name="keywords" content="编程,学习,C家族">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c++并发与多线程（一）">
 <meta property="og:url" content="http://www.codeforme.cn/2018/12/09/C++并发与多线程（一）/index.html">
 <meta property="og:site_name" content="一米见方">
-<meta property="og:description" content="C++小白进阶之路 了解多线程是如何编写的 跟随网易云课堂视频学习">
+<meta property="og:description" content="C++小白进阶之路 了解多线程是如何编写的 跟随网易云课堂视频学习 内容涵盖线程启动，创建，传参以及detach的坑点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-10T16:11:44.308Z">
+<meta property="og:updated_time" content="2018-12-11T13:35:52.410Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="c++并发与多线程（一）">
-<meta name="twitter:description" content="C++小白进阶之路 了解多线程是如何编写的 跟随网易云课堂视频学习">
+<meta name="twitter:description" content="C++小白进阶之路 了解多线程是如何编写的 跟随网易云课堂视频学习 内容涵盖线程启动，创建，传参以及detach的坑点">
 
 
 
@@ -420,6 +420,7 @@
 <li>C++小白进阶之路</li>
 <li>了解多线程是如何编写的</li>
 <li>跟随网易云课堂视频学习</li>
+<li>内容涵盖线程启动，创建，传参以及detach的坑点</li>
 </ul>
 </blockquote>
 <a id="more"></a>
@@ -463,7 +464,13 @@
 <li>终极结论：建议不使用detach，只使用join，这样就不存在局部变量失效导致对内存的非法引用。</li>
 </ul>
 <h2 id="传递临时对象作为线程参数（续）"><a href="#传递临时对象作为线程参数（续）" class="headerlink" title="传递临时对象作为线程参数（续）"></a>传递临时对象作为线程参数（续）</h2><p>线程id可以通过标准库函数获得如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::this_thread::get_id();</span><br></pre></td></tr></table></figure></p>
-<h2 id="传递类对象作为线程参数"><a href="#传递类对象作为线程参数" class="headerlink" title="传递类对象作为线程参数"></a>传递类对象作为线程参数</h2>
+<h2 id="传递类对象、智能指针作为线程参数"><a href="#传递类对象、智能指针作为线程参数" class="headerlink" title="传递类对象、智能指针作为线程参数"></a>传递类对象、智能指针作为线程参数</h2><h3 id="类对象"><a href="#类对象" class="headerlink" title="类对象"></a>类对象</h3><p>默认往线程中传递类对象时，假设目前有类A，即使自己使用的是const A&amp; a，依然会拷贝构造出一个类对象，且const必须加，不加新型编译器会报错。</p>
+<p>std::ref函数则可以真正将一个对象传递进去，且const可以去掉，成员变量也不需要使用mutable关键字，ref函数传入的类对象不会被复制，因此主线程和新建的线程使用的是同一个对象，写法如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>;</span></span><br><span class="line"><span class="built_in">std</span>::ref(A);</span><br></pre></td></tr></table></figure>
+<h3 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h3><p>unique_ptr智能指针直接作为参数传入会报错，因此需要使用std::move进行传输，代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myprint</span><span class="params">(<span class="built_in">unique_ptr</span>&lt;<span class="keyword">int</span>&gt; i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//不推荐用引用传参，绝对不要用指针</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; *i &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//分析认为,i的地址和main函数中i地址不相同，因此i的值是安全的（复制的）</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Thread new : "</span> &lt;&lt; <span class="built_in">std</span>::this_thread::get_id() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">unique_ptr</span>&lt;<span class="keyword">int</span>&gt; myp(<span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">100</span>));</span><br><span class="line">    thread myobj(myprint,std::move(myp)); </span><br><span class="line">    myobj.join();</span><br><span class="line"></span><br><span class="line">    system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="用成员函数指针作为线程函数"><a href="#用成员函数指针作为线程函数" class="headerlink" title="用成员函数指针作为线程函数"></a>用成员函数指针作为线程函数</h3><p>第一个参数为成员函数的地址，第二个参数为传入的类成员</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">say</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Son thread begin.."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    A myobj;</span><br><span class="line">    <span class="function">thread <span class="title">mytobj</span><span class="params">(&amp;A::say,myobj)</span></span>;</span><br><span class="line">    mytobj.join();</span><br><span class="line"></span><br><span class="line">    system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -535,6 +542,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/11/C++并发与多线程（二）/" rel="prev" title="c++并发与多线程（二）">
+                c++并发与多线程（二） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -613,7 +624,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -705,7 +716,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#并发，进程，线程"><span class="nav-text">并发，进程，线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#多进程并发"><span class="nav-text">多进程并发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程并发"><span class="nav-text">多线程并发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-11新标准线程库"><span class="nav-text">C++11新标准线程库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程创建，启动，结束"><span class="nav-text">线程创建，启动，结束</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#范例（主线程等待子线程）"><span class="nav-text">范例（主线程等待子线程）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范例（主线程不等待子线程）"><span class="nav-text">范例（主线程不等待子线程）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#joinable函数"><span class="nav-text">joinable函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他创建线程的手法"><span class="nav-text">其他创建线程的手法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用类进行调用"><span class="nav-text">用类进行调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用detach的坑"><span class="nav-text">使用detach的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用lambda表达式"><span class="nav-text">用lambda表达式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程传参"><span class="nav-text">线程传参</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#传递临时对象作为线程参数"><span class="nav-text">传递临时对象作为线程参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-text">小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传递临时对象作为线程参数（续）"><span class="nav-text">传递临时对象作为线程参数（续）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传递类对象作为线程参数"><span class="nav-text">传递类对象作为线程参数</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#并发，进程，线程"><span class="nav-text">并发，进程，线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#多进程并发"><span class="nav-text">多进程并发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程并发"><span class="nav-text">多线程并发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-11新标准线程库"><span class="nav-text">C++11新标准线程库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程创建，启动，结束"><span class="nav-text">线程创建，启动，结束</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#范例（主线程等待子线程）"><span class="nav-text">范例（主线程等待子线程）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范例（主线程不等待子线程）"><span class="nav-text">范例（主线程不等待子线程）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#joinable函数"><span class="nav-text">joinable函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他创建线程的手法"><span class="nav-text">其他创建线程的手法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用类进行调用"><span class="nav-text">用类进行调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用detach的坑"><span class="nav-text">使用detach的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用lambda表达式"><span class="nav-text">用lambda表达式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程传参"><span class="nav-text">线程传参</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#传递临时对象作为线程参数"><span class="nav-text">传递临时对象作为线程参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-text">小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传递临时对象作为线程参数（续）"><span class="nav-text">传递临时对象作为线程参数（续）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传递类对象、智能指针作为线程参数"><span class="nav-text">传递类对象、智能指针作为线程参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类对象"><span class="nav-text">类对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#智能指针"><span class="nav-text">智能指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用成员函数指针作为线程函数"><span class="nav-text">用成员函数指针作为线程函数</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
