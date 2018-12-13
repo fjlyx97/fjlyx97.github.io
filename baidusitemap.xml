@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://www.codeforme.cn/2018/12/11/C++%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89/</loc>
-    <lastmod>2018-12-13T03:59:12.063Z</lastmod>
+    <lastmod>2018-12-13T12:56:05.057Z</lastmod>
     <data>
         <display>
         <title>c++并发与多线程（二）</title>
@@ -16,6 +16,8 @@
         <tag>学习</tag>
          
         <tag>C家族</tag>
+         
+        <tag>多线程</tag>
          
          
            
@@ -29,7 +31,7 @@
     
   <url>
     <loc>http://www.codeforme.cn/2018/12/09/C++%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
-    <lastmod>2018-12-11T14:31:53.145Z</lastmod>
+    <lastmod>2018-12-13T11:49:50.349Z</lastmod>
     <data>
         <display>
         <title>c++并发与多线程（一）</title>
@@ -40,6 +42,8 @@
         <tag>学习</tag>
          
         <tag>C家族</tag>
+         
+        <tag>多线程</tag>
          
          
            
