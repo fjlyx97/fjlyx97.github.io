@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.codeforme.cn/2018/12/27/docker%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</loc>
+    
+    <lastmod>2018-12-28T11:55:21.450Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.codeforme.cn/2018/12/28/linux%E4%B8%ADc++%E6%9E%B6%E6%9E%84%E5%AE%9E%E6%88%98%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
     
     <lastmod>2018-12-28T11:43:16.992Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://www.codeforme.cn/2017/08/28/%E4%BD%BF%E7%94%A8python-+-selenium%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95/</loc>
     
     <lastmod>2018-12-28T11:42:06.804Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.codeforme.cn/2018/12/27/docker%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</loc>
-    
-    <lastmod>2018-12-27T13:54:50.329Z</lastmod>
     
   </url>
   

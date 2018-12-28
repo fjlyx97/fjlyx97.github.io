@@ -16,7 +16,7 @@
   <entry>
     <title><![CDATA[docker使用笔记]]></title>
     <url>%2F2018%2F12%2F27%2Fdocker%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%2F</url>
-    <content type="text"><![CDATA[docker在Ubuntu下的安装使用 docker的使用命令 启动docker后台服务1sudo service docer start 测试hello-world1sudo docker run hello-world docker常用命令查看本地镜像查看本地镜像，-a参数为列出所有1docker images -a 删除镜像 使用-f参数强制删除1docker rmi 镜像名]]></content>
+    <content type="text"><![CDATA[docker在Ubuntu下的安装使用 docker的使用命令 启动docker后台服务1sudo service docer start 测试hello-world1sudo docker run hello-world docker常用命令启动docker -d参数：后台运行 -i参数：交互式运行 -t参数：分配一个伪输入终端，一般和-i使用 -p参数：端口映射1docker run -d -it 容器名 查看本地镜像查看本地镜像，-a参数为列出所有1docker images -a 删除镜像 使用-f参数强制删除1docker rmi 镜像名 查看正在运行的docker -a参数可以查看历史的记录1docker ps 重命名docker1docker rename 索引名 新名字 删除docker1docker rm 索引 重新启动一个docker（已存在）1docker start 索引 进入一个docker12docker attach 索引docker exic -it 索引 /bin/bash #退出时容器不退出 查询docker1docker search 名字 拉取docker1docker pull 名字]]></content>
       <categories>
         <category>Linux</category>
       </categories>
