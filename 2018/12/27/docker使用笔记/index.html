@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="docker在Ubuntu下的安装使用 docker的使用命令">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-28T11:55:21.450Z">
+<meta property="og:updated_time" content="2018-12-28T12:49:05.412Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker使用笔记">
 <meta name="twitter:description" content="docker在Ubuntu下的安装使用 docker的使用命令">
@@ -431,7 +431,8 @@
 <li>-d参数：后台运行</li>
 <li>-i参数：交互式运行</li>
 <li>-t参数：分配一个伪输入终端，一般和-i使用</li>
-<li>-p参数：端口映射<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -it 容器名</span><br></pre></td></tr></table></figure>
+<li>-p参数：端口映射 本地:容器</li>
+<li>–name参数： 指定容器姓名<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -it 容器名</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="查看本地镜像"><a href="#查看本地镜像" class="headerlink" title="查看本地镜像"></a>查看本地镜像</h2><p>查看本地镜像，-a参数为列出所有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images -a</span><br></pre></td></tr></table></figure></p>
@@ -446,7 +447,7 @@
 <h2 id="重命名docker"><a href="#重命名docker" class="headerlink" title="重命名docker"></a>重命名docker</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rename 索引名 新名字</span><br></pre></td></tr></table></figure>
 <h2 id="删除docker"><a href="#删除docker" class="headerlink" title="删除docker"></a>删除docker</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm 索引</span><br></pre></td></tr></table></figure>
 <h2 id="重新启动一个docker（已存在）"><a href="#重新启动一个docker（已存在）" class="headerlink" title="重新启动一个docker（已存在）"></a>重新启动一个docker（已存在）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start 索引</span><br></pre></td></tr></table></figure>
-<h2 id="进入一个docker"><a href="#进入一个docker" class="headerlink" title="进入一个docker"></a>进入一个docker</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker attach 索引</span><br><span class="line">docker exic -it 索引 /bin/bash #退出时容器不退出</span><br></pre></td></tr></table></figure>
+<h2 id="进入一个docker"><a href="#进入一个docker" class="headerlink" title="进入一个docker"></a>进入一个docker</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker attach 索引</span><br><span class="line">docker exic -it 索引 /bin/bash #退出时容器不退出，或者CTRL+P+Q</span><br></pre></td></tr></table></figure>
 <h2 id="查询docker"><a href="#查询docker" class="headerlink" title="查询docker"></a>查询docker</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search 名字</span><br></pre></td></tr></table></figure>
 <h2 id="拉取docker"><a href="#拉取docker" class="headerlink" title="拉取docker"></a>拉取docker</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull 名字</span><br></pre></td></tr></table></figure>
       
