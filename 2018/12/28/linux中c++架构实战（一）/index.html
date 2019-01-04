@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="linux c++架构实战系列课程笔记 涉及nginx开发初步">
+<meta name="description" content="linux c++架构实战系列课程笔记 涉及nginx开发初步 信号的基本概念">
 <meta name="keywords" content="学习,linux,c家族">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux中c++架构实战（一）">
 <meta property="og:url" content="http://www.codeforme.cn/2018/12/28/linux中c++架构实战（一）/index.html">
 <meta property="og:site_name" content="一米见方">
-<meta property="og:description" content="linux c++架构实战系列课程笔记 涉及nginx开发初步">
+<meta property="og:description" content="linux c++架构实战系列课程笔记 涉及nginx开发初步 信号的基本概念">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-30T02:42:43.737Z">
+<meta property="og:updated_time" content="2019-01-04T05:00:11.542Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux中c++架构实战（一）">
-<meta name="twitter:description" content="linux c++架构实战系列课程笔记 涉及nginx开发初步">
+<meta name="twitter:description" content="linux c++架构实战系列课程笔记 涉及nginx开发初步 信号的基本概念">
 
 
 
@@ -419,6 +419,7 @@
 <ul>
 <li>linux c++架构实战系列课程笔记</li>
 <li>涉及nginx开发初步</li>
+<li>信号的基本概念</li>
 </ul>
 </blockquote>
 <a id="more"></a>
@@ -458,9 +459,28 @@
 <h1 id="终端和进程的关系"><a href="#终端和进程的关系" class="headerlink" title="终端和进程的关系"></a>终端和进程的关系</h1><h2 id="终端与bash进程"><a href="#终端与bash进程" class="headerlink" title="终端与bash进程"></a>终端与bash进程</h2><p>使用如下命令查看bash<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep bash</span><br></pre></td></tr></table></figure></p>
 <p>可以观察到拥有pts/0，pts代表虚拟终端，/后面为编号</p>
 <ul>
-<li>每个进程还属于一个进程组，一个或者多个进程的集合，每个进程组拥有一个唯一的进程ID，可以使用系统函数来调用或者加入进程组</li>
-<li>会话（session)</li>
+<li>每个进程还属于一个进程组，一个或者多个进程的集合，每个进程组拥有一个唯一的进程ID，可以使用系统函数来调用或者加入进程组（PGRP）</li>
+<li>会话（session）是一个或者多个进程组的集合，而这个会话有一个session leader，那么这个bash（shell）通常就是session leader。但是可以调用系统函数调用新session</li>
 </ul>
+<h2 id="strace工具的使用"><a href="#strace工具的使用" class="headerlink" title="strace工具的使用"></a>strace工具的使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo strace -e trace=signal -p 进程id</span><br></pre></td></tr></table></figure>
+<h1 id="忽略SIGHUP信号"><a href="#忽略SIGHUP信号" class="headerlink" title="忽略SIGHUP信号"></a>忽略SIGHUP信号</h1><h2 id="使用signal-h进行忽略信号"><a href="#使用signal-h进行忽略信号" class="headerlink" title="使用signal.h进行忽略信号"></a>使用signal.h进行忽略信号</h2><p>引入头文件signal.h，使用对应的signal函数进行忽略信号<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    signal(SIGHUP,SIG_IGN); <span class="comment">//系统函数，告诉操作系统忽略SIGHUP信号，不要杀死进程</span></span><br><span class="line">    <span class="keyword">for</span> (;;)</span><br><span class="line">    &#123;</span><br><span class="line">        sleep(<span class="number">1</span>);</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Sleep 1 sec"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>一旦程序允许，退出终端，程序tty变为？且ppid变为1（祖宗节点），被称为孤儿进程</li>
+</ul>
+<h2 id="setsid"><a href="#setsid" class="headerlink" title="setsid"></a>setsid</h2><h3 id="setsid函数"><a href="#setsid函数" class="headerlink" title="setsid函数"></a>setsid函数</h3><p>setsid不适合进程组组长调用，程序退出时，bash会往相同的Session里面发送SIGHUP信号，因此可以使用fork函数进行创建进程<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">pid_t</span> pid;</span><br><span class="line">    pid = fork(); <span class="comment">//出现子进程</span></span><br><span class="line">    <span class="keyword">if</span> (pid &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Fork Error"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (pid == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Son"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        setsid(); <span class="comment">//新建独立的session，但进程组组长调用setsid时无效的</span></span><br><span class="line">        <span class="keyword">for</span> (;;)</span><br><span class="line">        &#123;</span><br><span class="line">            sleep(<span class="number">1</span>);</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"Sleep 1 sec"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Father"</span> &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//pid&gt;0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="setsid命令"><a href="#setsid命令" class="headerlink" title="setsid命令"></a>setsid命令</h3><p>启动一个进程，而且能够使其在新的session中，终端退出不退出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setsid ./可执行程序</span><br></pre></td></tr></table></figure></p>
+<h3 id="nohub命令"><a href="#nohub命令" class="headerlink" title="nohub命令"></a>nohub命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohub ./可执行程序 &amp;</span><br></pre></td></tr></table></figure>
+<h1 id="信号的基本概念"><a href="#信号的基本概念" class="headerlink" title="信号的基本概念"></a>信号的基本概念</h1><p>进程之间的常用通信手段：发送信号,kill</p>
+<ul>
+<li>信号：通知（事件通知）用来通知某个进程发生了某个事情</li>
+<li>名字一般以SIG开头</li>
+<li>信号既有名字，也是一些正整数常量（宏定义），需要包含signal.h头文件，在/usr/include</li>
+</ul>
+<h2 id="信号的产生"><a href="#信号的产生" class="headerlink" title="信号的产生"></a>信号的产生</h2><ol>
+<li>由某个进程发送给另外一个进程或发送给自己</li>
+<li>由内核（操作系统）发送给某个进程</li>
+</ol>
+<h2 id="kill命令"><a href="#kill命令" class="headerlink" title="kill命令"></a>kill命令</h2><p>kill工作是发个信号给进程，可以发送多种信号</p>
 
       
     </div>
@@ -703,7 +723,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#nginx目录结构"><span class="nav-text">nginx目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#auto目录"><span class="nav-text">auto目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#src目录"><span class="nav-text">src目录</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编译nginx"><span class="nav-text">编译nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装依赖"><span class="nav-text">一、安装依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、用configure进行配置安装"><span class="nav-text">二、用configure进行配置安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、nginx的启动和简单使用"><span class="nav-text">三、nginx的启动和简单使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nginx整体结构"><span class="nav-text">nginx整体结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ps-ef简要说明"><span class="nav-text">ps -ef简要说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx进程模型"><span class="nav-text">nginx进程模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调整worker进程数量"><span class="nav-text">调整worker进程数量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#终端和进程的关系"><span class="nav-text">终端和进程的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#终端与bash进程"><span class="nav-text">终端与bash进程</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#nginx目录结构"><span class="nav-text">nginx目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#auto目录"><span class="nav-text">auto目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#src目录"><span class="nav-text">src目录</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编译nginx"><span class="nav-text">编译nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装依赖"><span class="nav-text">一、安装依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、用configure进行配置安装"><span class="nav-text">二、用configure进行配置安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、nginx的启动和简单使用"><span class="nav-text">三、nginx的启动和简单使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nginx整体结构"><span class="nav-text">nginx整体结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ps-ef简要说明"><span class="nav-text">ps -ef简要说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx进程模型"><span class="nav-text">nginx进程模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调整worker进程数量"><span class="nav-text">调整worker进程数量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#终端和进程的关系"><span class="nav-text">终端和进程的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#终端与bash进程"><span class="nav-text">终端与bash进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strace工具的使用"><span class="nav-text">strace工具的使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#忽略SIGHUP信号"><span class="nav-text">忽略SIGHUP信号</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用signal-h进行忽略信号"><span class="nav-text">使用signal.h进行忽略信号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setsid"><span class="nav-text">setsid</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#setsid函数"><span class="nav-text">setsid函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setsid命令"><span class="nav-text">setsid命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nohub命令"><span class="nav-text">nohub命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#信号的基本概念"><span class="nav-text">信号的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#信号的产生"><span class="nav-text">信号的产生</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kill命令"><span class="nav-text">kill命令</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -726,7 +746,7 @@
         <div class="copyright">
   
   &copy;  2017 &mdash; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
