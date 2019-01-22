@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="linux c++架构实战系列课程笔记（二） 服务器框架初步">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-22T12:32:37.697Z">
+<meta property="og:updated_time" content="2019-01-22T16:12:00.881Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux中c++架构实战（二）">
 <meta name="twitter:description" content="linux c++架构实战系列课程笔记（二） 服务器框架初步">
@@ -422,7 +422,13 @@
 </ul>
 </blockquote>
 <a id="more"></a>
-<h1 id="服务器框架初步"><a href="#服务器框架初步" class="headerlink" title="服务器框架初步"></a>服务器框架初步</h1><h2 id="目录结构规划"><a href="#目录结构规划" class="headerlink" title="目录结构规划"></a>目录结构规划</h2>
+<h1 id="服务器框架初步"><a href="#服务器框架初步" class="headerlink" title="服务器框架初步"></a>服务器框架初步</h1><h2 id="目录结构规划"><a href="#目录结构规划" class="headerlink" title="目录结构规划"></a>目录结构规划</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- nginx：主目录</span><br><span class="line">- _include目录： 专门存放各种头文件</span><br><span class="line">- app目录： 放主应用程序.c，如main函数以及比较核心的目录.</span><br><span class="line">    link_obj：临时目录，存放临时的.o文件，不手工创建，后续使用makefile脚本创建</span><br><span class="line">    dep:临时目录，会存放临时的.d开头的依赖文件，依赖文件能告知系统那些相关的文件发生变化，需要重新编译</span><br><span class="line">    nginx.c：主文件，main()入口函数</span><br><span class="line">    ngx_conf.c，普通源码文件</span><br><span class="line">- misc目录：专门存放杂合性不好归类的C文件</span><br><span class="line">- net目录：专门存放和网络处理相关的文件</span><br><span class="line">- proc目录：专门存放和进程处理有关的多个文件</span><br><span class="line">- signal目录：专门用于存放有关信号处理的文件</span><br><span class="line">    ngx_signal.c</span><br></pre></td></tr></table></figure>
+<h2 id="Makefile编写"><a href="#Makefile编写" class="headerlink" title="Makefile编写"></a>Makefile编写</h2><ul>
+<li>makefile:编译项目的入口脚本，起到总体控制</li>
+<li>config.mk：配置脚本，应付一些可变的东西</li>
+<li>common.mk 最河西的编译脚本，定义makefile的编译规则，依赖规则等，通用性很强，各个子目录中都用到这个脚本</li>
+</ul>
+
       
     </div>
     
@@ -668,7 +674,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器框架初步"><span class="nav-text">服务器框架初步</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录结构规划"><span class="nav-text">目录结构规划</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器框架初步"><span class="nav-text">服务器框架初步</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录结构规划"><span class="nav-text">目录结构规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Makefile编写"><span class="nav-text">Makefile编写</span></a></li></ol></li></ol></div>
             
 
           </div>
