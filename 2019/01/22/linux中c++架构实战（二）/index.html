@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="linux c++架构实战系列课程笔记（二） 服务器框架初步">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-23T05:17:25.415Z">
+<meta property="og:updated_time" content="2019-01-23T07:53:49.500Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux中c++架构实战（二）">
 <meta name="twitter:description" content="linux c++架构实战系列课程笔记（二） 服务器框架初步">
@@ -426,8 +426,10 @@
 <h2 id="Makefile编写"><a href="#Makefile编写" class="headerlink" title="Makefile编写"></a>Makefile编写</h2><ul>
 <li>makefile:编译项目的入口脚本，起到总体控制</li>
 <li>config.mk：配置脚本，应付一些可变的东西</li>
-<li>common.mk 最河西的编译脚本，定义makefile的编译规则，依赖规则等，通用性很强，各个子目录中都用到这个脚本</li>
+<li>common.mk 最核心的编译脚本，定义makefile的编译规则，依赖规则等，通用性很强，各个子目录中都用到这个脚本</li>
 </ul>
+<h2 id="基础配置读取"><a href="#基础配置读取" class="headerlink" title="基础配置读取"></a>基础配置读取</h2><p>使用配置文件，使我们的服务器程序有了极大的灵活性，使我们作为服务器程序开发者必须首先搞定的问题</p>
+<p>配置文件：文本文件，里边除了注释行之外不要用中文，只在配置文件中使用字母，数字，下划线。以#开头的为注释行（注释行可以有中文）</p>
 
       
     </div>
@@ -674,7 +676,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器框架初步"><span class="nav-text">服务器框架初步</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录结构规划"><span class="nav-text">目录结构规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Makefile编写"><span class="nav-text">Makefile编写</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器框架初步"><span class="nav-text">服务器框架初步</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录结构规划"><span class="nav-text">目录结构规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Makefile编写"><span class="nav-text">Makefile编写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础配置读取"><span class="nav-text">基础配置读取</span></a></li></ol></li></ol></div>
             
 
           </div>
