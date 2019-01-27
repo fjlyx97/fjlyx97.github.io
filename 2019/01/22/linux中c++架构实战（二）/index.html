@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="linux c++架构实战系列课程笔记（二） 服务器框架初步">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-26T16:17:53.496Z">
+<meta property="og:updated_time" content="2019-01-27T12:19:53.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux中c++架构实战（二）">
 <meta name="twitter:description" content="linux c++架构实战系列课程笔记（二） 服务器框架初步">
@@ -451,13 +451,27 @@
 </ol>
 <h2 id="示范"><a href="#示范" class="headerlink" title="示范"></a>示范</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g++ -g -o test test.cpp</span><br><span class="line">valgrind --tool=memcheck --leak-check=full --how-reachable=yes ./test</span><br></pre></td></tr></table></figure>
 <p>如果n个allocs,n-1frees就代表内存没泄露，差值为1</p>
-<h1 id="网络通讯实战"><a href="#网络通讯实战" class="headerlink" title="网络通讯实战"></a>网络通讯实战</h1><p>客户端:client，服务端：server，所以C/S框架就对应：客户端/服务器。</p>
+<h1 id="网络通讯"><a href="#网络通讯" class="headerlink" title="网络通讯"></a>网络通讯</h1><p>客户端:client，服务端：server，所以C/S框架就对应：客户端/服务器。</p>
 <h2 id="角色规律总结"><a href="#角色规律总结" class="headerlink" title="角色规律总结"></a>角色规律总结</h2><p>数据通讯在两端进行，为客户端和服务端。总有一方先发起数据包，则发起数据包的这一端成为客户端（浏览器）；被动收到数据包的这端为服务端（淘宝服务器）</p>
 <p>一旦连接建立起来，数据双向流动，这个过程则被成为<strong>双工</strong>，</p>
 <h2 id="OSI七层网络模型（Open-System-Interconnect）"><a href="#OSI七层网络模型（Open-System-Interconnect）" class="headerlink" title="OSI七层网络模型（Open System Interconnect）"></a>OSI七层网络模型（Open System Interconnect）</h2><p>物（物理层）链（数据链路层）网（网络层）传（传输层）会（会话层）表（表示层）应（应用层）。把一个要发出去的数据包从里往外裹了七层，最后将其发出去。</p>
 <h2 id="TCP-IP协议四层模型"><a href="#TCP-IP协议四层模型" class="headerlink" title="TCP/IP协议四层模型"></a>TCP/IP协议四层模型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">OSI七层模型         TCP/IP四层模型</span><br><span class="line">7：应用层</span><br><span class="line">6：表示层               应用层</span><br><span class="line">5：会话层</span><br><span class="line"></span><br><span class="line">4：传输层               传输层</span><br><span class="line"></span><br><span class="line">3：网络层               网络层</span><br><span class="line"></span><br><span class="line">2：数据链路层</span><br><span class="line">1：物理层               链路层</span><br></pre></td></tr></table></figure>
 <h2 id="套接字socket概念"><a href="#套接字socket概念" class="headerlink" title="套接字socket概念"></a>套接字socket概念</h2><p>socket就是一个数字，通过调用socket()函数生成，且这个数字具有唯一性，直到调用close()函数来把这个数字关闭。</p>
 <p>文件描述符：Linux下一切皆可堪称文件，因此我们可以把socket也看成是文件描述符，我们可以用它来收发数据。实例代码以往文章写过，<a href="http://codeforme.cn/2018/02/28/%E7%AE%80%E6%98%93Socket%E7%BC%96%E7%A8%8B/#more" target="_blank" rel="noopener">实例代码</a></p>
+<h2 id="TCP和UDP的区别"><a href="#TCP和UDP的区别" class="headerlink" title="TCP和UDP的区别"></a>TCP和UDP的区别</h2><p>TCP（Transfer Control Protocol）：传输控制协议。可靠的面向连接的协议，一旦数据包丢失，操作系统层会感知并重新帮助你发送数据包。因此TCP更适用于文字传输，收发邮件准确率高，但效率相对差，适用范围场合更广<br>UDP（User Datagram Protocol）：用户数据报协议，不可靠无连接协议。</p>
+<h2 id="最大传输单元MTU（Maximum-Transfer-Unit）"><a href="#最大传输单元MTU（Maximum-Transfer-Unit）" class="headerlink" title="最大传输单元MTU（Maximum Transfer Unit）"></a>最大传输单元MTU（Maximum Transfer Unit）</h2><p>MTU:每个数据包包含的数据最多可以有多少个字节，大概是1.5K左右</p>
+<h2 id="TCP三次握手建立连接的过程"><a href="#TCP三次握手建立连接的过程" class="headerlink" title="TCP三次握手建立连接的过程"></a>TCP三次握手建立连接的过程</h2><ol>
+<li>客户端给服务器发送了一个SYN标志位置位的无包体TCP数据包，SYN被置位，就表示发起TCP连接，协议规定</li>
+<li>服务器收到了SYN标志位的数据包，因此返回给客户端一个SYN和ACK标志位都被置位的无包体TCP数据包</li>
+<li>客户端收到数据包之后，再次发送ACK置位的数据包，服务器端收到之后，客户端服务器的TCP连接正式建立</li>
+</ol>
+<h2 id="telnet工具使用介绍"><a href="#telnet工具使用介绍" class="headerlink" title="telnet工具使用介绍"></a>telnet工具使用介绍</h2><p>命令行方式运行客户端TCP通讯工具，可以连接到服务器端，往服务器端发送数据，也可以接收服务器端发过来的信息。这个工具可以方便的测试服务器端的某个TCP端口是否连通，可以正常的收发数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet 192.168.1.126 9000</span><br></pre></td></tr></table></figure></p>
+<h2 id="TCP断开的四次握手"><a href="#TCP断开的四次握手" class="headerlink" title="TCP断开的四次握手"></a>TCP断开的四次握手</h2><ol>
+<li>FIN,ACK 服务器-&gt;客户端</li>
+<li>ACK 客户端-&gt;服务器</li>
+<li>FIN,ACK 客户端-&gt;服务器</li>
+<li>ACK 服务器-&gt;客户端</li>
+</ol>
 
       
     </div>
@@ -704,7 +718,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器框架初步"><span class="nav-text">服务器框架初步</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录结构规划"><span class="nav-text">目录结构规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Makefile编写"><span class="nav-text">Makefile编写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础配置读取"><span class="nav-text">基础配置读取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置程序标题（ps命令查看）"><span class="nav-text">设置程序标题（ps命令查看）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现思路"><span class="nav-text">实现思路</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内存泄漏的检查工具"><span class="nav-text">内存泄漏的检查工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#示范"><span class="nav-text">示范</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络通讯实战"><span class="nav-text">网络通讯实战</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#角色规律总结"><span class="nav-text">角色规律总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OSI七层网络模型（Open-System-Interconnect）"><span class="nav-text">OSI七层网络模型（Open System Interconnect）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IP协议四层模型"><span class="nav-text">TCP/IP协议四层模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#套接字socket概念"><span class="nav-text">套接字socket概念</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器框架初步"><span class="nav-text">服务器框架初步</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录结构规划"><span class="nav-text">目录结构规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Makefile编写"><span class="nav-text">Makefile编写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础配置读取"><span class="nav-text">基础配置读取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置程序标题（ps命令查看）"><span class="nav-text">设置程序标题（ps命令查看）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现思路"><span class="nav-text">实现思路</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内存泄漏的检查工具"><span class="nav-text">内存泄漏的检查工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#示范"><span class="nav-text">示范</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络通讯"><span class="nav-text">网络通讯</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#角色规律总结"><span class="nav-text">角色规律总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OSI七层网络模型（Open-System-Interconnect）"><span class="nav-text">OSI七层网络模型（Open System Interconnect）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IP协议四层模型"><span class="nav-text">TCP/IP协议四层模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#套接字socket概念"><span class="nav-text">套接字socket概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP和UDP的区别"><span class="nav-text">TCP和UDP的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大传输单元MTU（Maximum-Transfer-Unit）"><span class="nav-text">最大传输单元MTU（Maximum Transfer Unit）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP三次握手建立连接的过程"><span class="nav-text">TCP三次握手建立连接的过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#telnet工具使用介绍"><span class="nav-text">telnet工具使用介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP断开的四次握手"><span class="nav-text">TCP断开的四次握手</span></a></li></ol></li></ol></div>
             
 
           </div>
