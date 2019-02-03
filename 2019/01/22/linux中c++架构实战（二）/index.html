@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="linux c++架构实战系列课程笔记（二） 服务器框架初步">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-01T14:33:15.143Z">
+<meta property="og:updated_time" content="2019-02-03T15:44:18.827Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux中c++架构实战（二）">
 <meta name="twitter:description" content="linux c++架构实战系列课程笔记（二） 服务器框架初步">
@@ -517,6 +517,40 @@
 <li>如果有人故意不发送三次握手中第三个ACK包，那么连接将在未完成队列中存在大约75秒，如果超过时间，就会被操作系统杀掉</li>
 </ul>
 <h2 id="accept函数"><a href="#accept函数" class="headerlink" title="accept函数"></a>accept函数</h2><p>accept()函数，就是从<strong>已完成</strong>连接队列中的队首，取出一项，返回给进程。如果队列为空，则会阻塞，一直到已完成队列中有一项才会被唤醒</p>
+<ul>
+<li>accept()返回的是个套接字，这个套接字就代表那个已经用三次握手建立起来的那个tcp连接，因为accept()是从已完成队列中取的数据；</li>
+</ul>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><ol>
+<li>如果两个队列之和【已完成连接队列，和未完成连接队列】达到了listen()所指定的第二参数，也就是说队列满了。此时，再有一个客户发送syn请求，服务器怎么反应？</li>
+</ol>
+<ul>
+<li>答：服务器会忽略这个syn包，不给回应；客户端发现syn包没回应，会重发syn包</li>
+</ul>
+<ol>
+<li>如果连接处于未被accept取走，呆在已完成连接队列中，但是客户端发送来数据，那么数据存于何处？</li>
+</ol>
+<ul>
+<li>答：数据为被保存在已经连接的套接字的接收缓冲区里，这个缓冲区的大小决定最大能接收到多少数据量</li>
+</ul>
+<h2 id="syn攻击（syn-flood）"><a href="#syn攻击（syn-flood）" class="headerlink" title="syn攻击（syn flood）"></a>syn攻击（syn flood）</h2><p>典型利用TCP/IP协议涉及弱点进行攻击的行为（拒绝服务攻击）</p>
+<ul>
+<li>backlog：进一步明确和规定了：指定给定套接字上内核为之排队的最大已完成连接数【已完成连接队列中最大条目数】；</li>
+</ul>
+<h1 id="阻塞与非阻塞I-O-（对比同步与异步I-O）"><a href="#阻塞与非阻塞I-O-（对比同步与异步I-O）" class="headerlink" title="阻塞与非阻塞I/O （对比同步与异步I/O）"></a>阻塞与非阻塞I/O （对比同步与异步I/O）</h1><p>阻塞和非阻塞主要是调用系统函数时，这个函数会导致我们进程进入休眠状态，整个流程不继续往下执行。而同步与异步则有点类似。通过查阅资料可以看出差别：</p>
+<blockquote>
+<ul>
+<li>老张把水壶放到火上，立等水开。（同步阻塞）</li>
+<li>老张把水壶放到火上，去客厅看电视，时不时去厨房看看水开没有。（同步非阻塞）</li>
+<li>老张把响水壶放到火上，立等水开。（异步阻塞）</li>
+<li>老张把响水壶放到火上，去客厅看电视，水壶响之前不再去看它了，响了再去拿壶。（异步非阻塞）</li>
+</ul>
+</blockquote>
+<h1 id="epoll技术简介"><a href="#epoll技术简介" class="headerlink" title="epoll技术简介"></a>epoll技术简介</h1><h2 id="epoll概述"><a href="#epoll概述" class="headerlink" title="epoll概述"></a>epoll概述</h2><ol>
+<li>I/O多路复用，epoll的最大特点就是支持高并发。传统多路复用技术select,poll，在并发量达到1000-2000，性能就会明显下降。epoll则支持上百万并发量，因此epoll在Linux内核2.6引入。</li>
+<li>epoll技术不会因为并发量增多而导致效率明显下降，但是会消耗一定的内存去保存这个连接相关的数据。（并发量总还是有限制的，并不可能是无限的）</li>
+<li>假设10万连接，可能只有上百个客户端给你发送数据，那么epoll只处理这上百个客户端，而select,poll则会全部判断。</li>
+<li>epoll事件驱动机制，在单独进程或者单独线程中运行，收集或处理事件，没有进程或线程之间切换的消耗，十分高效。</li>
+</ol>
 
       
     </div>
@@ -763,7 +797,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器框架初步"><span class="nav-text">服务器框架初步</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录结构规划"><span class="nav-text">目录结构规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Makefile编写"><span class="nav-text">Makefile编写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础配置读取"><span class="nav-text">基础配置读取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置程序标题（ps命令查看）"><span class="nav-text">设置程序标题（ps命令查看）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现思路"><span class="nav-text">实现思路</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内存泄漏的检查工具"><span class="nav-text">内存泄漏的检查工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#示范"><span class="nav-text">示范</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络通讯"><span class="nav-text">网络通讯</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#角色规律总结"><span class="nav-text">角色规律总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OSI七层网络模型（Open-System-Interconnect）"><span class="nav-text">OSI七层网络模型（Open System Interconnect）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IP协议四层模型"><span class="nav-text">TCP/IP协议四层模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#套接字socket概念"><span class="nav-text">套接字socket概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP和UDP的区别"><span class="nav-text">TCP和UDP的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大传输单元MTU（Maximum-Transfer-Unit）"><span class="nav-text">最大传输单元MTU（Maximum Transfer Unit）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP三次握手建立连接的过程"><span class="nav-text">TCP三次握手建立连接的过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#telnet工具使用介绍"><span class="nav-text">telnet工具使用介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP断开的四次握手"><span class="nav-text">TCP断开的四次握手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP状态转换"><span class="nav-text">TCP状态转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引入TIME-WAIT状态的原因"><span class="nav-text">引入TIME_WAIT状态的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RST标志"><span class="nav-text">RST标志</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SO-REUSEADDR"><span class="nav-text">SO_REUSEADDR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#listen-队列剖析"><span class="nav-text">listen()队列剖析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#监听套接字队列"><span class="nav-text">监听套接字队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RTT超时时间"><span class="nav-text">RTT超时时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#accept函数"><span class="nav-text">accept函数</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器框架初步"><span class="nav-text">服务器框架初步</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录结构规划"><span class="nav-text">目录结构规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Makefile编写"><span class="nav-text">Makefile编写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础配置读取"><span class="nav-text">基础配置读取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置程序标题（ps命令查看）"><span class="nav-text">设置程序标题（ps命令查看）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现思路"><span class="nav-text">实现思路</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内存泄漏的检查工具"><span class="nav-text">内存泄漏的检查工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#示范"><span class="nav-text">示范</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络通讯"><span class="nav-text">网络通讯</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#角色规律总结"><span class="nav-text">角色规律总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OSI七层网络模型（Open-System-Interconnect）"><span class="nav-text">OSI七层网络模型（Open System Interconnect）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IP协议四层模型"><span class="nav-text">TCP/IP协议四层模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#套接字socket概念"><span class="nav-text">套接字socket概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP和UDP的区别"><span class="nav-text">TCP和UDP的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大传输单元MTU（Maximum-Transfer-Unit）"><span class="nav-text">最大传输单元MTU（Maximum Transfer Unit）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP三次握手建立连接的过程"><span class="nav-text">TCP三次握手建立连接的过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#telnet工具使用介绍"><span class="nav-text">telnet工具使用介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP断开的四次握手"><span class="nav-text">TCP断开的四次握手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP状态转换"><span class="nav-text">TCP状态转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引入TIME-WAIT状态的原因"><span class="nav-text">引入TIME_WAIT状态的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RST标志"><span class="nav-text">RST标志</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SO-REUSEADDR"><span class="nav-text">SO_REUSEADDR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#listen-队列剖析"><span class="nav-text">listen()队列剖析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#监听套接字队列"><span class="nav-text">监听套接字队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RTT超时时间"><span class="nav-text">RTT超时时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#accept函数"><span class="nav-text">accept函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思考"><span class="nav-text">思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#syn攻击（syn-flood）"><span class="nav-text">syn攻击（syn flood）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#阻塞与非阻塞I-O-（对比同步与异步I-O）"><span class="nav-text">阻塞与非阻塞I/O （对比同步与异步I/O）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#epoll技术简介"><span class="nav-text">epoll技术简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#epoll概述"><span class="nav-text">epoll概述</span></a></li></ol></li></ol></div>
             
 
           </div>
