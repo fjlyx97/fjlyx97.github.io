@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="学习,Linux,服务器,">
+  <meta name="keywords" content="学习,linux,c家族,">
 
 
 
@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="django的服务器配置可以说是十分繁琐的部分 哪怕严格按照步骤也会有不明错误 再此详细记录操作步骤 版本Ubuntu 16.04 LTS 64位 服务器：腾讯云学生机">
-<meta name="keywords" content="学习,Linux,服务器">
+<meta name="description" content="linux c++共享内存的通信 涉及到共享内存的创建，销毁等等   共享内存操作工具系统中存在的共享内存信息，都可以通过共享内存操作工具ipcs来查看123456789101112ipcs -m //m选项可以查看系统中相应共享内存的基本信息，输出如下/*------------ 共享内存段 --------------键         shmid      拥有者      权限">
+<meta name="keywords" content="学习,linux,c家族">
 <meta property="og:type" content="article">
-<meta property="og:title" content="django+nginx+uwsgi进行服务器部署">
-<meta property="og:url" content="http://www.codeforme.cn/2018/06/08/django-nginx-uwsgi进行服务器部署/index.html">
+<meta property="og:title" content="linux共享内存">
+<meta property="og:url" content="http://www.codeforme.cn/2019/04/16/linux共享内存/index.html">
 <meta property="og:site_name" content="一米见方">
-<meta property="og:description" content="django的服务器配置可以说是十分繁琐的部分 哪怕严格按照步骤也会有不明错误 再此详细记录操作步骤 版本Ubuntu 16.04 LTS 64位 服务器：腾讯云学生机">
+<meta property="og:description" content="linux c++共享内存的通信 涉及到共享内存的创建，销毁等等   共享内存操作工具系统中存在的共享内存信息，都可以通过共享内存操作工具ipcs来查看123456789101112ipcs -m //m选项可以查看系统中相应共享内存的基本信息，输出如下/*------------ 共享内存段 --------------键         shmid      拥有者      权限">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-08T06:31:27.761Z">
+<meta property="og:updated_time" content="2019-04-16T16:02:55.203Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="django+nginx+uwsgi进行服务器部署">
-<meta name="twitter:description" content="django的服务器配置可以说是十分繁琐的部分 哪怕严格按照步骤也会有不明错误 再此详细记录操作步骤 版本Ubuntu 16.04 LTS 64位 服务器：腾讯云学生机">
+<meta name="twitter:title" content="linux共享内存">
+<meta name="twitter:description" content="linux c++共享内存的通信 涉及到共享内存的创建，销毁等等   共享内存操作工具系统中存在的共享内存信息，都可以通过共享内存操作工具ipcs来查看123456789101112ipcs -m //m选项可以查看系统中相应共享内存的基本信息，输出如下/*------------ 共享内存段 --------------键         shmid      拥有者      权限">
 
 
 
@@ -136,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://www.codeforme.cn/2018/06/08/django-nginx-uwsgi进行服务器部署/">
+  <link rel="canonical" href="http://www.codeforme.cn/2019/04/16/linux共享内存/">
 
 
 
 
 
-  <title>django+nginx+uwsgi进行服务器部署 | 一米见方</title>
+  <title>linux共享内存 | 一米见方</title>
   
 
 
@@ -321,7 +321,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.codeforme.cn/2018/06/08/django-nginx-uwsgi进行服务器部署/">
+    <link itemprop="mainEntityOfPage" href="http://www.codeforme.cn/2019/04/16/linux共享内存/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="南浔">
@@ -338,7 +338,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">django+nginx+uwsgi进行服务器部署</h1>
+          <h1 class="post-title" itemprop="name headline">linux共享内存</h1>
         
 
         <div class="post-meta">
@@ -350,8 +350,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-08T13:37:37+08:00">
-                2018-06-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-16T23:35:50+08:00">
+                2019-04-16
               </time>
             
 
@@ -373,8 +373,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
+                  <a href="/categories/C家族/" itemprop="url" rel="index">
+                    <span itemprop="name">C家族</span>
                   </a>
                 </span>
 
@@ -417,115 +417,40 @@
       
         <blockquote>
 <ul>
-<li>django的服务器配置可以说是十分繁琐的部分</li>
-<li>哪怕严格按照步骤也会有不明错误</li>
-<li>再此详细记录操作步骤</li>
-<li>版本Ubuntu 16.04 LTS 64位</li>
-<li>服务器：腾讯云学生机</li>
+<li>linux c++共享内存的通信</li>
+<li>涉及到共享内存的创建，销毁等等</li>
 </ul>
 </blockquote>
-<a id="more"></a>
-<blockquote>
+<h1 id="共享内存操作工具"><a href="#共享内存操作工具" class="headerlink" title="共享内存操作工具"></a>共享内存操作工具</h1><p>系统中存在的共享内存信息，都可以通过共享内存操作工具ipcs来查看<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ipcs -m <span class="comment">//m选项可以查看系统中相应共享内存的基本信息，输出如下</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">------------ 共享内存段 --------------</span></span><br><span class="line"><span class="comment">键         shmid      拥有者      权限        字节     连接数       状态      </span></span><br><span class="line"><span class="comment">0x00000000 65536      lightdm    600        524288     2          目标       </span></span><br><span class="line"><span class="comment">0x00000000 163841     lightdm    600        524288     2          目标       </span></span><br><span class="line"><span class="comment">0x00000000 262146     lightdm    600        524288     2          目标       </span></span><br><span class="line"><span class="comment">0x00000000 294915     lightdm    600        1048576    2          目标       </span></span><br><span class="line"><span class="comment">0x00000000 327684     lightdm    600        67108864   2          目标       </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">ipcrm -m (shmid) <span class="comment">//shmid为ipcs -m命令得到的，将系统中创建的共享内存删除</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="共享内存的创建"><a href="#共享内存的创建" class="headerlink" title="共享内存的创建"></a>共享内存的创建</h1><h2 id="shmget接口（创建）"><a href="#shmget接口（创建）" class="headerlink" title="shmget接口（创建）"></a>shmget接口（创建）</h2><p>系统提供shmget接口来创建一片共享内存，定义如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/ipc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/shm.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">shmget</span><span class="params">(<span class="keyword">key_t</span> key,<span class="keyword">int</span> size,<span class="keyword">int</span> shmflg)</span></span>;</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li>由于配置繁琐，所以操作步骤实在全新系统进行配置</li>
+<li>key参数可以为共享数据段命名</li>
+<li>size参数为申请的内存大小（字节为单位）</li>
+<li>shmflg为权限表标志，如0666，则创建一片权限为066的共享内存。同样还有两个参数IPC_CREAT,IPC_EXCL，其中IPC_CREAT代表如果共享内存<strong>不存在</strong>，则创建。IPC_EXCL则代表如果内存已经存在，返回值为-1，三者可以通过|符号相连，如IPC_CREAT|IPC_EXCL|0666。</li>
+<li>返回值为共享内存的id，调用失败返回-1</li>
 </ul>
-</blockquote>
-<h1 id="准备django文件"><a href="#准备django文件" class="headerlink" title="准备django文件"></a>准备django文件</h1><ul>
-<li>由于已经有过django项目，所以直接将django上传至服务器</li>
-<li><p>目录树如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@VM-246-186-ubuntu:~/site$ tree Blog</span><br><span class="line">Blog</span><br><span class="line">├── Blog</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   ├── __pycache__</span><br><span class="line">│   │   ├── __init__.cpython-36.pyc</span><br><span class="line">│   │   ├── settings.cpython-36.pyc</span><br><span class="line">│   │   ├── urls.cpython-36.pyc</span><br><span class="line">│   │   └── wsgi.cpython-36.pyc</span><br><span class="line">│   ├── settings.py</span><br><span class="line">│   ├── urls.py</span><br><span class="line">│   └── wsgi.py</span><br><span class="line">├── db.sqlite3</span><br><span class="line">├── manage.py</span><br><span class="line">├── myblog</span><br><span class="line">│   ├── admin.py</span><br><span class="line">│   ├── apps.py</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   ├── migrations</span><br><span class="line">│   │   ├── 0001_initial.py</span><br><span class="line">│   │   ├── __init__.py</span><br><span class="line">│   │   └── __pycache__</span><br><span class="line">│   │       ├── 0001_initial.cpython-36.pyc</span><br><span class="line">│   │       └── __init__.cpython-36.pyc</span><br><span class="line">│   ├── models.py</span><br><span class="line">│   ├── __pycache__</span><br><span class="line">│   │   ├── admin.cpython-36.pyc</span><br><span class="line">│   │   ├── __init__.cpython-36.pyc</span><br><span class="line">│   │   ├── models.cpython-36.pyc</span><br><span class="line">│   │   ├── urls.cpython-36.pyc</span><br><span class="line">│   │   └── views.cpython-36.pyc</span><br><span class="line">│   ├── static</span><br><span class="line">│   │   └── myblog</span><br><span class="line">│   │       ├── css</span><br><span class="line">│   │       │   ├── semantic.css</span><br><span class="line">│   │       │   └── themes</span><br><span class="line">│   │       │       └── default</span><br><span class="line">│   │       │           └── assets</span><br><span class="line">│   │       │               ├── fonts</span><br><span class="line">│   │       │               │   ├── brand-icons.eot</span><br><span class="line">│   │       │               │   ├── brand-icons.svg</span><br><span class="line">│   │       │               │   ├── brand-icons.ttf</span><br><span class="line">│   │       │               │   ├── brand-icons.woff</span><br><span class="line">│   │       │               │   ├── brand-icons.woff2</span><br><span class="line">│   │       │               │   ├── icons.eot</span><br><span class="line">│   │       │               │   ├── icons.otf</span><br><span class="line">│   │       │               │   ├── icons.svg</span><br><span class="line">│   │       │               │   ├── icons.ttf</span><br><span class="line">│   │       │               │   ├── icons.woff</span><br><span class="line">│   │       │               │   ├── icons.woff2</span><br><span class="line">│   │       │               │   ├── outline-icons.eot</span><br><span class="line">│   │       │               │   ├── outline-icons.svg</span><br><span class="line">│   │       │               │   ├── outline-icons.ttf</span><br><span class="line">│   │       │               │   ├── outline-icons.woff</span><br><span class="line">│   │       │               │   └── outline-icons.woff2</span><br><span class="line">│   │       │               └── images</span><br><span class="line">│   │       │                   └── flags.png</span><br><span class="line">│   │       └── js</span><br><span class="line">│   │           ├── jquery-3.3.1.js</span><br><span class="line">│   │           ├── jquery-3.3.1.min.js</span><br><span class="line">│   │           ├── semantic.js</span><br><span class="line">│   │           └── vue.js</span><br><span class="line">│   ├── tests.py</span><br><span class="line">│   ├── urls.py</span><br><span class="line">│   └── views.py</span><br><span class="line">└── templates</span><br><span class="line">    └── myblog</span><br><span class="line">        ├── detail.html</span><br><span class="line">        └── index.html</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>目录树不必在意，主要操作的文件为manage.py</p>
-</li>
-</ul>
-<h1 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h1><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><ul>
-<li>Ubuntu系统默认为python2，但是这里测试的django版本为2.0以上，需要python3版本来安装</li>
-<li><p>为了防止打乱系统环境，还需要virtualenv进行管理python环境</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python3-pip</span><br><span class="line">sudo pip install virtualenv</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>准备就绪之后进行创建新环境</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">virtualenv env27 --python=python3<span class="number">.5</span></span><br><span class="line"><span class="comment">#其中env27为环境名称，自己替换</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>进入新环境</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source test/bin/activate</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>由于我的django项目中包含了django-suit以及markdown，所以在运行django前需要提前准备完这两个包</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(test) ubuntu@VM<span class="number">-246</span><span class="number">-186</span>-ubuntu:~/site$ pip install django django-suit markdown</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="进行django测试"><a href="#进行django测试" class="headerlink" title="进行django测试"></a>进行django测试</h2><ul>
-<li>在云服务器上部署确保安全组端口已经开放</li>
-<li>确保是在虚拟环境当中，注意命令行前的test<h3 id="配置setting文件"><a href="#配置setting文件" class="headerlink" title="配置setting文件"></a>配置setting文件</h3></li>
-<li>首先要让服务器知道静态文件的位置以及允许访问的ip</li>
-<li><p>进入Blog目录中，编辑setting.py文件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#找到ALLOWED_HOSTS = []</span></span><br><span class="line"><span class="comment">#将其配置为</span></span><br><span class="line">ALLOWED_HOSTS = [<span class="string">'*'</span>]</span><br><span class="line"><span class="comment">#配置静态文件目录，在文件尾部直接添加</span></span><br><span class="line">STATIC_ROOT = os.path.join(BASE_DIR , <span class="string">"static/"</span>)</span><br><span class="line"><span class="comment">#找到DEBUG = True，改为False，亦可最后再来改动方便定位错误</span></span><br><span class="line">DEBUG = <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置完毕之后，回到根目录执行收集静态文件操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py collectstatic</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>可以看到在目录当中生成了一个static的文件夹，该文件夹包含了网站的全部静态文件</p>
-</li>
-</ul>
-<h2 id="登录网站测试"><a href="#登录网站测试" class="headerlink" title="登录网站测试"></a>登录网站测试</h2><ul>
-<li><p>在项目根目录处运行服务器测试命令，确保8001端口未被占用，如果被占用需手动指定端口号</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py runserver 0.0.0.0 8001</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果一切顺利的话，应该可以通过IP进行直接访问网站</p>
-</li>
-<li>在浏览器输入IP地址+端口号进行服务器测试</li>
-<li>可以观察到网站可以进入，并且CSS样式加载正常</li>
-</ul>
-<h1 id="安装uwsgi"><a href="#安装uwsgi" class="headerlink" title="安装uwsgi"></a>安装uwsgi</h1><ul>
-<li><p>由于前面环境已经配置妥当，安装uwsgi只需要一句命令，请确保在虚拟环境当中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install uwsgi</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在网站根目录下执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --http :8001 --plugin python --module Blog.wsgi</span><br><span class="line"># 其中Blog.wsgi需要自行替换成自己的网站名字，比如自己的网站APP为Test，则修改为Test.wsgi</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>通过访问IP地址加端口号进行测试，例如118.25.3.239:8001（例子虚拟，自行替换IP）</p>
-</li>
-<li>如果访问正常我们应该看到的是不带CSS样式的界面</li>
-</ul>
-<h2 id="配置uwsgi文件"><a href="#配置uwsgi文件" class="headerlink" title="配置uwsgi文件"></a>配置uwsgi文件</h2><ul>
-<li>为了让服务器可以运行，我们需要手动在根目录创建一个uwsgi.ini的文件</li>
-<li><p>内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[uwsgi]</span><br><span class="line">#chidr用于指定自己的网站根目录（自行更改）</span><br><span class="line">chdir =  /home/ubuntu/Blog</span><br><span class="line">#module指定网站中APP的文件（自行更改）</span><br><span class="line">module = Blog.wsgi</span><br><span class="line">#home用于指定python的虚拟环境，即我们最初创建的虚拟环境位置（自行更改）</span><br><span class="line">home = /home/ubuntu/env27</span><br><span class="line">#master不用更改</span><br><span class="line">master = true</span><br><span class="line">#socket用于指定端口号，可以不更改</span><br><span class="line">socket = :8001</span><br><span class="line">#以下两个可以不用更改</span><br><span class="line">chmod-socket = 666</span><br><span class="line">vacuum = true</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置完内容之后可以在shell中运行，并访问网站观察十分成功运行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo uwsgi --ini uwsgi.ini</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="配置nginx"><a href="#配置nginx" class="headerlink" title="配置nginx"></a>配置nginx</h1><ul>
-<li><p>安装过程很简单，一句命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>nginx安装完默认是启动的，可以通过直接在浏览器访问ip的方式观察到nginx的欢迎界面</p>
-<blockquote>
+<h2 id="shmat接口（映射）"><a href="#shmat接口（映射）" class="headerlink" title="shmat接口（映射）"></a>shmat接口（映射）</h2><p>系统提供shmat接口来将程序与共享内存相连接，定义如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">shmat</span><span class="params">(<span class="keyword">int</span> shm_id, <span class="keyword">const</span> <span class="keyword">void</span> *shm_addr, <span class="keyword">int</span> shmflg)</span></span>;</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li>这里我原先使用的Chrome浏览器，不知为何会强制重定向到https，导致网站无法访问</li>
-<li>更换浏览器以后访问便正常了</li>
-<li>推荐使用edge或者自带的ie进行简单的测试 </li>
+<li>shm_id参数为之前shmget函数调用得到的返回值</li>
+<li>shm_addr参数为共享内存连接到当前进程的位置，一般写NULL，让系统指定</li>
+<li>shmflg参数为标志位，有三种选择。SHM_RDONLY代表共享内存只读，另外两种不常用，不过此标志位通常写0</li>
+<li>返回值为共享内存首地址，调用失败返回-1</li>
 </ul>
-</blockquote>
-</li>
-<li><p>nginx默认会读取/etc/nginx/sites-enabled/default文件中的配置，修改其中配置如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">upstream django &#123;</span><br><span class="line">        server 127.0.0.1:8001; #此处端口可以替换，需与uwsgi.ini之中的端口一致</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        server_name 118.25.3.239; #此处需要自行替换成自己的IP地址</span><br><span class="line">        charset utf-8;</span><br><span class="line">        client_max_body_size 75M;</span><br><span class="line">        #django配置文件</span><br><span class="line">        location /static &#123;</span><br><span class="line">                alias /home/ubuntu/Blog/static; #此处需要自行替换为网站根目录下的静态文件夹</span><br><span class="line">        &#125;</span><br><span class="line">        #以下不必改动</span><br><span class="line">        location / &#123;</span><br><span class="line">                uwsgi_pass django;</span><br><span class="line">                include /etc/nginx/uwsgi_params;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<h2 id="shmdt接口（分离）"><a href="#shmdt接口（分离）" class="headerlink" title="shmdt接口（分离）"></a>shmdt接口（分离）</h2><p>系统提供shmdt接口来将程序与共享内存相分离（有连接有分离），定义如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">shmdt</span><span class="params">(<span class="keyword">const</span> <span class="keyword">void</span> *shmaddr)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>shmaddr为共享内存首地址，通常为shmat的返回值</li>
+<li>调用成功返回0，失败返回-1</li>
 </ul>
-<h2 id="重启服务器"><a href="#重启服务器" class="headerlink" title="重启服务器"></a>重启服务器</h2><ul>
-<li><p>一切配置完毕之后，执行命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/nginx restart</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>浏览器中输入IP即可发现网站成功构建完毕</p>
-</li>
+<h2 id="shmctl接口（控制）"><a href="#shmctl接口（控制）" class="headerlink" title="shmctl接口（控制）"></a>shmctl接口（控制）</h2><p>系统提供shmtl接口来将控制共享内存，接口定义如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/ipc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/sem.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">shmctl</span><span class="params">(<span class="keyword">int</span> shmid,<span class="keyword">int</span> cmd,struct shmid_ds *buf)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>shmid通常为shmget函数返回的共享内存标识符</li>
+<li>cmd为要采取的操作，通常有五种，IPC_STAT为根据传入的共享内存id，将获取到的信息存储到buf。IPC_SET为设置共享内存信息，通过buf传入。IPC_RMID则为删除共享内存，buf可以传入0。最后两个是SHM_LOCK,SHM_UNLOCK，为锁住共享内存块，通常为ROOT才能操作，不允许其他用户使用</li>
+<li>buf则通过cmd来随机应变</li>
+<li>调用成功返回0，失败返回-1</li>
 </ul>
-<h1 id="参考文章及视频"><a href="#参考文章及视频" class="headerlink" title="参考文章及视频"></a>参考文章及视频</h1><h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><ul>
-<li>很详细的一篇文章</li>
-<li><a href="https://www.cnblogs.com/jhao/p/6071790.html" target="_blank" rel="noopener">Ubuntu上通过nginx部署Django笔记</a><h2 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h2></li>
-<li>视频讲解非常透彻，如果一步一步跟着执行出错可能性极低</li>
-<li><a href="https://www.bilibili.com/video/av10247256?t=1838" target="_blank" rel="noopener">【教程】Nginx + uWsgi 部署 Django + Mezzanine 生产服务器(「自由小径」自由软件教程) - 1/2</a></li>
-<li><a href="https://www.bilibili.com/video/av10244432?t=996" target="_blank" rel="noopener">【教程】Nginx + uWsgi 部署 Django + Mezzanine 生产服务器(「自由小径」自由软件教程) - 2/2</a></li>
-</ul>
+<h1 id="共享内存实例"><a href="#共享内存实例" class="headerlink" title="共享内存实例"></a>共享内存实例</h1><p>共享内存维护一个结构体，可以存储字符数组，一个进程负责往共享内存中写入数据，一个进程负责往共享内存中读出数据。</p>
+<h2 id="read"><a href="#read" class="headerlink" title="read"></a>read</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/ipc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/shm.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">shared_use_st</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> written; <span class="comment">// 0 write or read</span></span><br><span class="line">    <span class="keyword">char</span> text[<span class="number">2048</span>];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> isRunning = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">void</span> * shm = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">shared_use_st</span>* <span class="title">shared</span>;</span></span><br><span class="line">    <span class="keyword">int</span> shmid = shmget((<span class="keyword">key_t</span>)<span class="number">1234</span>,<span class="keyword">sizeof</span>(struct shared_use_st),<span class="number">0666</span>|IPC_CREAT);</span><br><span class="line">    <span class="keyword">if</span> (shmid == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Error...."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    shm = shmat(shmid,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (shm == (<span class="keyword">void</span>*)<span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"shm error....."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    shared = (struct shared_use_st*)shm;</span><br><span class="line">    shared-&gt;written = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (isRunning)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (shared-&gt;written != <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"You wrote : "</span> &lt;&lt; shared-&gt;text &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">            sleep(<span class="number">1</span>);</span><br><span class="line">            shared-&gt;written = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">strncmp</span>(shared-&gt;text,<span class="string">"end"</span>,<span class="number">3</span>) == <span class="number">0</span>)</span><br><span class="line">                isRunning = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                sleep(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(shmdt(shm) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Shmdt error...."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (shmctl(shmid,IPC_RMID,<span class="number">0</span>) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Shmctl error...."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="write"><a href="#write" class="headerlink" title="write"></a>write</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/ipc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/shm.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">shared_use_st</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> written; <span class="comment">// 0 write or read</span></span><br><span class="line">    <span class="keyword">char</span> text[<span class="number">2048</span>];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> isRunning = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">void</span> * shm = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">shared_use_st</span>* <span class="title">shared</span>;</span></span><br><span class="line">    <span class="keyword">int</span> shmid = shmget((<span class="keyword">key_t</span>)<span class="number">1234</span>,<span class="keyword">sizeof</span>(struct shared_use_st),<span class="number">0666</span>|IPC_CREAT);</span><br><span class="line">    <span class="keyword">char</span> buffer[<span class="number">1024</span>];</span><br><span class="line">    <span class="keyword">if</span> (shmid == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Error...."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    shm = shmat(shmid,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (shm == (<span class="keyword">void</span>*)<span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"shm error....."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    shared = (struct shared_use_st*)shm;</span><br><span class="line">    <span class="keyword">while</span> (isRunning)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (shared-&gt;written == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            sleep(<span class="number">1</span>);</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"waiting...."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Enter some text:"</span>;</span><br><span class="line">        fgets(buffer,<span class="keyword">sizeof</span>(buffer),<span class="built_in">stdin</span>);</span><br><span class="line">        <span class="built_in">strcpy</span>(shared-&gt;text,buffer);</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Write Success"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        shared-&gt;written = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">strncmp</span>(buffer,<span class="string">"end"</span>,<span class="number">3</span>) == <span class="number">0</span>)</span><br><span class="line">            isRunning = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(shmdt(shm) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Shmdt error...."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -574,9 +499,9 @@
           
             <a href="/tags/学习/" rel="tag"># 学习</a>
           
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
+            <a href="/tags/linux/" rel="tag"># linux</a>
           
-            <a href="/tags/服务器/" rel="tag"># 服务器</a>
+            <a href="/tags/c家族/" rel="tag"># c家族</a>
           
         </div>
       
@@ -589,8 +514,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/06/Effective-c++-记录/" rel="next" title="Effective c++ 记录">
-                <i class="fa fa-chevron-left"></i> Effective c++ 记录
+              <a href="/2019/01/23/趣谈网络协议笔记/" rel="next" title="趣谈网络协议笔记">
+                <i class="fa fa-chevron-left"></i> 趣谈网络协议笔记
               </a>
             
           </div>
@@ -598,10 +523,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/13/gdb调试/" rel="prev" title="gdb调试">
-                gdb调试 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -772,7 +693,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备django文件"><span class="nav-text">准备django文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置环境"><span class="nav-text">配置环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装依赖"><span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进行django测试"><span class="nav-text">进行django测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置setting文件"><span class="nav-text">配置setting文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#登录网站测试"><span class="nav-text">登录网站测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装uwsgi"><span class="nav-text">安装uwsgi</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置uwsgi文件"><span class="nav-text">配置uwsgi文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置nginx"><span class="nav-text">配置nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#重启服务器"><span class="nav-text">重启服务器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文章及视频"><span class="nav-text">参考文章及视频</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文章"><span class="nav-text">文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视频"><span class="nav-text">视频</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#共享内存操作工具"><span class="nav-text">共享内存操作工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#共享内存的创建"><span class="nav-text">共享内存的创建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#shmget接口（创建）"><span class="nav-text">shmget接口（创建）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shmat接口（映射）"><span class="nav-text">shmat接口（映射）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shmdt接口（分离）"><span class="nav-text">shmdt接口（分离）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shmctl接口（控制）"><span class="nav-text">shmctl接口（控制）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#共享内存实例"><span class="nav-text">共享内存实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#read"><span class="nav-text">read</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#write"><span class="nav-text">write</span></a></li></ol></li></ol></div>
             
 
           </div>
