@@ -1,742 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-
-    
   <url>
     <loc>http://www.codeforme.cn/2019/04/16/linux%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98/</loc>
-    <lastmod>2019-04-16T16:02:55.203Z</lastmod>
-    <data>
-        <display>
-        <title>linux共享内存</title>
-        <pubTime>2019-04-16T15:35:50.000Z</pubTime>
-        
-        <tag>学习</tag>
-         
-        <tag>linux</tag>
-         
-        <tag>c家族</tag>
-         
-         
-           
-             
-              <breadCrumb title="C家族" url="http://www.codeforme.cn/categories/C%E5%AE%B6%E6%97%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2019-04-16</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2017/09/10/%E9%9C%9E%E4%B8%AD%E9%AB%98%E4%B8%89%E5%8D%81%E7%8F%AD/</loc>
-    <lastmod>2019-03-01T14:34:56.840Z</lastmod>
-    <data>
-        <display>
-        <title>霞浦一中2017届高三十班</title>
-        <pubTime>2017-09-09T16:00:00.000Z</pubTime>
-        
-        <tag>学习</tag>
-         
-        <tag>霞浦一中</tag>
-         
-        <tag>生活</tag>
-         
-        <tag>日常</tag>
-         
-         
-           
-             
-              <breadCrumb title="爱生活" url="http://www.codeforme.cn/categories/%E7%88%B1%E7%94%9F%E6%B4%BB/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2019-03-01</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2019/01/22/linux%E4%B8%ADc++%E6%9E%B6%E6%9E%84%E5%AE%9E%E6%88%98%EF%BC%88%E4%BA%8C%EF%BC%89/</loc>
-    <lastmod>2019-02-17T13:34:59.624Z</lastmod>
-    <data>
-        <display>
-        <title>linux中c++架构实战（二）</title>
-        <pubTime>2019-01-22T12:31:17.000Z</pubTime>
-        
-        <tag>学习</tag>
-         
-        <tag>linux</tag>
-         
-        <tag>c家族</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="http://www.codeforme.cn/categories/Linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2019-02-17</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2017/10/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%E5%B0%8F%E8%AE%B0/</loc>
-    <lastmod>2019-02-17T09:19:10.214Z</lastmod>
-    <data>
-        <display>
-        <title>数据结构和算法小记</title>
-        <pubTime>2017-10-20T13:38:08.000Z</pubTime>
-        
-        <tag>编程</tag>
-         
-        <tag>学习</tag>
-         
-        <tag>算法</tag>
-         
-         
-           
-             
-              <breadCrumb title="数据结构和算法" url="http://www.codeforme.cn/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2019-02-17</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2019/01/23/%E8%B6%A3%E8%B0%88%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2019-01-23T16:31:15.095Z</lastmod>
-    <data>
-        <display>
-        <title>趣谈网络协议笔记</title>
-        <pubTime>2019-01-23T04:52:39.000Z</pubTime>
-        
-        <tag>学习</tag>
-         
-        <tag>linux</tag>
-         
-        <tag>网络协议</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="http://www.codeforme.cn/categories/Linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2019-01-23</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2018/12/28/linux%E4%B8%ADc++%E6%9E%B6%E6%9E%84%E5%AE%9E%E6%88%98%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
-    <lastmod>2019-01-22T12:31:36.807Z</lastmod>
-    <data>
-        <display>
-        <title>linux中c++架构实战（一）</title>
-        <pubTime>2018-12-28T11:33:17.000Z</pubTime>
-        
-        <tag>学习</tag>
-         
-        <tag>linux</tag>
-         
-        <tag>c家族</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="http://www.codeforme.cn/categories/Linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2019-01-22</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2019/01/17/css%E6%A0%B7%E5%BC%8F%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2019-01-19T03:21:22.791Z</lastmod>
-    <data>
-        <display>
-        <title>css样式基础</title>
-        <pubTime>2019-01-17T06:17:34.000Z</pubTime>
-        
-        <tag>css</tag>
-         
-        <tag>网页</tag>
-         
-         
-           
-             
-              <breadCrumb title="网页设计" url="http://www.codeforme.cn/categories/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2019-01-19</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2018/01/19/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E9%93%81%E4%B8%89%E8%B5%9Bwrite-up/</loc>
-    <lastmod>2019-01-17T06:19:48.824Z</lastmod>
-    <data>
-        <display>
-        <title>信息安全铁三赛write_up</title>
-        <pubTime>2018-01-19T01:13:45.000Z</pubTime>
-        
-        <tag>信息安全</tag>
-         
-        <tag>write_up</tag>
-         
-        <tag>渗透</tag>
-         
-         
-           
-             
-              <breadCrumb title="web安全笔记" url="http://www.codeforme.cn/categories/web%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2019-01-17</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2018/12/27/docker%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2018-12-28T12:49:05.412Z</lastmod>
-    <data>
-        <display>
-        <title>docker使用笔记</title>
-        <pubTime>2018-12-27T13:44:23.000Z</pubTime>
-        
-        <tag>学习</tag>
-         
-        <tag>linux</tag>
-         
-        <tag>docker</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="http://www.codeforme.cn/categories/Linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-12-28</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2017/08/28/%E4%BD%BF%E7%94%A8python-+-selenium%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95/</loc>
-    <lastmod>2018-12-28T11:42:06.804Z</lastmod>
-    <data>
-        <display>
-        <title>使用python + selenium实现浏览器自动登录</title>
-        <pubTime>2017-08-28T09:02:31.000Z</pubTime>
-        
-        <tag>编程</tag>
-         
-        <tag>学习</tag>
-         
-        <tag>python</tag>
-         
-         
-           
-             
-              <breadCrumb title="python" url="http://www.codeforme.cn/categories/python/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-12-28</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2018/12/14/C++%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%89%EF%BC%89/</loc>
-    <lastmod>2018-12-27T11:55:52.799Z</lastmod>
-    <data>
-        <display>
-        <title>c++并发与多线程（三）</title>
-        <pubTime>2018-12-14T06:34:37.000Z</pubTime>
-        
-        <tag>编程</tag>
-         
-        <tag>学习</tag>
-         
-        <tag>C家族</tag>
-         
-        <tag>多线程</tag>
-         
-         
-           
-             
-              <breadCrumb title="C家族" url="http://www.codeforme.cn/categories/C%E5%AE%B6%E6%97%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-12-27</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2018/12/22/C++%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89/</loc>
-    <lastmod>2018-12-27T11:43:41.136Z</lastmod>
-    <data>
-        <display>
-        <title>c++并发与多线程（四）</title>
-        <pubTime>2018-12-22T08:45:37.000Z</pubTime>
-        
-        <tag>编程</tag>
-         
-        <tag>学习</tag>
-         
-        <tag>C家族</tag>
-         
-        <tag>多线程</tag>
-         
-         
-           
-             
-              <breadCrumb title="C家族" url="http://www.codeforme.cn/categories/C%E5%AE%B6%E6%97%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-12-27</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2018/12/11/C++%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89/</loc>
-    <lastmod>2018-12-13T13:18:30.876Z</lastmod>
-    <data>
-        <display>
-        <title>c++并发与多线程（二）</title>
-        <pubTime>2018-12-11T13:44:37.000Z</pubTime>
-        
-        <tag>编程</tag>
-         
-        <tag>学习</tag>
-         
-        <tag>C家族</tag>
-         
-        <tag>多线程</tag>
-         
-         
-           
-             
-              <breadCrumb title="C家族" url="http://www.codeforme.cn/categories/C%E5%AE%B6%E6%97%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-12-13</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2018/12/09/C++%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
-    <lastmod>2018-12-13T11:49:50.349Z</lastmod>
-    <data>
-        <display>
-        <title>c++并发与多线程（一）</title>
-        <pubTime>2018-12-09T12:47:37.000Z</pubTime>
-        
-        <tag>编程</tag>
-         
-        <tag>学习</tag>
-         
-        <tag>C家族</tag>
-         
-        <tag>多线程</tag>
-         
-         
-           
-             
-              <breadCrumb title="C家族" url="http://www.codeforme.cn/categories/C%E5%AE%B6%E6%97%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-12-13</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2018/06/13/gdb%E8%B0%83%E8%AF%95/</loc>
-    <lastmod>2018-12-11T09:42:55.856Z</lastmod>
-    <data>
-        <display>
-        <title>gdb调试</title>
-        <pubTime>2018-06-13T13:21:46.000Z</pubTime>
-        
-        <tag>编程</tag>
-         
-        <tag>学习</tag>
-         
-        <tag>C家族</tag>
-         
-        <tag>调试</tag>
-         
-         
-           
-             
-              <breadCrumb title="C家族" url="http://www.codeforme.cn/categories/C%E5%AE%B6%E6%97%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-12-11</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2018/11/04/cmake%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2018-11-04T12:09:51.631Z</lastmod>
-    <data>
-        <display>
-        <title>cmake的使用</title>
-        <pubTime>2018-11-04T08:42:06.000Z</pubTime>
-        
-        <tag>编程</tag>
-         
-        <tag>学习</tag>
-         
-        <tag>C家族</tag>
-         
-        <tag>makefile</tag>
-         
-         
-           
-             
-              <breadCrumb title="C家族" url="http://www.codeforme.cn/categories/C%E5%AE%B6%E6%97%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-11-04</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2018/06/17/archlinux%E4%B8%8B%E7%9A%84QQ%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2018-06-17T14:09:20.027Z</lastmod>
-    <data>
-        <display>
-        <title>archlinux下的QQ配置</title>
-        <pubTime>2018-06-17T13:47:21.000Z</pubTime>
-        
-        <tag>学习</tag>
-         
-        <tag>Linux</tag>
-         
-        <tag>服务器</tag>
-         
-         
-           
-             
-              <breadCrumb title="linux" url="http://www.codeforme.cn/categories/linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-06-17</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2018/03/05/C++%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</loc>
-    <lastmod>2018-06-15T12:35:17.382Z</lastmod>
-    <data>
-        <display>
-        <title>C++学习记录</title>
-        <pubTime>2018-03-05T08:22:08.000Z</pubTime>
-        
-        <tag>编程</tag>
-         
-        <tag>学习</tag>
-         
-        <tag>C家族</tag>
-         
-         
-           
-             
-              <breadCrumb title="C家族" url="http://www.codeforme.cn/categories/C%E5%AE%B6%E6%97%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-06-15</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2018/06/13/makefile%E7%9A%84%E7%BC%96%E5%86%99/</loc>
-    <lastmod>2018-06-13T14:43:17.328Z</lastmod>
-    <data>
-        <display>
-        <title>makefile的编写</title>
-        <pubTime>2018-06-13T13:51:29.000Z</pubTime>
-        
-        <tag>编程</tag>
-         
-        <tag>学习</tag>
-         
-        <tag>C家族</tag>
-         
-        <tag>makefile</tag>
-         
-         
-           
-             
-              <breadCrumb title="C家族" url="http://www.codeforme.cn/categories/C%E5%AE%B6%E6%97%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-06-13</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2018/06/08/django-nginx-uwsgi%E8%BF%9B%E8%A1%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/</loc>
-    <lastmod>2018-06-08T06:31:27.761Z</lastmod>
-    <data>
-        <display>
-        <title>django+nginx+uwsgi进行服务器部署</title>
-        <pubTime>2018-06-08T05:37:37.000Z</pubTime>
-        
-        <tag>学习</tag>
-         
-        <tag>Linux</tag>
-         
-        <tag>服务器</tag>
-         
-         
-           
-             
-              <breadCrumb title="python" url="http://www.codeforme.cn/categories/python/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-06-08</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2017/10/04/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2018-05-26T02:40:43.102Z</lastmod>
-    <data>
-        <display>
-        <title>C语言学习笔记</title>
-        <pubTime>2017-10-04T10:53:13.000Z</pubTime>
-        
-        <tag>编程</tag>
-         
-        <tag>学习</tag>
-         
-        <tag>C家族</tag>
-         
-         
-           
-             
-              <breadCrumb title="C家族" url="http://www.codeforme.cn/categories/C%E5%AE%B6%E6%97%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-05-26</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2018/04/06/Effective-c++-%E8%AE%B0%E5%BD%95/</loc>
-    <lastmod>2018-04-27T12:19:32.936Z</lastmod>
-    <data>
-        <display>
-        <title>Effective c++ 记录</title>
-        <pubTime>2018-04-06T01:15:41.000Z</pubTime>
-        
-        <tag>编程</tag>
-         
-        <tag>学习</tag>
-         
-        <tag>C家族</tag>
-         
-         
-           
-             
-              <breadCrumb title="C家族" url="http://www.codeforme.cn/categories/C%E5%AE%B6%E6%97%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-04-27</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2018/03/15/linux%E5%B0%8F%E8%AE%B0/</loc>
-    <lastmod>2018-03-16T14:58:23.636Z</lastmod>
-    <data>
-        <display>
-        <title>linux小记</title>
-        <pubTime>2018-03-15T14:06:32.000Z</pubTime>
-        
-        <tag>学习</tag>
-         
-        <tag>linux</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="http://www.codeforme.cn/categories/Linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-16</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2017/12/11/C++STL%E5%88%9D%E6%AD%A5/</loc>
-    <lastmod>2018-03-05T08:26:31.135Z</lastmod>
-    <data>
-        <display>
-        <title>C++STL初步</title>
-        <pubTime>2017-12-11T04:17:03.000Z</pubTime>
-        
-        <tag>编程</tag>
-         
-        <tag>学习</tag>
-         
-        <tag>C家族</tag>
-         
-         
-           
-             
-              <breadCrumb title="C家族" url="http://www.codeforme.cn/categories/C%E5%AE%B6%E6%97%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-05</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2018/02/28/%E7%AE%80%E6%98%93Socket%E7%BC%96%E7%A8%8B/</loc>
-    <lastmod>2018-02-28T12:31:57.652Z</lastmod>
-    <data>
-        <display>
-        <title>简易Socket编程</title>
-        <pubTime>2018-02-28T11:57:54.000Z</pubTime>
-        
-        <tag>编程</tag>
-         
-        <tag>学习</tag>
-         
-        <tag>网络编程</tag>
-         
-         
-           
-             
-              <breadCrumb title="socket编程" url="http://www.codeforme.cn/categories/socket%E7%BC%96%E7%A8%8B/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-02-28</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2017/10/21/web%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</loc>
-    <lastmod>2018-01-19T04:03:48.334Z</lastmod>
-    <data>
-        <display>
-        <title>web基础知识</title>
-        <pubTime>2017-10-21T05:42:24.000Z</pubTime>
-        
-        <tag>学习</tag>
-         
-        <tag>安全</tag>
-         
-        <tag>web</tag>
-         
-         
-           
-             
-              <breadCrumb title="web安全笔记" url="http://www.codeforme.cn/categories/web%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-01-19</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2018/01/01/QT%E8%87%AA%E5%AD%A6%E4%B9%8B%E8%B7%AF%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
-    <lastmod>2018-01-03T08:15:44.588Z</lastmod>
-    <data>
-        <display>
-        <title>QT自学之路（一）</title>
-        <pubTime>2018-01-01T11:40:20.000Z</pubTime>
-        
-        <tag>编程</tag>
-         
-        <tag>学习</tag>
-         
-        <tag>图形</tag>
-         
-        <tag>QT</tag>
-         
-         
-           
-             
-              <breadCrumb title="QT学习记录" url="http://www.codeforme.cn/categories/QT%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-01-03</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2017/10/23/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2017-11-02T05:59:38.161Z</lastmod>
-    <data>
-        <display>
-        <title>web安全工具</title>
-        <pubTime>2017-10-23T09:00:20.000Z</pubTime>
-        
-        <tag>学习</tag>
-         
-        <tag>安全</tag>
-         
-        <tag>web</tag>
-         
-         
-           
-             
-              <breadCrumb title="web安全笔记" url="http://www.codeforme.cn/categories/web%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-11-02</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2017/10/21/web%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2017-10-23T04:39:48.181Z</lastmod>
-    <data>
-        <display>
-        <title>web安全基础</title>
-        <pubTime>2017-10-21T14:24:15.000Z</pubTime>
-        
-        <tag>学习</tag>
-         
-        <tag>安全</tag>
-         
-        <tag>web</tag>
-         
-         
-           
-             
-              <breadCrumb title="web安全笔记" url="http://www.codeforme.cn/categories/web%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-10-23</lastmod>
+  </url>  <url>
     <loc>http://www.codeforme.cn/2017/09/17/Git%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%93%E9%AA%8C/</loc>
-    <lastmod>2017-10-07T13:55:20.869Z</lastmod>
-    <data>
-        <display>
-        <title>Git的初步体验</title>
-        <pubTime>2017-09-17T02:54:44.000Z</pubTime>
-        
-        <tag>编程</tag>
-         
-        <tag>Git</tag>
-         
-         
-           
-             
-              <breadCrumb title="Git" url="http://www.codeforme.cn/categories/Git/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-    
-    
-    
+    <lastmod>2017-10-07</lastmod>
+  </url>
 </urlset>
