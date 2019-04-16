@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="linux c++共享内存的通信 涉及到共享内存的创建，销毁等等   共享内存操作工具系统中存在的共享内存信息，都可以通过共享内存操作工具ipcs来查看123456789101112ipcs -m //m选项可以查看系统中相应共享内存的基本信息，输出如下/*------------ 共享内存段 --------------键         shmid      拥有者      权限">
+<meta name="description" content="linux c++共享内存的通信 涉及到共享内存的创建，销毁等等">
 <meta name="keywords" content="学习,linux,c家族">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux共享内存">
 <meta property="og:url" content="http://www.codeforme.cn/2019/04/16/linux共享内存/index.html">
 <meta property="og:site_name" content="一米见方">
-<meta property="og:description" content="linux c++共享内存的通信 涉及到共享内存的创建，销毁等等   共享内存操作工具系统中存在的共享内存信息，都可以通过共享内存操作工具ipcs来查看123456789101112ipcs -m //m选项可以查看系统中相应共享内存的基本信息，输出如下/*------------ 共享内存段 --------------键         shmid      拥有者      权限">
+<meta property="og:description" content="linux c++共享内存的通信 涉及到共享内存的创建，销毁等等">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-16T16:05:57.370Z">
+<meta property="og:updated_time" content="2019-04-16T16:14:11.889Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux共享内存">
-<meta name="twitter:description" content="linux c++共享内存的通信 涉及到共享内存的创建，销毁等等   共享内存操作工具系统中存在的共享内存信息，都可以通过共享内存操作工具ipcs来查看123456789101112ipcs -m //m选项可以查看系统中相应共享内存的基本信息，输出如下/*------------ 共享内存段 --------------键         shmid      拥有者      权限">
+<meta name="twitter:description" content="linux c++共享内存的通信 涉及到共享内存的创建，销毁等等">
 
 
 
@@ -421,6 +421,7 @@
 <li>涉及到共享内存的创建，销毁等等</li>
 </ul>
 </blockquote>
+<a id="more"></a>
 <h1 id="共享内存操作工具"><a href="#共享内存操作工具" class="headerlink" title="共享内存操作工具"></a>共享内存操作工具</h1><p>系统中存在的共享内存信息，都可以通过共享内存操作工具ipcs来查看<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ipcs -m <span class="comment">//m选项可以查看系统中相应共享内存的基本信息，输出如下</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">------------ 共享内存段 --------------</span></span><br><span class="line"><span class="comment">键         shmid      拥有者      权限        字节     连接数       状态      </span></span><br><span class="line"><span class="comment">0x00000000 65536      lightdm    600        524288     2          目标       </span></span><br><span class="line"><span class="comment">0x00000000 163841     lightdm    600        524288     2          目标       </span></span><br><span class="line"><span class="comment">0x00000000 262146     lightdm    600        524288     2          目标       </span></span><br><span class="line"><span class="comment">0x00000000 294915     lightdm    600        1048576    2          目标       </span></span><br><span class="line"><span class="comment">0x00000000 327684     lightdm    600        67108864   2          目标       </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">ipcrm -m (shmid) <span class="comment">//shmid为ipcs -m命令得到的，将系统中创建的共享内存删除</span></span><br></pre></td></tr></table></figure></p>
 <h1 id="共享内存的创建"><a href="#共享内存的创建" class="headerlink" title="共享内存的创建"></a>共享内存的创建</h1><h2 id="shmget接口（创建）"><a href="#shmget接口（创建）" class="headerlink" title="shmget接口（创建）"></a>shmget接口（创建）</h2><p>系统提供shmget接口来创建一片共享内存，定义如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/ipc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/shm.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">shmget</span><span class="params">(<span class="keyword">key_t</span> key,<span class="keyword">int</span> size,<span class="keyword">int</span> shmflg)</span></span>;</span><br></pre></td></tr></table></figure></p>
 <ul>
