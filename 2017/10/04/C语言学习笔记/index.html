@@ -579,7 +579,7 @@
 <li>但他们是从左往右运算，即就从+而言，它先算1</li>
 <li>所以回归问题，先演算++a，于是||出现短路</li>
 </ul>
-<ol>
+<ol start="55">
 <li><p>函数允许返回一个指针，例如</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> * <span class="title">getaddress</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &amp;x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
@@ -591,7 +591,7 @@
 <li>int (*函数指针)(参数列表);</li>
 <li>对指向函数的指针变量，进行运算，如p++,p–是毫无意义的事情</li>
 </ul>
-<ol>
+<ol start="57">
 <li><p>结构体类型定义的时候并不分配内存空间，只有申明变量的时候才分配内存。</p>
 </li>
 <li><p>结构体里面允许嵌套结构体，使用.（成员运算符）来逐级访问。</p>
@@ -615,7 +615,7 @@
 <li>来看如下示例：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//交换律</span></span><br><span class="line">a ^ b = b ^ a</span><br><span class="line"><span class="comment">//结合律</span></span><br><span class="line">( a ^ b ) ^ c = a ^ ( b ^ c ) </span><br><span class="line"><span class="comment">//逆运算</span></span><br><span class="line">( a ^ b ) ^ b = a; <span class="comment">//这个可以用来判断：假设一堆数组里面其他数字出现两次，找出只出现一次的那一个。</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<ol>
+<ol start="63">
 <li><p>使用左移运算符&lt;&lt;，例如3 &lt;&lt; 3 为3乘2的三次方，(3 &lt;&lt; 3) - 1 为3乘以2的三次方减一</p>
 </li>
 <li><p>signed char的范围是-128-127，超过之后可能变成负数，OJ题目留意（OJ题目碰到的坑）</p>
@@ -788,7 +788,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

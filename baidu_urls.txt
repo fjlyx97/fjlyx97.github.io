@@ -1,3 +1,4 @@
+http://www.codeforme.cn/2019/04/24/C++move语义/
 http://www.codeforme.cn/2019/04/16/linux共享内存/
 http://www.codeforme.cn/2019/01/23/趣谈网络协议笔记/
 http://www.codeforme.cn/2019/01/22/linux中c++架构实战（二）/
