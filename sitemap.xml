@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.codeforme.cn/2018/06/08/django-nginx-uwsgi%E8%BF%9B%E8%A1%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/</loc>
+    
+    <lastmod>2019-05-17T08:11:59.586Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.codeforme.cn/2019/04/24/C++move%E8%AF%AD%E4%B9%89/</loc>
     
     <lastmod>2019-04-24T13:51:43.183Z</lastmod>
@@ -138,13 +145,6 @@
     <loc>http://www.codeforme.cn/2018/06/13/makefile%E7%9A%84%E7%BC%96%E5%86%99/</loc>
     
     <lastmod>2018-06-13T14:43:17.328Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.codeforme.cn/2018/06/08/django-nginx-uwsgi%E8%BF%9B%E8%A1%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/</loc>
-    
-    <lastmod>2018-06-08T06:31:27.761Z</lastmod>
     
   </url>
   
