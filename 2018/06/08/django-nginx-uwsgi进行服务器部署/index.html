@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="django的服务器配置可以说是十分繁琐的部分 哪怕严格按照步骤也会有不明错误 再此详细记录操作步骤 版本Ubuntu 16.04 LTS 64位 服务器：腾讯云学生机">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-17T08:11:59.586Z">
+<meta property="og:updated_time" content="2019-05-17T08:16:41.381Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="django+nginx+uwsgi进行服务器部署">
 <meta name="twitter:description" content="django的服务器配置可以说是十分繁琐的部分 哪怕严格按照步骤也会有不明错误 再此详细记录操作步骤 版本Ubuntu 16.04 LTS 64位 服务器：腾讯云学生机">
@@ -530,11 +530,12 @@
 <li>近期在部署时发现，如果在自己的程序当中，使用了python的多线程，需要在uwsgi.ini文件当中加入enable-threads=True参数</li>
 <li>在部署的时候，使用uwsgi –ini读取配置的时候，出现了无法访问的情况，并且报出如下错误<blockquote>
 <ul>
-<li>invalid request block size: 21573 (max 4096)…skip<br>因此我们需要修改配置文件中的socket为http，如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[uwsgi]</span><br><span class="line">...省略</span><br><span class="line">socket = :8001 =&gt; http = :8001</span><br><span class="line">...省略</span><br></pre></td></tr></table></figure></li>
+<li>invalid request block size: 21573 (max 4096)…skip</li>
 </ul>
 </blockquote>
 </li>
 </ol>
+<p>因此我们在测试时，需要修改配置文件中的socket为http，正式部署到nginx时再修改回socket，如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[uwsgi]</span><br><span class="line">...省略</span><br><span class="line">socket = :8001 =&gt; http = :8001</span><br><span class="line">...省略</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
