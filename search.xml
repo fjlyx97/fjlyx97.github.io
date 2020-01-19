@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[C++网络编程]]></title>
     <url>%2F2020%2F01%2F18%2FC%2B%2B%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%2F</url>
-    <content type="text"><![CDATA[根据C++百万并发网络通信引擎架构与实现（Socket、全栈、跨平台）课程所记录 记录网络编程细节 未完待续]]></content>
+    <content type="text"><![CDATA[根据C++百万并发网络通信引擎架构与实现（Socket、全栈、跨平台）课程所记录 记录网络编程细节 发送结构化的网络消息数据假设有如下结构体：12345678910111213141516171819struct DataPack&#123; int age; char name[32];&#125;;//使用如下方法发送DataPack db = &#123;80,"Yi Yi"&#125;;send(sClient, (const char*)&amp;db, sizeof(DataPack) , 0); //使用如下方法接收char recData[255];int ret = recv(sclient, recData, 255, 0);if (ret &gt; 0)&#123; DataPack* dp = (DataPack*)recData; std::cout &lt;&lt; dp-&gt;age &lt;&lt; std::endl; std::cout &lt;&lt; dp-&gt;name &lt;&lt; std::endl;&#125; 必须保证字节序是一样的，如long大小不同平台大小不一样，需要特别注意 不严谨，不推荐这么使用 网络数据报文格式定义 包头：描述消息包大小，描述数据作用 包体：数据123456789101112131415161718192021222324252627282930313233343536373839enum CMD&#123; CMD_LOGIN, CMD_LOGINOUT，&#125;;//消息头struct DataHeader&#123; short dataLength; //数据长度 short cmd; //数据命令&#125;;//消息体struct Login&#123; char userName[32]; char passWord[32];&#125;;struct LoginResult&#123; int result;&#125;;//接收部分代码DataHeader header;int nLen = recv(_cSock,(const char*)&amp;header,sizeof(DataHeader),0);//根据接收部分另外编写代码switch (header.cmd)&#123; case CMD_LOGIN: &#123; Login login = &#123;&#125;; recv(_cSock,(const char*)&amp;login,sizeof(Login),0); &#125; ...&#125;]]></content>
       <categories>
         <category>C家族</category>
       </categories>
