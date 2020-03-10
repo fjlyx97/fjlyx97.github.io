@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="IO多路复用 epoll原理 reactor模式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-09T16:20:01.397Z">
+<meta property="og:updated_time" content="2020-03-10T07:41:35.351Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="epoll详解">
 <meta name="twitter:description" content="IO多路复用 epoll原理 reactor模式">
@@ -425,6 +425,10 @@
 <a id="more"></a>
 <h1 id="为什么recv等阻塞不消耗cpu资源"><a href="#为什么recv等阻塞不消耗cpu资源" class="headerlink" title="为什么recv等阻塞不消耗cpu资源"></a>为什么recv等阻塞不消耗cpu资源</h1><p>操作系统将进程分为多种状态，并且在内核空间维护对应的工作队列。当调用<strong>socket</strong>函数时，操作系统会在底层创建一个文件对象（fd），这个对象包括了<strong>发送缓冲区</strong>，<strong>接收缓冲区</strong>，<strong>等待队列</strong>等成员。当调用<strong>recv</strong>函数时，操作系统会将进程状态修改为等待，并将其加入到对应<strong>fd等待队列</strong>。因此进程被阻塞，不消耗cpu资源。</p>
 <h2 id="唤醒"><a href="#唤醒" class="headerlink" title="唤醒"></a>唤醒</h2><p>当socket接受到数据时，操作系统会将对应fd中，等待队列里所有的进程放回工作队列，与此同时缓冲区有了数据，进程可以进行读取</p>
+<h1 id="阻塞非阻塞-同步异步"><a href="#阻塞非阻塞-同步异步" class="headerlink" title="阻塞非阻塞/同步异步"></a>阻塞非阻塞/同步异步</h1><h2 id="阻塞I-O模型"><a href="#阻塞I-O模型" class="headerlink" title="阻塞I/O模型"></a>阻塞I/O模型</h2><p>套接字默认都是阻塞的，如调用了recv函数，如果没有数据就会一直等待，知道有数据后，将数据从内核拷贝到应用缓冲区</p>
+<h2 id="非阻塞I-O模型"><a href="#非阻塞I-O模型" class="headerlink" title="非阻塞I/O模型"></a>非阻塞I/O模型</h2><p>非阻塞则是类似一种轮询的方式，应用进程调用recv一次次去询问内核，如果无数据就继续往下走，有数据则进行数据拷贝。</p>
+<h2 id="I-O多路复用"><a href="#I-O多路复用" class="headerlink" title="I/O多路复用"></a>I/O多路复用</h2><p>严格来说，I/O多路复用函数也是阻塞的，但是它阻塞的位置是在select或者epoll这样的系统调用上，而不知阻塞在I/O系统调用如recvfrom上。</p>
+<h2 id="异步I-O"><a href="#异步I-O" class="headerlink" title="异步I/O"></a>异步I/O</h2><p>不同于同步非阻塞的轮询，系统通知内核启动某个操作，内核完成后返回通知给进程，异步不阻塞。</p>
 <h1 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h1><p>在这里多路可以看成<strong>多个socket</strong>，而复用可以看成<strong>复用一个线程</strong>。</p>
 <p>传统方案当中，当服务端accept到一个socket时，会开启一个线程去处理对应的数据，但是线程是有限的，并且线程上下文切换会产生大量的开销，因此并不推荐使用。</p>
 <p>因此需要<strong>一个线程管理多个socket</strong>，epoll则是其中一个高效的方法。既然是高效的方法，就有着反面教材，其中包括<strong>select，poll</strong></p>
@@ -447,6 +451,8 @@
 <li>对于写操作，只要缓冲区还不满，LT模式会返回写就绪。</li>
 </ol>
 <p>因此，只要有数据，如果自己不去触发读写，epoll_wait会一直收到提醒</p>
+<h1 id="reactor设计模式"><a href="#reactor设计模式" class="headerlink" title="reactor设计模式"></a>reactor设计模式</h1><p>传统网络编程就是服务器一个while循环，不断监听端口是否有套接字连接，如果有的话就处理一下。但是这种方法效率极低，且容易阻塞住后面的线程，因此多线程被提出用来优化</p>
+<p>多线程处理就是很经典的connection per thread，即每个连接用一个线程处理，早期的tomcat就是这样实现的。虽然这样可以极大的提高吞吐量，但是需要大量的系统资源，如果连接数太高将系统资源数耗尽，则无法创建新线程。</p>
 
       
     </div>
@@ -689,7 +695,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么recv等阻塞不消耗cpu资源"><span class="nav-text">为什么recv等阻塞不消耗cpu资源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#唤醒"><span class="nav-text">唤醒</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多路复用"><span class="nav-text">多路复用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#select"><span class="nav-text">select</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#poll"><span class="nav-text">poll</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#epoll"><span class="nav-text">epoll</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建epoll"><span class="nav-text">创建epoll</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#就绪列表为什么时双向链表"><span class="nav-text">就绪列表为什么时双向链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引结构为什么是红黑树，而不是hashmap"><span class="nav-text">索引结构为什么是红黑树，而不是hashmap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#水平触发和边缘触发"><span class="nav-text">水平触发和边缘触发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ET边缘触发"><span class="nav-text">ET边缘触发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LT水平触发"><span class="nav-text">LT水平触发</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么recv等阻塞不消耗cpu资源"><span class="nav-text">为什么recv等阻塞不消耗cpu资源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#唤醒"><span class="nav-text">唤醒</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#阻塞非阻塞-同步异步"><span class="nav-text">阻塞非阻塞/同步异步</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#阻塞I-O模型"><span class="nav-text">阻塞I/O模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非阻塞I-O模型"><span class="nav-text">非阻塞I/O模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-O多路复用"><span class="nav-text">I/O多路复用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步I-O"><span class="nav-text">异步I/O</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多路复用"><span class="nav-text">多路复用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#select"><span class="nav-text">select</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#poll"><span class="nav-text">poll</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#epoll"><span class="nav-text">epoll</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建epoll"><span class="nav-text">创建epoll</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#就绪列表为什么时双向链表"><span class="nav-text">就绪列表为什么时双向链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引结构为什么是红黑树，而不是hashmap"><span class="nav-text">索引结构为什么是红黑树，而不是hashmap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#水平触发和边缘触发"><span class="nav-text">水平触发和边缘触发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ET边缘触发"><span class="nav-text">ET边缘触发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LT水平触发"><span class="nav-text">LT水平触发</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reactor设计模式"><span class="nav-text">reactor设计模式</span></a></li></ol></div>
             
 
           </div>
