@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="学习,linux,">
+  <meta name="keywords" content="学习,linux,数据库,">
 
 
 
@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="偶然发现自己一些常用的命令经常忘记 在此做一些笔记 记录学习linux的琐事">
-<meta name="keywords" content="学习,linux">
+<meta name="description" content="redis学习笔记 主要记载redis使用、底层知识">
+<meta name="keywords" content="学习,linux,数据库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux小记">
-<meta property="og:url" content="http://www.codeforme.cn/2018/03/15/linux小记/index.html">
+<meta property="og:title" content="redis">
+<meta property="og:url" content="http://www.codeforme.cn/2020/03/31/redis/index.html">
 <meta property="og:site_name" content="一米见方">
-<meta property="og:description" content="偶然发现自己一些常用的命令经常忘记 在此做一些笔记 记录学习linux的琐事">
+<meta property="og:description" content="redis学习笔记 主要记载redis使用、底层知识">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-16T14:58:23.636Z">
+<meta property="og:updated_time" content="2020-04-09T12:16:46.501Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux小记">
-<meta name="twitter:description" content="偶然发现自己一些常用的命令经常忘记 在此做一些笔记 记录学习linux的琐事">
+<meta name="twitter:title" content="redis">
+<meta name="twitter:description" content="redis学习笔记 主要记载redis使用、底层知识">
 
 
 
@@ -136,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://www.codeforme.cn/2018/03/15/linux小记/">
+  <link rel="canonical" href="http://www.codeforme.cn/2020/03/31/redis/">
 
 
 
 
 
-  <title>linux小记 | 一米见方</title>
+  <title>redis | 一米见方</title>
   
 
 
@@ -321,7 +321,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.codeforme.cn/2018/03/15/linux小记/">
+    <link itemprop="mainEntityOfPage" href="http://www.codeforme.cn/2020/03/31/redis/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="南浔">
@@ -338,7 +338,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">linux小记</h1>
+          <h1 class="post-title" itemprop="name headline">redis</h1>
         
 
         <div class="post-meta">
@@ -350,8 +350,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-15T22:06:32+08:00">
-                2018-03-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-31T19:57:53+08:00">
+                2020-03-31
               </time>
             
 
@@ -373,8 +373,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
                   </a>
                 </span>
 
@@ -417,43 +417,41 @@
       
         <blockquote>
 <ul>
-<li>偶然发现自己一些常用的命令经常忘记</li>
-<li>在此做一些笔记</li>
-<li>记录学习linux的琐事</li>
+<li>redis学习笔记</li>
+<li>主要记载redis使用、底层知识</li>
 </ul>
 </blockquote>
 <a id="more"></a>
-<h1 id="fsck修复"><a href="#fsck修复" class="headerlink" title="fsck修复"></a>fsck修复</h1><ul>
-<li><p>如果文件系统损坏，出现分区受损，可以使用如下命令，结束后使用reboot重启</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fsck -y /dev/sdXX  <span class="comment">#第一个X指的是硬盘，第二个X指的是分区</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果不知道哪个分区受损，直接使用fsck修复就好了</p>
-</li>
+<h1 id="传统数据库data-page"><a href="#传统数据库data-page" class="headerlink" title="传统数据库data page"></a>传统数据库data page</h1><p>传统数据库的data page一般大小为4K，和底层磁盘一次读取4K相同。因此data page可以大于4K，但是小于4K，会造成磁盘读取4K数据的浪费</p>
+<ul>
+<li>数据库索引在内存当中只存B+树（树干），而命中索引后，会读取对应的data page</li>
 </ul>
-<h1 id="文件权限变更"><a href="#文件权限变更" class="headerlink" title="文件权限变更"></a>文件权限变更</h1><ul>
-<li>以下三个命令可以使用-R参数进行递归操作</li>
-<li>使用chgrp变更组</li>
-<li>使用chown变更所有者</li>
-<li>使用chmod变更权限</li>
-<li>w权限主要用于修改目录，增删文件这类操作，而r用于查看目录，最后x用于是否可以进入这个目录</li>
+<h1 id="redis支持的类型"><a href="#redis支持的类型" class="headerlink" title="redis支持的类型"></a>redis支持的类型</h1><p>redis支持的字符串，散列，列表，集合，有序集合，这里指的是value支持，而不是key。而memcached的value则没有类型的概念。</p>
+<h1 id="基础help"><a href="#基础help" class="headerlink" title="基础help"></a>基础help</h1><p>基础help命令主要通过两个维度查询<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">help @类名</span><br><span class="line">help 命令</span><br></pre></td></tr></table></figure></p>
+<h1 id="bitmap"><a href="#bitmap" class="headerlink" title="bitmap"></a>bitmap</h1><p>在大批量数据时，可以通过bitmap来节省空间，如统计两千万用户在某一天是否存在登录，offset则为用户ID，或者是统计用户登录的区间，每一天以一个bit代替</p>
+<h2 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a>布隆过滤器</h2><p>使用bitmap有可能造成数据冲突，所以我们可以定义K个哈希函数，将一个KEY，多次哈希之后，再次映射到bitmap当中，这样可以保证，如果得到结果为不存在一定不会误判。但是会带来一个问题，假设这个数据不存在，但是被判断为了存在，从而造成数据丢失。</p>
+<ul>
+<li>我们可以通过调整哈希函数的个数，位图大小，要存储的数字比例，可以将这种误判尽可能降到最低。</li>
 </ul>
-<h1 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h1><h2 id="增加用户"><a href="#增加用户" class="headerlink" title="增加用户"></a>增加用户</h2><ul>
-<li><p>使用useradd 添加用户，常用选项如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-c comment 指定一段注释性描述。</span><br><span class="line">-d 目录 指定用户主目录，如果此目录不存在，则同时使用-m选项，可以创建主目录。</span><br><span class="line">-g 用户组 指定用户所属的用户组。</span><br><span class="line">-G 用户组，用户组 指定用户所属的附加组。</span><br><span class="line">-s Shell文件 指定用户的登录Shell。</span><br><span class="line">-u 用户号 指定用户的用户号，如果同时有-o选项，则可以重复使用其他用户的标识号。</span><br><span class="line">用户名 指定新账号的登录名。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>可以使用如下代码生成一个用户</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -d /home/<span class="built_in">test</span> -m <span class="built_in">test</span> -s /bin/bash</span><br></pre></td></tr></table></figure>
-</li>
+<h1 id="list"><a href="#list" class="headerlink" title="list"></a>list</h1><p>list有序，但是针对的是插入有序，而非数据有序</p>
+<h1 id="set和sorted-set"><a href="#set和sorted-set" class="headerlink" title="set和sorted_set"></a>set和sorted_set</h1><h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><p>set是无序的，且支持集合的交并差操作，允许随机抽取数据，如：SRANDMEMBER key [count]，后面的count如果是正数，则一定取出对应个数量的元素，且保证唯一，但是如果元素不够的话，则会返回整个集合的所有元素。后面的count如果是负数，则数据元素不保证唯一，取出即可。</p>
+<h2 id="sorted-set"><a href="#sorted-set" class="headerlink" title="sorted_set"></a>sorted_set</h2><p>如何排序是一个问题，假设有苹果、香蕉、梨，他们可以通过含糖量，大小，价格，热度等等，即排序规则需要自己指定</p>
+<ul>
+<li>如果排序的值都为1，则会按照名称字典序排序。</li>
+<li>默认是从小到大排序（左小右大）</li>
+<li>同样具备集合操作</li>
 </ul>
-<h2 id="修改用户"><a href="#修改用户" class="headerlink" title="修改用户"></a>修改用户</h2><ul>
-<li>常使用：usermod 选项 用户名 来改变一个用户的属性</li>
+<h3 id="跳跃表（skiplist）"><a href="#跳跃表（skiplist）" class="headerlink" title="跳跃表（skiplist）"></a>跳跃表（skiplist）</h3><p>跳跃表的查找类似于二分查找，但是如果多次插入数据，如果不更新上层索引，则会出现两个索引节点当中，存在的数据节点非常多。因此我们可以定义一个随机函数，来决定将这个节点插入到哪几级索引当中，比如随机函数生成了K，我们就将节点添加到第一级到第K级索引中。</p>
+<h1 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h1><p>服务器会按顺序处理请求，因此可以一次性发送多个命令，使用管道传输，降低RTT开销<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(printf &quot;PING\r\nPING\r\nPING\r\n&quot;; sleep 1) | nc localhost 6379</span><br></pre></td></tr></table></figure></p>
+<h1 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h1><p>SUBSCRIBE来监听一个频道，PUBLISH可以推送数据到一个频道。并且所有监听频道的客户端都可以收到数据。</p>
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p>redis事务不像mysql那么完整，谁的命令exec先到达，就先执行谁的事务。因此没办法确定一个值是否一定可以正确获取。</p>
+<ul>
+<li>watch指令可以在开启事务前，进行监听key的value。如果开启事务后，监听的值被更改了，事务不会执行</li>
 </ul>
-<h1 id="Vim强行保存"><a href="#Vim强行保存" class="headerlink" title="Vim强行保存"></a>Vim强行保存</h1><ul>
-<li>如果以普通用户编写了文件，但是发现权限不足时，可以使用强行保存：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:w !suod tee %</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="python快速开httpserver"><a href="#python快速开httpserver" class="headerlink" title="python快速开httpserver"></a>python快速开httpserver</h1><ul>
-<li>使用如下命令：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m http.server</span><br></pre></td></tr></table></figure></li>
+<h1 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h1><p>redis4.0之后加入了模块，因此可以导入第三方模块（如布隆过滤器）</p>
+<h2 id="布隆过滤器（redis4-0之后支持）"><a href="#布隆过滤器（redis4-0之后支持）" class="headerlink" title="布隆过滤器（redis4.0之后支持）"></a>布隆过滤器（redis4.0之后支持）</h2><p>主要用于解决缓存穿透的问题，如果不存在，直接结束，不允许请求数据库</p>
+<ul>
+<li><a href="https://oss.redislabs.com/redisbloom/" target="_blank" rel="noopener">布隆过滤器</a></li>
 </ul>
 
       
@@ -476,6 +474,8 @@
           
             <a href="/tags/linux/" rel="tag"># linux</a>
           
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
         </div>
       
 
@@ -487,8 +487,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/05/C++学习记录/" rel="next" title="C++学习记录">
-                <i class="fa fa-chevron-left"></i> C++学习记录
+              <a href="/2020/03/13/数据库命令使用记录/" rel="next" title="数据库命令使用记录">
+                <i class="fa fa-chevron-left"></i> 数据库命令使用记录
               </a>
             
           </div>
@@ -496,10 +496,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/06/Effective-c++-记录/" rel="prev" title="Effective c++ 记录">
-                Effective c++ 记录 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -670,7 +666,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#fsck修复"><span class="nav-text">fsck修复</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件权限变更"><span class="nav-text">文件权限变更</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用户管理"><span class="nav-text">用户管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#增加用户"><span class="nav-text">增加用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改用户"><span class="nav-text">修改用户</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vim强行保存"><span class="nav-text">Vim强行保存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python快速开httpserver"><span class="nav-text">python快速开httpserver</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#传统数据库data-page"><span class="nav-text">传统数据库data page</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis支持的类型"><span class="nav-text">redis支持的类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基础help"><span class="nav-text">基础help</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bitmap"><span class="nav-text">bitmap</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#布隆过滤器"><span class="nav-text">布隆过滤器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#list"><span class="nav-text">list</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#set和sorted-set"><span class="nav-text">set和sorted_set</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#set"><span class="nav-text">set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sorted-set"><span class="nav-text">sorted_set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#跳跃表（skiplist）"><span class="nav-text">跳跃表（skiplist）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#管道"><span class="nav-text">管道</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#发布订阅"><span class="nav-text">发布订阅</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事务"><span class="nav-text">事务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模块"><span class="nav-text">模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#布隆过滤器（redis4-0之后支持）"><span class="nav-text">布隆过滤器（redis4.0之后支持）</span></a></li></ol></li></ol></div>
             
 
           </div>
