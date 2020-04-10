@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="redis学习笔记 主要记载redis使用、底层知识">
+<meta name="description" content="redis学习笔记 主要记载redis使用、底层知识 技术易于人的使用，理论却很复杂">
 <meta name="keywords" content="学习,linux,数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redis">
 <meta property="og:url" content="http://www.codeforme.cn/2020/03/31/redis/index.html">
 <meta property="og:site_name" content="一米见方">
-<meta property="og:description" content="redis学习笔记 主要记载redis使用、底层知识">
+<meta property="og:description" content="redis学习笔记 主要记载redis使用、底层知识 技术易于人的使用，理论却很复杂">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-09T12:16:46.501Z">
+<meta property="og:updated_time" content="2020-04-10T11:51:36.864Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis">
-<meta name="twitter:description" content="redis学习笔记 主要记载redis使用、底层知识">
+<meta name="twitter:description" content="redis学习笔记 主要记载redis使用、底层知识 技术易于人的使用，理论却很复杂">
 
 
 
@@ -419,6 +419,7 @@
 <ul>
 <li>redis学习笔记</li>
 <li>主要记载redis使用、底层知识</li>
+<li>技术易于人的使用，理论却很复杂</li>
 </ul>
 </blockquote>
 <a id="more"></a>
@@ -426,7 +427,7 @@
 <ul>
 <li>数据库索引在内存当中只存B+树（树干），而命中索引后，会读取对应的data page</li>
 </ul>
-<h1 id="redis支持的类型"><a href="#redis支持的类型" class="headerlink" title="redis支持的类型"></a>redis支持的类型</h1><p>redis支持的字符串，散列，列表，集合，有序集合，这里指的是value支持，而不是key。而memcached的value则没有类型的概念。</p>
+<h1 id="redis支持的类型"><a href="#redis支持的类型" class="headerlink" title="redis支持的类型"></a>redis支持的类型</h1><p>redis支持的字符串（二进制安全，字节数组存储），散列，列表，集合，有序集合，这里指的是value支持，而不是key。而memcached的value则没有类型的概念。</p>
 <h1 id="基础help"><a href="#基础help" class="headerlink" title="基础help"></a>基础help</h1><p>基础help命令主要通过两个维度查询<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">help @类名</span><br><span class="line">help 命令</span><br></pre></td></tr></table></figure></p>
 <h1 id="bitmap"><a href="#bitmap" class="headerlink" title="bitmap"></a>bitmap</h1><p>在大批量数据时，可以通过bitmap来节省空间，如统计两千万用户在某一天是否存在登录，offset则为用户ID，或者是统计用户登录的区间，每一天以一个bit代替</p>
 <h2 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a>布隆过滤器</h2><p>使用bitmap有可能造成数据冲突，所以我们可以定义K个哈希函数，将一个KEY，多次哈希之后，再次映射到bitmap当中，这样可以保证，如果得到结果为不存在一定不会误判。但是会带来一个问题，假设这个数据不存在，但是被判断为了存在，从而造成数据丢失。</p>
@@ -453,7 +454,57 @@
 <ul>
 <li><a href="https://oss.redislabs.com/redisbloom/" target="_blank" rel="noopener">布隆过滤器</a></li>
 </ul>
-
+<h1 id="LRU缓存"><a href="#LRU缓存" class="headerlink" title="LRU缓存"></a>LRU缓存</h1><ul>
+<li>业务逻辑：key的有效期</li>
+<li>业务运转：内存是有限的，随着访问的变化，应该淘汰冷数据<h2 id="回收策略（摘自文档）"><a href="#回收策略（摘自文档）" class="headerlink" title="回收策略（摘自文档）"></a>回收策略（摘自文档）</h2><a href="http://redis.cn/topics/lru-cache.html" target="_blank" rel="noopener">lru-cache</a></li>
+<li>noeviction:返回错误当内存限制达到并且客户端尝试执行会让更多内存被使用的命令（大部分的写入指令，但DEL和几个例外）</li>
+<li>（常用）allkeys-lru: 尝试回收最少使用的键（LRU），使得新添加的数据有空间存放。</li>
+<li>（常用）volatile-lru: 尝试回收最少使用的键（LRU），但仅限于在过期集合的键,使得新添加的数据有空间存放。</li>
+<li>allkeys-random: 回收随机的键使得新添加的数据有空间存放。</li>
+<li>volatile-random: 回收随机的键使得新添加的数据有空间存放，但仅限于在过期集合的键。</li>
+<li>volatile-ttl: 回收在过期集合的键，并且优先回收存活时间（TTL）较短的键,使得新添加的数据有空间存放。</li>
+</ul>
+<p>可以看出主要分为LRU和随机淘汰，但是每个算法中间可以对应全部键以及有剩余时间的键</p>
+<h2 id="ttl时间"><a href="#ttl时间" class="headerlink" title="ttl时间"></a>ttl时间</h2><p>如果一个key设置了过期时间，读不会让时间变更，但是如果重新写，会造成时间丢失，即被重置</p>
+<h1 id="如何淘汰过期的key"><a href="#如何淘汰过期的key" class="headerlink" title="如何淘汰过期的key"></a>如何淘汰过期的key</h1><p>两种方式：主动、被动</p>
+<ul>
+<li>被动：客户端访问发现过期了，剔除</li>
+<li>主动： 每10秒测试随机的20个keys进行检测剔除</li>
+<li><a href="http://redis.cn/commands/expire.html" target="_blank" rel="noopener">expire key seconds</a></li>
+</ul>
+<h1 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h1><h2 id="管道-1"><a href="#管道-1" class="headerlink" title="管道"></a>管道</h2><ul>
+<li>衔接，前一个命令的输出作为后一个命令的输入</li>
+<li>管道会触发子进程创建</li>
+</ul>
+<p>echo $$可以输出当前进程的pid，echo $$ | more结果不变，但echo $BASHPID | more，则值会不同。因此可以得出结论|的运算优先级大于普通变量的优先级，小于系统变量的优先级</p>
+<ul>
+<li>引出linux环境中，子进程修改变量不会影响到父进程（fork后开启双进程）<h2 id="引出问题"><a href="#引出问题" class="headerlink" title="引出问题"></a>引出问题</h2></li>
+</ul>
+<ol>
+<li>如果原来redis内存10G，复制后会变成20G吗</li>
+<li>创建子进程的速度应该时什么速度</li>
+</ol>
+<h2 id="RDB（全量复制）"><a href="#RDB（全量复制）" class="headerlink" title="RDB（全量复制）"></a>RDB（全量复制）</h2><p>时点性，因此为了保证时点性（某个时间点的数据），所以使用fork出一个子进程，fork依赖写时复制，创建进程变快了，一旦新数据被写入，不会影响到子进程的拷贝。</p>
+<ul>
+<li>save命令（前台阻塞）</li>
+<li>bgsave命令 （后台触发）</li>
+<li>配置文件中编写bgsave规则<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">save &lt;second&gt; &lt;changes&gt;</span><br><span class="line">#默认</span><br><span class="line">save 900 1     #900秒，1个key修改</span><br><span class="line">save 300 10    #300秒，10个key修改</span><br><span class="line">save 60 10000  #60秒，10000个key修改</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>弊端：不支持拉链，永远只有一个dump.rdb，因此需要运维写脚本去备份前一个时间点的rdb文件</p>
+<h2 id="AOF（append-only-file）"><a href="#AOF（append-only-file）" class="headerlink" title="AOF（append only file）"></a>AOF（append only file）</h2><p>redis的写操作直接记录到文件中。因此和rdb相比，丢失数据相对较少，但是效率较低。</p>
+<ul>
+<li>rdb和aof可以同时开启，如果开启了aof只会用aof恢复</li>
+<li>4.0之前，日志会删除抵消的命令，合并重复的命令，最终也是一个纯指令的日志文件</li>
+<li>4.0版本之后，AOF中包含rdb全量（存放老的数据），增加记录新的写操作</li>
+</ul>
+<p>写操作会触发IO，但是对于内存数据库来说会拖慢效率。因此aof有三个级别</p>
+<ol>
+<li>NO，redis不调用flush，内核buffer满了，就写入到硬盘。因此可能丢失一个buffer的数据</li>
+<li>always，最可靠的模式，每笔都调用flush</li>
+<li>everysec，每秒flush一次</li>
+</ol>
+<h1 id="缓存的四个问题"><a href="#缓存的四个问题" class="headerlink" title="缓存的四个问题"></a>缓存的四个问题</h1><h2 id="击穿"><a href="#击穿" class="headerlink" title="击穿"></a>击穿</h2><h2 id="雪崩"><a href="#雪崩" class="headerlink" title="雪崩"></a>雪崩</h2><h2 id="穿透"><a href="#穿透" class="headerlink" title="穿透"></a>穿透</h2><h2 id="一致性（双写）"><a href="#一致性（双写）" class="headerlink" title="一致性（双写）"></a>一致性（双写）</h2>
       
     </div>
     
@@ -666,7 +717,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#传统数据库data-page"><span class="nav-text">传统数据库data page</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis支持的类型"><span class="nav-text">redis支持的类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基础help"><span class="nav-text">基础help</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bitmap"><span class="nav-text">bitmap</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#布隆过滤器"><span class="nav-text">布隆过滤器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#list"><span class="nav-text">list</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#set和sorted-set"><span class="nav-text">set和sorted_set</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#set"><span class="nav-text">set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sorted-set"><span class="nav-text">sorted_set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#跳跃表（skiplist）"><span class="nav-text">跳跃表（skiplist）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#管道"><span class="nav-text">管道</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#发布订阅"><span class="nav-text">发布订阅</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事务"><span class="nav-text">事务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模块"><span class="nav-text">模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#布隆过滤器（redis4-0之后支持）"><span class="nav-text">布隆过滤器（redis4.0之后支持）</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#传统数据库data-page"><span class="nav-text">传统数据库data page</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis支持的类型"><span class="nav-text">redis支持的类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基础help"><span class="nav-text">基础help</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bitmap"><span class="nav-text">bitmap</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#布隆过滤器"><span class="nav-text">布隆过滤器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#list"><span class="nav-text">list</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#set和sorted-set"><span class="nav-text">set和sorted_set</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#set"><span class="nav-text">set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sorted-set"><span class="nav-text">sorted_set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#跳跃表（skiplist）"><span class="nav-text">跳跃表（skiplist）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#管道"><span class="nav-text">管道</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#发布订阅"><span class="nav-text">发布订阅</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事务"><span class="nav-text">事务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模块"><span class="nav-text">模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#布隆过滤器（redis4-0之后支持）"><span class="nav-text">布隆过滤器（redis4.0之后支持）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LRU缓存"><span class="nav-text">LRU缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#回收策略（摘自文档）"><span class="nav-text">回收策略（摘自文档）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ttl时间"><span class="nav-text">ttl时间</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何淘汰过期的key"><span class="nav-text">如何淘汰过期的key</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#持久化"><span class="nav-text">持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#管道-1"><span class="nav-text">管道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引出问题"><span class="nav-text">引出问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDB（全量复制）"><span class="nav-text">RDB（全量复制）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOF（append-only-file）"><span class="nav-text">AOF（append only file）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缓存的四个问题"><span class="nav-text">缓存的四个问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#击穿"><span class="nav-text">击穿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#雪崩"><span class="nav-text">雪崩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#穿透"><span class="nav-text">穿透</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一致性（双写）"><span class="nav-text">一致性（双写）</span></a></li></ol></li></ol></div>
             
 
           </div>
