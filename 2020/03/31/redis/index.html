@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="redis学习笔记 主要记载redis使用、底层知识 技术易于人的使用，理论却很复杂">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-10T11:51:36.864Z">
+<meta property="og:updated_time" content="2020-04-10T13:15:46.892Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis">
 <meta name="twitter:description" content="redis学习笔记 主要记载redis使用、底层知识 技术易于人的使用，理论却很复杂">
@@ -495,8 +495,8 @@
 <h2 id="AOF（append-only-file）"><a href="#AOF（append-only-file）" class="headerlink" title="AOF（append only file）"></a>AOF（append only file）</h2><p>redis的写操作直接记录到文件中。因此和rdb相比，丢失数据相对较少，但是效率较低。</p>
 <ul>
 <li>rdb和aof可以同时开启，如果开启了aof只会用aof恢复</li>
-<li>4.0之前，日志会删除抵消的命令，合并重复的命令，最终也是一个纯指令的日志文件</li>
-<li>4.0版本之后，AOF中包含rdb全量（存放老的数据），增加记录新的写操作</li>
+<li>4.0之前，日志会删除抵消的命令，合并重复的命令，最终也是一个纯指令的日志文件（重写）</li>
+<li>4.0版本之后，AOF中包含rdb全量（存放老的数据），增加记录新的写操作（重写）</li>
 </ul>
 <p>写操作会触发IO，但是对于内存数据库来说会拖慢效率。因此aof有三个级别</p>
 <ol>
