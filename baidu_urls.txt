@@ -1,3 +1,4 @@
+http://www.codeforme.cn/2020/04/14/从inode角度看硬链接和软链接/
 http://www.codeforme.cn/2020/03/31/redis/
 http://www.codeforme.cn/2020/03/13/数据库命令使用记录/
 http://www.codeforme.cn/2020/03/11/大端序和小端序/
