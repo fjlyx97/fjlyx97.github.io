@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.codeforme.cn/2020/04/14/%E4%BB%8Einode%E8%A7%92%E5%BA%A6%E7%9C%8B%E7%A1%AC%E9%93%BE%E6%8E%A5%E5%92%8C%E8%BD%AF%E9%93%BE%E6%8E%A5/</loc>
+    <loc>http://www.codeforme.cn/2020/03/31/redis/</loc>
     
-    <lastmod>2020-04-14T08:53:51.037Z</lastmod>
+    <lastmod>2020-04-15T13:15:44.772Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.codeforme.cn/2020/03/31/redis/</loc>
+    <loc>http://www.codeforme.cn/about/index.html</loc>
     
-    <lastmod>2020-04-14T08:11:36.345Z</lastmod>
+    <lastmod>2020-04-14T08:57:37.266Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.codeforme.cn/2020/04/14/%E4%BB%8Einode%E8%A7%92%E5%BA%A6%E7%9C%8B%E7%A1%AC%E9%93%BE%E6%8E%A5%E5%92%8C%E8%BD%AF%E9%93%BE%E6%8E%A5/</loc>
+    
+    <lastmod>2020-04-14T08:53:51.037Z</lastmod>
     
   </url>
   
@@ -264,13 +271,6 @@
     <loc>http://www.codeforme.cn/404/index.html</loc>
     
     <lastmod>2017-09-05T07:02:49.789Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.codeforme.cn/about/index.html</loc>
-    
-    <lastmod>2017-09-05T06:51:03.392Z</lastmod>
     
   </url>
   
