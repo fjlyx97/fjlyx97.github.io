@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="系统设计知识点广而杂 记录面试知识点">
+<meta name="description" content="系统设计知识点广而杂 数据库分库分表 记录面试知识点">
 <meta name="keywords" content="编程,学习,系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="系统设计">
 <meta property="og:url" content="http://www.codeforme.cn/2020/05/03/系统设计/index.html">
 <meta property="og:site_name" content="一米见方">
-<meta property="og:description" content="系统设计知识点广而杂 记录面试知识点">
+<meta property="og:description" content="系统设计知识点广而杂 数据库分库分表 记录面试知识点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-03T08:48:36.233Z">
+<meta property="og:updated_time" content="2020-05-07T01:26:44.878Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="系统设计">
-<meta name="twitter:description" content="系统设计知识点广而杂 记录面试知识点">
+<meta name="twitter:description" content="系统设计知识点广而杂 数据库分库分表 记录面试知识点">
 
 
 
@@ -418,6 +418,7 @@
         <blockquote>
 <ul>
 <li>系统设计知识点广而杂</li>
+<li>数据库分库分表</li>
 <li>记录面试知识点</li>
 </ul>
 </blockquote>
@@ -444,14 +445,44 @@
 <li>将大系统拆分为小服务</li>
 <li>分割应用，模块</li>
 </ul>
+<p>最外层为Router，通过URL定位到不同的Service</p>
 <h2 id="Storage-存储"><a href="#Storage-存储" class="headerlink" title="Storage 存储"></a>Storage 存储</h2><ul>
 <li>数据如何存储与访问</li>
 <li>Schema，Data，SQL，NoSql，File System</li>
 </ul>
+<p>为每一个Service选型一个数据库，细化数据表结构</p>
+<h3 id="数据库系统和文件系统"><a href="#数据库系统和文件系统" class="headerlink" title="数据库系统和文件系统"></a>数据库系统和文件系统</h3><p>两者相互依赖，数据库系统是文件系统的一层包装，即数据库系统依赖文件系统。</p>
 <h2 id="Scale-升级"><a href="#Scale-升级" class="headerlink" title="Scale 升级"></a>Scale 升级</h2><ul>
 <li>解决缺陷，处理可能遇到的问题</li>
 <li>Sharding，Optimize，Special Case</li>
 </ul>
+<h1 id="QPS与常用存储系统"><a href="#QPS与常用存储系统" class="headerlink" title="QPS与常用存储系统"></a>QPS与常用存储系统</h1><p>QPS决定了我们选择什么存储系统，以下约为估计，会有差别</p>
+<ul>
+<li>MySql/PosgreSql约1KQPS这个级别</li>
+<li>MongoDB/Cassandra等硬盘型NoSql数据库约为10K QPS</li>
+<li>Redis/Memcached等内存型NoSql数据库约为100K-1M QPS</li>
+</ul>
+<h1 id="数据库分库分表"><a href="#数据库分库分表" class="headerlink" title="数据库分库分表"></a>数据库分库分表</h1><p>类型：水平/垂直。单表数据在1000万行以内，可以不拆分尽量不拆分。</p>
+<h2 id="垂直（大多用于分库）"><a href="#垂直（大多用于分库）" class="headerlink" title="垂直（大多用于分库）"></a>垂直（大多用于分库）</h2><p>垂直：将一个属性比较多，数据比较大的表。把单表的字段拆分，通过降低表的大小来提高性能。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">User:Id,name,age,phone,city,password,img,address,tel....</span><br><span class="line">-&gt;分为两个表</span><br><span class="line">User-base:Id,name,password</span><br><span class="line">User-info:Id,age,phone,city.......</span><br></pre></td></tr></table></figure></p>
+<p>特点：每个库（表）结构不一样，但是有一列数据都是一样（ID），并集是全量数据。</p>
+<h2 id="水平-（大多用于分表）"><a href="#水平-（大多用于分表）" class="headerlink" title="水平 （大多用于分表）"></a>水平 （大多用于分表）</h2><p>以某个字段，按照一定的规律（取模），将一个表的数据分到多个库（表）中</p>
+<p>特点： 每个库（表）结构都一样，数据都不一样。并集是全量数据。</p>
+<h2 id="分库分表策略"><a href="#分库分表策略" class="headerlink" title="分库分表策略"></a>分库分表策略</h2><ol>
+<li>Hash取模：一致性哈希</li>
+<li>Range范围：按时间、ID、年份</li>
+<li>List预定义</li>
+</ol>
+<h2 id="带来的问题"><a href="#带来的问题" class="headerlink" title="带来的问题"></a>带来的问题</h2><ol>
+<li>多数据库管理：多个数据源</li>
+<li>跨库事务和join：Mysql5.7x版本支持XA分布式事务</li>
+<li>查询数据结果集合：通过业务避免、异构方式内存计算（spark,ES）</li>
+<li>分布式全局唯一id</li>
+</ol>
+<h2 id="拆分的共同缺点"><a href="#拆分的共同缺点" class="headerlink" title="拆分的共同缺点"></a>拆分的共同缺点</h2><ol>
+<li>引入分布式事务的问题</li>
+<li>跨节点Join的问题</li>
+<li>跨界点合并排序分页问题</li>
+</ol>
 
       
     </div>
@@ -665,7 +696,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#系统设计面试评分参考"><span class="nav-text">系统设计面试评分参考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统设计的分析方法"><span class="nav-text">系统设计的分析方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Scenario-场景"><span class="nav-text">Scenario 场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分析QPS"><span class="nav-text">分析QPS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Service-服务"><span class="nav-text">Service 服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Storage-存储"><span class="nav-text">Storage 存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scale-升级"><span class="nav-text">Scale 升级</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#系统设计面试评分参考"><span class="nav-text">系统设计面试评分参考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统设计的分析方法"><span class="nav-text">系统设计的分析方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Scenario-场景"><span class="nav-text">Scenario 场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分析QPS"><span class="nav-text">分析QPS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Service-服务"><span class="nav-text">Service 服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Storage-存储"><span class="nav-text">Storage 存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库系统和文件系统"><span class="nav-text">数据库系统和文件系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scale-升级"><span class="nav-text">Scale 升级</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#QPS与常用存储系统"><span class="nav-text">QPS与常用存储系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库分库分表"><span class="nav-text">数据库分库分表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#垂直（大多用于分库）"><span class="nav-text">垂直（大多用于分库）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#水平-（大多用于分表）"><span class="nav-text">水平 （大多用于分表）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分库分表策略"><span class="nav-text">分库分表策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#带来的问题"><span class="nav-text">带来的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拆分的共同缺点"><span class="nav-text">拆分的共同缺点</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -27,7 +27,7 @@ http://www.codeforme.cn/2018/03/15/linux小记/
 http://www.codeforme.cn/2018/03/05/C++学习记录/
 http://www.codeforme.cn/2018/02/28/简易Socket编程/
 http://www.codeforme.cn/2018/01/19/信息安全铁三赛write-up/
-http://www.codeforme.cn/2018/01/01/QT自学之路（一）/
+http://www.codeforme.cn/2018/01/01/QT自学之路/
 http://www.codeforme.cn/2017/12/11/C++STL初步/
 http://www.codeforme.cn/2017/10/23/web安全工具/
 http://www.codeforme.cn/2017/10/21/web安全基础/
