@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="深入理解Golang 基于极客时间专栏，记录学习笔记">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-24T05:30:26.087Z">
+<meta property="og:updated_time" content="2020-07-05T12:11:02.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Go语言核心36讲">
 <meta name="twitter:description" content="深入理解Golang 基于极客时间专栏，记录学习笔记">
@@ -426,6 +426,66 @@
 <li>你知道设置GOPATH有什么意义吗</li>
 </ul>
 <p>设置GOPATH，可以近似看成Go语言的工作目录，它是一个工作路径，也可以是多个目录路径。</p>
+<h1 id="Go语言源码的组织方式"><a href="#Go语言源码的组织方式" class="headerlink" title="Go语言源码的组织方式"></a>Go语言源码的组织方式</h1><p>Go语言源码以代码包为基本组织单位，在文件文件系统来看，就是以<strong>目录</strong>一一对应。一个代码包包含多个.go扩展名的文件，并且这些文件需要被声明为同一个package。</p>
+<p>一般来收，生成的可执行文件和源码目录同名，否则以package为准。</p>
+<h1 id="构建和安装Go程序的过程"><a href="#构建和安装Go程序的过程" class="headerlink" title="构建和安装Go程序的过程"></a>构建和安装Go程序的过程</h1><p>构建使用：go build，安装使用：go install。两个命令都会执行编译、打包等操作。</p>
+<ul>
+<li>如果构架的是库源码文件（无main），操作结果会被存在临时目录当中，因此这个主要是为了检查和验证</li>
+<li>如果构建的是命令源码文件，结果文件则会被储存到<strong>源码文件</strong>所在目录当中</li>
+</ul>
+<h1 id="命令源码文件"><a href="#命令源码文件" class="headerlink" title="命令源码文件"></a>命令源码文件</h1><p>package为<strong>main</strong>，并且包含一个<strong>无参数</strong>、<strong>无返回值</strong>的main函数，如下：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">"Hello"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>对于一个独立的程序来说，命令源码文件只能有一个</p>
+<h1 id="库源码文件"><a href="#库源码文件" class="headerlink" title="库源码文件"></a>库源码文件</h1><p>库源码文件可以被看成不能被直接运行的源码文件，但是可以被其他程序进行import</p>
+<h1 id="变量重定义现象"><a href="#变量重定义现象" class="headerlink" title="变量重定义现象"></a>变量重定义现象</h1><p>如果假设，两个变量都在一个大的语句块当中，并且名字一样，类型一样。子语句块会屏蔽掉父语句块（类型必须一样）。但是如果类型不一样，或者语句块不嵌套的话，则会报redeclared，比如import . “../path”，如果变量名冲突，就会报错。</p>
+<h1 id="判断一个变量的类型"><a href="#判断一个变量的类型" class="headerlink" title="判断一个变量的类型"></a>判断一个变量的类型</h1><p>通过使用类型断言，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var a int = 10</span><br><span class="line">value , ok := interface&#123;&#125;a.(int)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>ok代表的是判断结果，true或者false。如果是true的话，value则为转化后的结果。</li>
+</ul>
+<h1 id="转换所带来的问题"><a href="#转换所带来的问题" class="headerlink" title="转换所带来的问题"></a>转换所带来的问题</h1><p>如果从32为转8位会造成精度丢失的问题，float也一样。如果写下string(-1)的代码，会发现无法找到对应的unicode字符，因此显示为�，可以注意排查。</p>
+<p>string转byte的话，假设string存储的是你好，转为[]byte的话，长度为6，因为一个中文占三个字节</p>
+<h1 id="type申明类型"><a href="#type申明类型" class="headerlink" title="type申明类型"></a>type申明类型</h1><p>如果使用:type myInt int的话，myInt和int其实是两种不同的类型。而如果加上等号如：type myInt = int，则两者是同一种类型。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">type myInt = int</span><br><span class="line">func (m myInt)Say() &#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line">//会提示错误如：Cannot define new methods on non-local type &apos;builtin.int&apos;</span><br></pre></td></tr></table></figure></p>
+<h1 id="字段的KEY不能是哪些类型"><a href="#字段的KEY不能是哪些类型" class="headerlink" title="字段的KEY不能是哪些类型"></a>字段的KEY不能是哪些类型</h1><p>官方文档中记载：Go语言字典的KEY不能是函数，字典，切片类型，但是interface{}同样也不行</p>
+<p>语言规范中规定，KEY必须可以施加操作符==或者！=，意味着必须支持判等操作。因此KEY同样不能为interfae，或者会触发panic</p>
+<p>如果只申明一个字典：var t map[string]int，它的值为nil类型，但是这时候去读是不会发生任何错误的。直到触发写操作，产生panic</p>
+<h1 id="非法竞态访问检测"><a href="#非法竞态访问检测" class="headerlink" title="非法竞态访问检测"></a>非法竞态访问检测</h1><p>竞态访问代表没有在任何同步操作下，并行读取同一份数据：如多个协程同时运行，有的协程在读，有的协程在复制数据，就会出现竞态访问。</p>
+<ul>
+<li>使用go run -race 文件名，来进行竞态检测</li>
+<li>也可使用go build -race来生成文件，手动运行触发竞态检测</li>
+</ul>
+<h1 id="channel通道"><a href="#channel通道" class="headerlink" title="channel通道"></a>channel通道</h1><p>使用通道的值本身就是并发安全的，也是Go语言自带，唯一满足并发安全性的类型</p>
+<ul>
+<li>基本原则：不要从接收端关闭通道</li>
+</ul>
+<h2 id="通道发送和接收有哪些基本的特性"><a href="#通道发送和接收有哪些基本的特性" class="headerlink" title="通道发送和接收有哪些基本的特性"></a>通道发送和接收有哪些基本的特性</h2><ol>
+<li>同一个通道，发送操作是互斥的，接收操作也一样</li>
+<li>发送和接收操作，对元素值的处理不可分割（保证并发安全，绝对不会出现只复制一半的情况）</li>
+<li>发送操作在<strong>完全完成</strong>之前会被阻塞，接收操作同样也是如此</li>
+</ol>
+<p>接收操作通常包含：复制通道内的元素值，放置到接收方，删掉原值。这就意味着使用通道，元素的值一定会被<strong>复制一份</strong></p>
+<h2 id="错误操作"><a href="#错误操作" class="headerlink" title="错误操作"></a>错误操作</h2><p>对于值为nil的通道，无论它的具体类型是什么，都会永久属于阻塞状态。这就意味着，通道的零值是<strong>nil</strong>，必须要使用make进行初始化</p>
+<ol>
+<li>对于已经初始化，但是未关闭的通道，收发操作一定不会引发panic，但是通道一旦关闭后，发操作就会引发panic.</li>
+<li>重复关闭一个通道也会引发panic。<strong>接收操作可以感知到通道关闭</strong>。</li>
+</ol>
+<h2 id="传slice和array"><a href="#传slice和array" class="headerlink" title="传slice和array"></a>传slice和array</h2><p>array是值类型，因此如果传入通道，会被复制一份，并且，修改值不会影响到之前的数组。而slice是引用类型，可以影响到之前的数组。</p>
+<h2 id="单向通道的应用价值"><a href="#单向通道的应用价值" class="headerlink" title="单向通道的应用价值"></a>单向通道的应用价值</h2><p>约束作用，这种一般会出现在接口声明中的某个方法定义上。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Notifier <span class="keyword">interface</span> &#123;</span><br><span class="line">    SendInt(ch <span class="keyword">chan</span>&lt;- <span class="keyword">int</span>) <span class="comment">//约束这个接口，必须要发送数据，不允许接收</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="select语句和通道联用，注意事项"><a href="#select语句和通道联用，注意事项" class="headerlink" title="select语句和通道联用，注意事项"></a>select语句和通道联用，注意事项</h2><p>select的选项，没有顺序之分，是随机的。且每次只有一个分支的代码会被执行。</p>
+<p>select的分支分为两种：候选分支和默认分支（default），且转为通道设计，因此只能接通道。</p>
+<p>select中进行break，只会退出select而不会退出for</p>
+<h2 id="引申的思考题"><a href="#引申的思考题" class="headerlink" title="引申的思考题"></a>引申的思考题</h2><h3 id="如果在select语句中发现某个通道已关闭，那么应该怎样屏蔽掉它所在的分支？"><a href="#如果在select语句中发现某个通道已关闭，那么应该怎样屏蔽掉它所在的分支？" class="headerlink" title="如果在select语句中发现某个通道已关闭，那么应该怎样屏蔽掉它所在的分支？"></a>如果在select语句中发现某个通道已关闭，那么应该怎样屏蔽掉它所在的分支？</h3><p>可以重新make一个通道，长度为0，这样这个case就会一直阻塞<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> &#123;</span><br><span class="line">    <span class="keyword">select</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> _ , ok &lt;- ch1:</span><br><span class="line">            <span class="keyword">if</span> !ok &#123;</span><br><span class="line">                ch1 = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="在select语句与for语句联用时，怎样直接退出外层的for语句？"><a href="#在select语句与for语句联用时，怎样直接退出外层的for语句？" class="headerlink" title="在select语句与for语句联用时，怎样直接退出外层的for语句？"></a>在select语句与for语句联用时，怎样直接退出外层的for语句？</h3><p>结合goto语句，后者结合break loop语句</p>
+<h1 id="一等公民：函数"><a href="#一等公民：函数" class="headerlink" title="一等公民：函数"></a>一等公民：函数</h1><p>在Go当中，函数是一等公民（可以变为普通的值，赋予变量，在函数间传递）</p>
+<h1 id="接口变量什么时候才为真正的nil"><a href="#接口变量什么时候才为真正的nil" class="headerlink" title="接口变量什么时候才为真正的nil"></a>接口变量什么时候才为真正的nil</h1><p>如果接口变量没有被赋值的话，那么它的值就是nil，如果被赋值了，哪怕赋值对象是nil，接口变量也不会是nil。Go语言会用runtime.iface去包装他，底层是两个指针，一个指向类型信息，一个指向动态值，这时候动态值是nil，但是类型信息不是。</p>
+<h1 id="通过unsafe-Pointer操纵可寻址的值"><a href="#通过unsafe-Pointer操纵可寻址的值" class="headerlink" title="通过unsafe.Pointer操纵可寻址的值"></a>通过unsafe.Pointer操纵可寻址的值</h1><p>作为开发者，请谨慎使用，unsafe.Pointer转换到值之后，可以通过unsafe.Offsetof（成员变量名），进行地址偏移，达到修改指定成员变量的值</p>
+<h1 id="for-range的坑"><a href="#for-range的坑" class="headerlink" title="for range的坑"></a>for range的坑</h1><ol>
+<li>range表达式只会再for语句开始执行时被求值一次，无论后面会有多少次迭代。</li>
+<li>range表达式的求值结果会被复制，修改不会影响原值</li>
+</ol>
+<h1 id="互斥锁"><a href="#互斥锁" class="headerlink" title="互斥锁"></a>互斥锁</h1><p>sync.Mutex属于值类型，如果在函数当中进行传递，则会复制一把新的锁，对新锁的操作不会影响到以前的锁</p>
+<h1 id="sync-Pool对象的生命周期"><a href="#sync-Pool对象的生命周期" class="headerlink" title="sync.Pool对象的生命周期"></a>sync.Pool对象的生命周期</h1><ul>
+<li>gc会清除sync.pool缓存的对象</li>
+<li>对象的缓存有效期为下一次GC之前</li>
+</ul>
 
       
     </div>
@@ -551,7 +611,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -643,7 +703,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#从一道面试题开始"><span class="nav-text">从一道面试题开始</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#从一道面试题开始"><span class="nav-text">从一道面试题开始</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Go语言源码的组织方式"><span class="nav-text">Go语言源码的组织方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#构建和安装Go程序的过程"><span class="nav-text">构建和安装Go程序的过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命令源码文件"><span class="nav-text">命令源码文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#库源码文件"><span class="nav-text">库源码文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变量重定义现象"><span class="nav-text">变量重定义现象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#判断一个变量的类型"><span class="nav-text">判断一个变量的类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#转换所带来的问题"><span class="nav-text">转换所带来的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#type申明类型"><span class="nav-text">type申明类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字段的KEY不能是哪些类型"><span class="nav-text">字段的KEY不能是哪些类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#非法竞态访问检测"><span class="nav-text">非法竞态访问检测</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#channel通道"><span class="nav-text">channel通道</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#通道发送和接收有哪些基本的特性"><span class="nav-text">通道发送和接收有哪些基本的特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误操作"><span class="nav-text">错误操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传slice和array"><span class="nav-text">传slice和array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单向通道的应用价值"><span class="nav-text">单向通道的应用价值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#select语句和通道联用，注意事项"><span class="nav-text">select语句和通道联用，注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引申的思考题"><span class="nav-text">引申的思考题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如果在select语句中发现某个通道已关闭，那么应该怎样屏蔽掉它所在的分支？"><span class="nav-text">如果在select语句中发现某个通道已关闭，那么应该怎样屏蔽掉它所在的分支？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在select语句与for语句联用时，怎样直接退出外层的for语句？"><span class="nav-text">在select语句与for语句联用时，怎样直接退出外层的for语句？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一等公民：函数"><span class="nav-text">一等公民：函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接口变量什么时候才为真正的nil"><span class="nav-text">接口变量什么时候才为真正的nil</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#通过unsafe-Pointer操纵可寻址的值"><span class="nav-text">通过unsafe.Pointer操纵可寻址的值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#for-range的坑"><span class="nav-text">for range的坑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#互斥锁"><span class="nav-text">互斥锁</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sync-Pool对象的生命周期"><span class="nav-text">sync.Pool对象的生命周期</span></a></li></ol></div>
             
 
           </div>

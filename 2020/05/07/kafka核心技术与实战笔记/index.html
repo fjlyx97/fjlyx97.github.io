@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="阅读kafka核心技术与实战 记录学习kafka的过程">
+<meta name="description" content="阅读kafka核心技术与实战 阅读Apache Kafka实战 记录学习kafka的过程">
 <meta name="keywords" content="编程,学习,消息队列">
 <meta property="og:type" content="article">
 <meta property="og:title" content="kafka核心技术与实战笔记">
 <meta property="og:url" content="http://www.codeforme.cn/2020/05/07/kafka核心技术与实战笔记/index.html">
 <meta property="og:site_name" content="一米见方">
-<meta property="og:description" content="阅读kafka核心技术与实战 记录学习kafka的过程">
+<meta property="og:description" content="阅读kafka核心技术与实战 阅读Apache Kafka实战 记录学习kafka的过程">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-07T03:57:40.537Z">
+<meta property="og:updated_time" content="2020-07-05T12:11:02.375Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kafka核心技术与实战笔记">
-<meta name="twitter:description" content="阅读kafka核心技术与实战 记录学习kafka的过程">
+<meta name="twitter:description" content="阅读kafka核心技术与实战 阅读Apache Kafka实战 记录学习kafka的过程">
 
 
 
@@ -418,26 +418,30 @@
         <blockquote>
 <ul>
 <li>阅读kafka核心技术与实战</li>
+<li>阅读Apache Kafka实战</li>
 <li>记录学习kafka的过程</li>
 </ul>
 </blockquote>
 <a id="more"></a>
 <h1 id="入门术语"><a href="#入门术语" class="headerlink" title="入门术语"></a>入门术语</h1><ul>
 <li>消息：Record。Kafka 是消息引擎嘛，这里的消息就是指 Kafka 处理的主要对象。</li>
-<li>主题：Topic。主题是承载消息的逻辑容器，在实际使用中多用来区分具体的业务。</li>
-<li>分区：Partition。一个有序不变的消息序列。每个主题下可以有多个分区。</li>
-<li>消息位移：Offset。表示分区中每条消息的位置信息，是一个单调递增且不变的值。</li>
+<li>主题：Topic。主题是承载消息的逻辑容器，在实际使用中多用来区分具体的业务。（给队列起名字，生产者知道往哪里丢数据，相当于数据库表的概念）</li>
+<li>分区：Partition。一个有序不变的消息序列。每个<strong>topic(主题)</strong>下可以有多个分区。</li>
+<li>消息位移：Offset。表示分区中每条消息的位置信息，是一个单调递增且不变的值。（消息位移<strong>恒确定</strong>，不会超过最新一条消息的位移）</li>
 <li>副本：Replica。Kafka 中同一条消息能够被拷贝到多个地方以提供数据冗余，这些地方就是所谓的副本。副本还分为领导者副本和追随者副本，各自有不同的角色划分。副本是在分区层级下的，即每个分区可配置多个副本实现高可用。</li>
 <li>生产者：Producer。向主题发布新消息的应用程序。</li>
 <li>消费者：Consumer。从主题订阅新消息的应用程序。</li>
-<li>消费者位移：Consumer Offset。表征消费者消费进度，每个消费者都有自己的消费者位移。</li>
-<li>消费者组：Consumer Group。多个消费者实例共同组成的一个组，同时消费多个分区以实现高吞吐。</li>
+<li>消费者位移：Consumer Offset。表征消费者消费进度，每个消费者都有自己的消费者位移。（动态变化）</li>
+<li>消费者组：Consumer Group。多个消费者实例共同组成的一个组，同时消费多个分区以实现高吞吐。（多个消费者，消费一个分区）</li>
 <li>重平衡：Rebalance。消费者组内某个消费者实例挂掉后，其他消费者实例自动重新分配订阅主题分区的过程。Rebalance 是 Kafka 消费者端实现高可用的重要手段。</li>
-<li>缓存代理：Broker，Kafka集群中的一台或多台服务器统称broker.</li>
+<li>缓存代理：Broker，Kafka集群中的一台或多台服务器统称broker。集群就是<strong>多台Broker</strong></li>
 </ul>
 <h1 id="为什么kafka适合部署在linux"><a href="#为什么kafka适合部署在linux" class="headerlink" title="为什么kafka适合部署在linux"></a>为什么kafka适合部署在linux</h1><p>主流的 I/O 模型通常有 5 种类型：阻塞式 I/O、非阻塞式 I/O、I/O 多路复用、信号驱动 I/O 和异步 I/O。kafka使用了java的selector，其底层在linux上为epoll而在windows上为select，因此明显linux更优。</p>
 <p>网络模型同样有差异，linux当中拥有zero copy技术，可以避免磁盘和网络间的性能损耗。</p>
-<h1 id="磁盘问题"><a href="#磁盘问题" class="headerlink" title="磁盘问题"></a>磁盘问题</h1><p>Kafka大量使用磁盘，但是基于顺序读写，因此SSD并没有太大的性价比。</p>
+<h1 id="磁盘问题"><a href="#磁盘问题" class="headerlink" title="磁盘问题"></a>磁盘问题</h1><p>Kafka大量使用磁盘，但是基于<strong>顺序读写</strong>，因此SSD并没有太大的性价比。</p>
+<ul>
+<li>在顺序读写上，磁盘的IO速度甚至可以匹敌内存的随机访问速度</li>
+</ul>
 <p>规划磁盘容量需要考虑以下几点：</p>
 <ol>
 <li>新增消息数</li>
@@ -452,6 +456,59 @@
 <h2 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h2><ul>
 <li>zookeeper.connect，设置zookeeper集群，可以通过proxy来达到只设置一个的目的。</li>
 </ul>
+<hr>
+<h1 id="Apache-kafka-实战"><a href="#Apache-kafka-实战" class="headerlink" title="Apache kafka 实战"></a>Apache kafka 实战</h1><p>以下为阅读Apache kafka 实战的笔记</p>
+<h1 id="kafka消费端如何做到高吞吐量、低延时"><a href="#kafka消费端如何做到高吞吐量、低延时" class="headerlink" title="kafka消费端如何做到高吞吐量、低延时"></a>kafka消费端如何做到高吞吐量、低延时</h1><p>Kafka把消息顺序写入页缓存，那么同样，读缓存也会从OS中页缓存读取，并直接转发到socket上，不经过应用层，这就是零拷贝。</p>
+<ol>
+<li>大量使用页缓存</li>
+<li>不直接参与物理IO操作，交给操作系统</li>
+<li>顺序读写</li>
+<li>使用零拷贝</li>
+</ol>
+<h1 id="Kafka-topic结构"><a href="#Kafka-topic结构" class="headerlink" title="Kafka topic结构"></a>Kafka topic结构</h1><p>出于性能的考量，Kafka并不是用topic-message两级结构，而是使用topic-partition-message三级结构来负载。因此，一个topic可以看成由多个partition来负载。</p>
+<ul>
+<li>用户对partition唯一能做的，就是在消息队列尾部追加写入消息。</li>
+</ul>
+<h1 id="Partition"><a href="#Partition" class="headerlink" title="Partition"></a>Partition</h1><p>分区。topic的消息被分为多个分区，对用到各个服务器。单个分区中消息是有序的，但是多个分区，消息不一定是有序的。一般情况下，一个Topic的分区数量是Broker数量的<strong>整数倍</strong>。这样可以将分区均匀分布到各个Broker上。</p>
+<ul>
+<li>保存位置为：log.dirs的路径</li>
+<li>有一个特殊的Partition：consumer_offset</li>
+</ul>
+<h1 id="Segment"><a href="#Segment" class="headerlink" title="Segment"></a>Segment</h1><p>将分区分割为若干个段，每个segment文件最大大小相等。因为如果Partition不分区，存储的内容多了之后，不好管理，容易出问题</p>
+<h1 id="Consumer-Group"><a href="#Consumer-Group" class="headerlink" title="Consumer Group"></a>Consumer Group</h1><p>在同一个消费者组内，他们共享同一个公共ID，即GroutId，他们平均消费的对象针对的<strong>不是消息</strong>，是<strong>分区</strong>。不允许同一个组里两个消费者，消费同一个分区。</p>
+<h1 id="Kafka-message"><a href="#Kafka-message" class="headerlink" title="Kafka message"></a>Kafka message</h1><p>要定位到一条消息，我们必须要三个数据：topic,partition,offset，只要有了这三个数据，就可以定位到任意一条数据，因此一条消息本质上可以看成是一条<strong>三元组</strong></p>
+<h1 id="leader和follower-针对Replica"><a href="#leader和follower-针对Replica" class="headerlink" title="leader和follower(针对Replica)"></a>leader和follower(针对Replica)</h1><p>要保证数据不丢失，就需要备份数据（replica），在kafka中分为leader和follower。这种做法和传统mysql主从的做法不同的是，只有leader对外服务，follower只能从leader获取数据，一旦leader挂了，follower才会顶上（主备）。</p>
+<ul>
+<li>kafka保证replica不会在同一个broker上（不然机器挂了和没备份一样）</li>
+</ul>
+<h1 id="分区机制"><a href="#分区机制" class="headerlink" title="分区机制"></a>分区机制</h1><p>对于有Key的消息而言，Java版本producer自带的partitioner会根据<strong>murmur2</strong>算法，计算hash，接着对总分区取模，确定要发送到的目标分区号。但是一般来说，允许自定义处理机制，这样就可以满足如：相同key存储到最后一个分区，否则随机存储到除最后一个分区以外的地方。</p>
+<h1 id="ISR-In-sync-replicas"><a href="#ISR-In-sync-replicas" class="headerlink" title="ISR(In-sync replicas)"></a>ISR(In-sync replicas)</h1><p>副本同步列表，最初的时候副本全都是AR(Assigned Replicas)，如果断线了会变成OSR(outof-sync replicas)，AR=ISR+OSR。</p>
+<ul>
+<li>ISR列表由</li>
+</ul>
+<h1 id="创建一个消费者"><a href="#创建一个消费者" class="headerlink" title="创建一个消费者"></a>创建一个消费者</h1><h2 id="bootstrap-servers"><a href="#bootstrap-servers" class="headerlink" title="bootstrap.servers"></a>bootstrap.servers</h2><p>这个参数主要是为了找到Kafka环境，只要写了任意一个IP，kafka总能找到全部broker,但是多写几个可以防止单点kafka挂掉，找不到其他Broker的情况</p>
+<h2 id="groutid"><a href="#groutid" class="headerlink" title="groutid"></a>groutid</h2><p>指定消费者组的ID，是一个字符串</p>
+<h1 id="Reblance"><a href="#Reblance" class="headerlink" title="Reblance"></a>Reblance</h1><h2 id="触发条件"><a href="#触发条件" class="headerlink" title="触发条件"></a>触发条件</h2><ol>
+<li>组成员发生变更，如：新消费者入组，已有消费者离组（或崩溃）</li>
+<li>topic数量发生变更</li>
+<li>topic分区数发生变更</li>
+</ol>
+<h3 id="Range"><a href="#Range" class="headerlink" title="Range"></a>Range</h3><p>基于范围的思想，将单个Topic分区顺序排列，将分区按照固定大小的<strong>分区段</strong>，一次分配给每个consumer</p>
+<h3 id="Round-robin"><a href="#Round-robin" class="headerlink" title="Round-robin"></a>Round-robin</h3><p>topic分区全部摆开，轮询式分给每个consumer</p>
+<h3 id="Sticky"><a href="#Sticky" class="headerlink" title="Sticky"></a>Sticky</h3><p>最新发布的思想，采用了<strong>有粘性</strong>策略，</p>
+<h1 id="Broker-Controller"><a href="#Broker-Controller" class="headerlink" title="Broker Controller"></a>Broker Controller</h1><p>Kafka集群中有多个broker，有一个会被选举为Controller，，负责控制集群中的分区和副本（集群中的老大）</p>
+<ul>
+<li>topic的分区变化时，由Controller负责管理Partition与消费者的分配关系，即Rebalance</li>
+</ul>
+<h1 id="脑裂"><a href="#脑裂" class="headerlink" title="脑裂"></a>脑裂</h1><p>一个集群，旧master假死，新master被选举出来，造成两个master的情况。解决方法，新master上任后，延时开始工作，直到旧master变为replicator</p>
+<h1 id="HW和LEO（重点内容）"><a href="#HW和LEO（重点内容）" class="headerlink" title="HW和LEO（重点内容）"></a>HW和LEO（重点内容）</h1><h2 id="HW"><a href="#HW" class="headerlink" title="HW"></a>HW</h2><ul>
+<li>HW,HighWaterMark高水位</li>
+</ul>
+<p>HW代表目前可以消费到的最高位置，通常在同步完一个LEO之后，才会更新HW</p>
+<h2 id="LEO"><a href="#LEO" class="headerlink" title="LEO"></a>LEO</h2><ul>
+<li>Log end offset</li>
+</ul>
+<p>LEO是各自分区的消息offset，但是各个分区没有完全同步LEO之前，是无法消费的。</p>
 
       
     </div>
@@ -577,7 +634,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -669,7 +726,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#入门术语"><span class="nav-text">入门术语</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么kafka适合部署在linux"><span class="nav-text">为什么kafka适合部署在linux</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#磁盘问题"><span class="nav-text">磁盘问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Broker重要参数"><span class="nav-text">Broker重要参数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储信息"><span class="nav-text">存储信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zookeeper"><span class="nav-text">Zookeeper</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#入门术语"><span class="nav-text">入门术语</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么kafka适合部署在linux"><span class="nav-text">为什么kafka适合部署在linux</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#磁盘问题"><span class="nav-text">磁盘问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Broker重要参数"><span class="nav-text">Broker重要参数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储信息"><span class="nav-text">存储信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zookeeper"><span class="nav-text">Zookeeper</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Apache-kafka-实战"><span class="nav-text">Apache kafka 实战</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#kafka消费端如何做到高吞吐量、低延时"><span class="nav-text">kafka消费端如何做到高吞吐量、低延时</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Kafka-topic结构"><span class="nav-text">Kafka topic结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Partition"><span class="nav-text">Partition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Segment"><span class="nav-text">Segment</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Consumer-Group"><span class="nav-text">Consumer Group</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Kafka-message"><span class="nav-text">Kafka message</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#leader和follower-针对Replica"><span class="nav-text">leader和follower(针对Replica)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分区机制"><span class="nav-text">分区机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ISR-In-sync-replicas"><span class="nav-text">ISR(In-sync replicas)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建一个消费者"><span class="nav-text">创建一个消费者</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#bootstrap-servers"><span class="nav-text">bootstrap.servers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#groutid"><span class="nav-text">groutid</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reblance"><span class="nav-text">Reblance</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#触发条件"><span class="nav-text">触发条件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Range"><span class="nav-text">Range</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Round-robin"><span class="nav-text">Round-robin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sticky"><span class="nav-text">Sticky</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Broker-Controller"><span class="nav-text">Broker Controller</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#脑裂"><span class="nav-text">脑裂</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HW和LEO（重点内容）"><span class="nav-text">HW和LEO（重点内容）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HW"><span class="nav-text">HW</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LEO"><span class="nav-text">LEO</span></a></li></ol></li></ol></div>
             
 
           </div>
