@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[高并发系统设计]]></title>
+    <url>%2F2020%2F07%2F18%2F%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%2F</url>
+    <content type="text"><![CDATA[高并发系统设计笔记 基于极客时间专栏 性能的度量指标明确度量指标十分重要，单次响应时间没有意义，应当关注一段时间的性能是什么样的。依据一些统计方法计算出特征值，这些特征值可以反应在这段时间的性能情况。常用的指标如下： 平均值这段时间响应时间相加，除以总数。这种方案敏感性较差，如果出现了慢请求，无法如实反映出实际情况 最大值请求时间最长的值。和平均值相比，太过敏感。 分位值分位值分为很多种，比如90分位，95分位，75分位。把这段响应时间从小到大排序，假设100个请求，排在第90位的响应时间就是90分位值。这种方案可以排除偶发的慢请求对数据的影响，很好的反应出这段时间的性能情况，分位值越大，对于慢请求的影响就越敏感。 分位值适合在时间段内，响应时间统计值来使用，在实际应用中也应用的最多。 通常描述：在每秒 1 万次的请求量下，响应时间 99 分位值在 10ms 以下。 分界点从用户体验来看：200ms感受不到延时。1s，感受到延时，但是可以接收。之后等待时间越长，用户体验就越差。因此健康系统的99分位值应当控制在200ms以内。而不超过1s的请求占比要在99.99%以上。 高并发下的性能优化提高系统的处理核心数提高系统核心数可以提高性能，但是并不意味着无限制提高核心数就可以无限制提高性能。多核心数意味着资源争抢愈发严重。在某个临界点上继续增加并发进程数，反而会造成系统性能的下降，这就是拐点模型。 减少单次任务的响应时间区分是CPU密集型还是IO密集型 CPU密集型需要大量的CPU运算，选用更高效的算法，或减少运算次数。可以通过Profile工具来找到消耗cpu时间更多的方法或者模块，如linux的perf,eBPF等 IO密集型IO密集型大部分操作都是等待IO完成，如磁盘IO，网络IO。解决方案：采用工具排查，一些开发语言甚至有对应的内存工具。另一类手段是通过监控来发现性能问题，对每个步骤进行分时统计，从而找到任务的消耗时间。]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+        <tag>linux</tag>
+        <tag>并发</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[容器基础docker]]></title>
     <url>%2F2020%2F07%2F11%2F%E5%AE%B9%E5%99%A8%E5%9F%BA%E7%A1%80docker%2F</url>
-    <content type="text"><![CDATA[容器基础 docker的原理 Namespace机制linux中有一个系统调用为clone，用来创建一个子进程。‘’’cppint pid = clone(main_function, stack_size, CLONE_NEWPID | SIGCHLD, NULL);‘’’ CLONE_NEWPID可以为子进程创建一个全新的进程空间，在这个进程空间，它的pid为1。可以看作是一个障眼法，让每个子进程都以为自己是独一无二的。 Cgroup机制（Linux Control Group）每个容器相当于一个子进程，如果不对每个进程加以限制的话，会让资源被无限制占用。因此Cgroup机制就是用以限制一个进程组的资源上线，如CPU，内存，硬盘，网络带宽。 暴露接口：操作系统的文件系统，位于/sys/fs/cgroup 一个正在运行的 Docker 容器，其实就是一个启用了多个Linux Namespace 的应用进程，而这个进程能够使用的资源量，则受 Cgroups 配置的限制。 rootfsMount Namespace虽然有个隔离（Namespace），限制（Cgroup）机制，但是宿主机的文件系统却没办法隐藏。依然可以使用clone函数：1int container_pid = clone(container_main, container_stack+STACK_SIZE, CLONE_NEWNS | SIGCHLD CLONE_NEWNS标志，启用Mount Namespace。使用了这个参数后，在容器启动前，进行mount文件路径，即可达到文件系统隔离 rootfs原理rootfs可以看成（根文件系统），包含/bin,/etc,/proc等基础目录。因此对于一个docker项目来说，可以近似看成以下三个步骤： 启用Namespace 设置Cgroup 切换进程根目录（mount namespace） 联合文件系统（union file system）docker引入了layer层这个创新，用户制作镜像时每一个操作都会生成一个新的layer，而联合系统就是将多个目录挂载到同一个目录上面，并且将相同的文件进行合并。如果在新目录当中进行修改，也会影响到被挂载方的目录。]]></content>
+    <content type="text"><![CDATA[容器基础 docker的原理 Namespace机制linux中有一个系统调用为clone，用来创建一个子进程。‘’’cppint pid = clone(main_function, stack_size, CLONE_NEWPID | SIGCHLD, NULL);‘’’ CLONE_NEWPID可以为子进程创建一个全新的进程空间，在这个进程空间，它的pid为1。可以看作是一个障眼法，让每个子进程都以为自己是独一无二的。 Cgroup机制（Linux Control Group）每个容器相当于一个子进程，如果不对每个进程加以限制的话，会让资源被无限制占用。因此Cgroup机制就是用以限制一个进程组的资源上线，如CPU，内存，硬盘，网络带宽。 暴露接口：操作系统的文件系统，位于/sys/fs/cgroup 一个正在运行的 Docker 容器，其实就是一个启用了多个Linux Namespace 的应用进程，而这个进程能够使用的资源量，则受 Cgroups 配置的限制。 rootfsMount Namespace虽然有个隔离（Namespace），限制（Cgroup）机制，但是宿主机的文件系统却没办法隐藏。依然可以使用clone函数：1int container_pid = clone(container_main, container_stack+STACK_SIZE, CLONE_NEWNS | SIGCHLD CLONE_NEWNS标志，启用Mount Namespace。使用了这个参数后，在容器启动前，进行mount文件路径，即可达到文件系统隔离 rootfs原理rootfs可以看成（根文件系统），包含/bin,/etc,/proc等基础目录。因此对于一个docker项目来说，可以近似看成以下三个步骤： 启用Namespace 设置Cgroup 切换进程根目录（mount namespace） 联合文件系统（union file system）docker引入了layer层这个创新，用户制作镜像时每一个操作都会生成一个新的layer，而联合系统就是将多个目录挂载到同一个目录上面，并且将相同的文件进行合并。如果在新目录当中进行修改，也会影响到被挂载方的目录。 被挂载后，rootfs主要由三个层组成：可读写层(rw)，Init层(ro+wh)，只读层(ro+wh) ro readonly wh whiteoutwhiteout如果想对只读层修改，修改的记录会被记录到.wh.文件名中，并未实际删除，只是被遮挡住 未完待续]]></content>
       <categories>
         <category>Linux</category>
       </categories>

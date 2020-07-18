@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="容器基础 docker的原理">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-11T14:25:07.169Z">
+<meta property="og:updated_time" content="2020-07-18T06:55:06.878Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="容器基础docker">
 <meta name="twitter:description" content="容器基础 docker的原理">
@@ -442,7 +442,12 @@
 <li>切换进程根目录（mount namespace）</li>
 </ol>
 <h2 id="联合文件系统（union-file-system）"><a href="#联合文件系统（union-file-system）" class="headerlink" title="联合文件系统（union file system）"></a>联合文件系统（union file system）</h2><p>docker引入了layer层这个创新，用户制作镜像时每一个操作都会生成一个新的layer，而联合系统就是将多个目录挂载到同一个目录上面，并且将相同的文件进行合并。如果在新目录当中进行修改，也会影响到被挂载方的目录。</p>
-
+<p>被挂载后，rootfs主要由三个层组成：可读写层(rw)，Init层(ro+wh)，只读层(ro+wh)</p>
+<ul>
+<li>ro readonly</li>
+<li>wh whiteout<h3 id="whiteout"><a href="#whiteout" class="headerlink" title="whiteout"></a>whiteout</h3>如果想对只读层修改，修改的记录会被记录到.wh.文件名中，并未实际删除，只是被遮挡住</li>
+</ul>
+<h1 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h1>
       
     </div>
     
@@ -485,6 +490,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/18/高并发系统设计/" rel="prev" title="高并发系统设计">
+                高并发系统设计 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -563,7 +572,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -585,7 +594,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -655,7 +664,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Namespace机制"><span class="nav-text">Namespace机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cgroup机制（Linux-Control-Group）"><span class="nav-text">Cgroup机制（Linux Control Group）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rootfs"><span class="nav-text">rootfs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mount-Namespace"><span class="nav-text">Mount Namespace</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rootfs原理"><span class="nav-text">rootfs原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联合文件系统（union-file-system）"><span class="nav-text">联合文件系统（union file system）</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Namespace机制"><span class="nav-text">Namespace机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cgroup机制（Linux-Control-Group）"><span class="nav-text">Cgroup机制（Linux Control Group）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rootfs"><span class="nav-text">rootfs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mount-Namespace"><span class="nav-text">Mount Namespace</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rootfs原理"><span class="nav-text">rootfs原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联合文件系统（union-file-system）"><span class="nav-text">联合文件系统（union file system）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#whiteout"><span class="nav-text">whiteout</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#未完待续"><span class="nav-text">未完待续</span></a></li></ol></div>
             
 
           </div>
