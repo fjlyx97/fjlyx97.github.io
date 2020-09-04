@@ -1,3 +1,5 @@
+http://www.codeforme.cn/2020/08/12/Http协议笔记/
+http://www.codeforme.cn/2020/07/30/设计模式笔记/
 http://www.codeforme.cn/2020/07/18/高并发系统设计/
 http://www.codeforme.cn/2020/07/11/容器基础docker/
 http://www.codeforme.cn/2020/07/05/README/
@@ -46,5 +48,3 @@ http://www.codeforme.cn/2017/10/21/web基础知识/
 http://www.codeforme.cn/2017/10/20/数据结构和算法小记/
 http://www.codeforme.cn/2017/10/04/C语言学习笔记/
 http://www.codeforme.cn/2017/09/17/Git的初步体验/
-http://www.codeforme.cn/2017/09/10/霞中高三十班/
-http://www.codeforme.cn/2017/08/28/使用python-+-selenium实现浏览器自动登录/

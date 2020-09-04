@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="一米见方">
 <meta property="og:description" content="深入理解Golang 基于极客时间专栏，记录学习笔记">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-05T12:11:02.355Z">
+<meta property="og:updated_time" content="2020-07-18T06:54:32.572Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Go语言核心36讲">
 <meta name="twitter:description" content="深入理解Golang 基于极客时间专栏，记录学习笔记">
@@ -485,6 +485,9 @@
 <h1 id="sync-Pool对象的生命周期"><a href="#sync-Pool对象的生命周期" class="headerlink" title="sync.Pool对象的生命周期"></a>sync.Pool对象的生命周期</h1><ul>
 <li>gc会清除sync.pool缓存的对象</li>
 <li>对象的缓存有效期为下一次GC之前</li>
+<li>适合通过复用，降低复杂对象的创建和GC代价</li>
+<li>协程安全，会有锁的开销</li>
+<li>生命周期受GC影响，不适合做连接池，或者是需要自己管理生命周期的资源池化</li>
 </ul>
 
       
@@ -611,7 +614,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -622,7 +625,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -633,7 +636,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

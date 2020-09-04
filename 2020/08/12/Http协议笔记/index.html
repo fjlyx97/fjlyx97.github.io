@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="学习,linux,http,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="Http协议笔记 基于极客时间专栏 鱼总是最后看见水的">
+<meta name="keywords" content="学习,linux,http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Http协议笔记">
+<meta property="og:url" content="http://www.codeforme.cn/2020/08/12/Http协议笔记/index.html">
+<meta property="og:site_name" content="一米见方">
+<meta property="og:description" content="Http协议笔记 基于极客时间专栏 鱼总是最后看见水的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-09-04T02:09:37.788Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Http协议笔记">
+<meta name="twitter:description" content="Http协议笔记 基于极客时间专栏 鱼总是最后看见水的">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.codeforme.cn/2020/08/12/Http协议笔记/">
+
+
+
+
+
+  <title>Http协议笔记 | 一米见方</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一米见方</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">；林深见鹿，海蓝见鲸。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.codeforme.cn/2020/08/12/Http协议笔记/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="南浔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/background.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一米见方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Http协议笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T15:11:10+08:00">
+                2020-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<ul>
+<li>Http协议笔记</li>
+<li>基于极客时间专栏</li>
+<li>鱼总是最后看见水的</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<h1 id="HTTP是什么"><a href="#HTTP是什么" class="headerlink" title="HTTP是什么"></a>HTTP是什么</h1><p>超文本传输协议，可以拆分成三个部分：超文本、传输、协议。Http协议没有实体，依赖许多其他技术实现，但是许多技术也依赖它。</p>
+<h2 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h2><p>协议必须要有两个或者多个参与者，是一种行为约定和规范。</p>
+<h2 id="传输"><a href="#传输" class="headerlink" title="传输"></a>传输</h2><p>传输可以看成把一堆东西从A点搬到B点，即 A <--> B。</--></p>
+<ul>
+<li>数据虽然在A,B间传输，但是并没有限制只有A和B两个角色，允许中间有<strong>中转</strong>和<strong>接力</strong>，如A <--> X <--> Y <--> Z <--> B</--></--></--></--></li>
+</ul>
+<p>中间人可以有任意多个，但是也必须遵从HTTP协议，只要不打扰基本的数据传输，就可以添加任意的额外功能，如：安全认证，数据压缩，编码转换等。</p>
+<h2 id="超文本"><a href="#超文本" class="headerlink" title="超文本"></a>超文本</h2><p>超越了普通文本的文本，可以是文字、图片、视频等混合体，最关键是含有<strong>超链接</strong></p>
+<h1 id="万维网"><a href="#万维网" class="headerlink" title="万维网"></a>万维网</h1><p>互联网的正式名称是Internet，但是浏览器访问的其实是其中的一个子集：<strong>万维网（WWW）</strong>，基于HTTP协议。但是互联网还有很多其他资源，如电子邮件、FTP文件下载、SSH安全登录、即时通信服务等。</p>
+<h1 id="域名的形式"><a href="#域名的形式" class="headerlink" title="域名的形式"></a>域名的形式</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">www.baidu.com</span><br><span class="line">主机名.二级域名.顶级域名</span><br></pre></td></tr></table></figure>
+<h1 id="常用头字段"><a href="#常用头字段" class="headerlink" title="常用头字段"></a>常用头字段</h1><p>Http协议规定了非常多的头部字段，功能基本可以分为四大类：</p>
+<ol>
+<li>通用字段：在请求头和响应头都可以出现</li>
+<li>请求字段：仅能出现在请求头里，进一步说明请求信息或其他条件</li>
+<li>响应字段：仅能出现在响应头里，补充说明响应报文的信息</li>
+<li>实体字段：通用字段，描述body的额外信息</li>
+</ol>
+<h2 id="Host字段"><a href="#Host字段" class="headerlink" title="Host字段"></a>Host字段</h2><p>请求字段，在请求头里，Http/1.1必须出现的字段。当一个服务器配置了多个虚拟主机，服务器端就可以通过Nginx来选择，有点像简单的<strong>路由重定向</strong></p>
+<h2 id="User-Agent字段"><a href="#User-Agent字段" class="headerlink" title="User-Agent字段"></a>User-Agent字段</h2><p>请求字段，描述发起Http请求的客户端，服务器可以通过它来访问最适合浏览器显示的界面</p>
+<h2 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h2><p>通用字段，标识Http报文创建的时间，客户端可以使用这个时间再搭配其他字段决定缓存策略</p>
+<h2 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h2><p>相应字段，只能出现在响应头里面，告诉客户端当前正在提供Web服务的软件名称和版本号</p>
+<h1 id="标准请求方法"><a href="#标准请求方法" class="headerlink" title="标准请求方法"></a>标准请求方法</h1><h2 id="GET-HEAD"><a href="#GET-HEAD" class="headerlink" title="GET/HEAD"></a>GET/HEAD</h2><p>Get含义是从服务器获取资源，可以为文本、图片、视频，也可以是PHP,Java动态生成的界面或者其他数据格式。Head方法和Get方法相似，但是服务器<strong>不会返回实体数据，只会返回响应头</strong>。</p>
+<ul>
+<li>如果要检查一个文件是否存在，就可以用Head方法，没必要用Get把整个文件取下来。</li>
+</ul>
+<h2 id="POST-PUT"><a href="#POST-PUT" class="headerlink" title="POST/PUT"></a>POST/PUT</h2><p>Put作用和Post类似，但是有着微妙的不同。Post表示新建，Put表示修改。实际上，Put用的极少，有的服务器甚至禁用了Put方法。</p>
+<h2 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h2><ol>
+<li>Delete方法，一般不轻易使用，服务器一般只会对资源做一个删除的标记</li>
+<li>Connect方法，要求服务器为客户端和另一台远程服务器建立隧道，服务器充当代理</li>
+<li>Options方法，要求服务器列出可对资源实行的操作方法，再响应头的Allow字段返回，用处不大。（Nginx干脆不支持）</li>
+<li>Trace方法，用于对Http链路的诊断，存在漏洞，通常禁止使用</li>
+</ol>
+<h1 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h1><h2 id="1XX"><a href="#1XX" class="headerlink" title="1XX"></a>1XX</h2><p>提示信息，是协议的中间状态，实际用到很少</p>
+<h2 id="2xx"><a href="#2xx" class="headerlink" title="2xx"></a>2xx</h2><p>标识服务器接收，并成功处理了客户端的请求</p>
+<ul>
+<li>200，最常见的成功码，如果请求方法不是HEAD，将返回body</li>
+<li>204，含义和200相同，但是不返回</li>
+<li>206，http分块下载的基础，通产会伴随着Content-Range</li>
+</ul>
+<h2 id="3xx"><a href="#3xx" class="headerlink" title="3xx"></a>3xx</h2><p>一般表示请求的资源放生了变动，客户端必须使用新的URI重新获取资源</p>
+<ul>
+<li>301，永久重定向</li>
+<li>302，临时重定向</li>
+<li>304，一般配合If-Modified-Since等条件的请求，资源未修改，缓存控制</li>
+</ul>
+<h2 id="4xx"><a href="#4xx" class="headerlink" title="4xx"></a>4xx</h2><p>客户端报文有误，服务器无法处理</p>
+<ul>
+<li>400，BadRequest，笼统的错误，不推荐服务器返回</li>
+<li>403，Forbidden，不一定是请求出错，有可能表示服务器禁止访问资源</li>
+<li>404，NotFound</li>
+</ul>
+<h2 id="5xx"><a href="#5xx" class="headerlink" title="5xx"></a>5xx</h2><p>客户端请求报文正确，服务器内部出现了错误，无法返回应有的数据</p>
+<ul>
+<li>500，通用错误码，客户端无法感知服务器内部究竟发生了什么错误</li>
+<li>502，服务器作为网关返回的错误码，代表无法访问后端服务器</li>
+<li>503，Service Unavailable,</li>
+</ul>
+<h1 id="Http协议的特点"><a href="#Http协议的特点" class="headerlink" title="Http协议的特点"></a>Http协议的特点</h1><h2 id="灵活可拓展"><a href="#灵活可拓展" class="headerlink" title="灵活可拓展"></a>灵活可拓展</h2><p>可以传输任意数据，并且Header可以任意扩展</p>
+<h2 id="可靠传输"><a href="#可靠传输" class="headerlink" title="可靠传输"></a>可靠传输</h2><p>基于TCP/IP，因此继承了可靠传输的特性。</p>
+<h2 id="应用层协议"><a href="#应用层协议" class="headerlink" title="应用层协议"></a>应用层协议</h2><p>应用层协议有很多，但是大多局限在很小的场景如FTP,SMTP,SSH。Http协议可以携带任意头字段，实体数据的报文结构，可以看成万金油的协议。</p>
+<h2 id="无状态"><a href="#无状态" class="headerlink" title="无状态"></a>无状态</h2><p>每次收发报文都是独立的，没有任何联系，连接不会保存信息</p>
+<h1 id="内容协商的质量值"><a href="#内容协商的质量值" class="headerlink" title="内容协商的质量值"></a>内容协商的质量值</h1><p>Header中的Accept,Accept-Encoding、Accept-Language，进行协商的时候，会用一种特殊的“q”参数来表示权重，设定优先级。</p>
+<ul>
+<li>权重最大值是1，最小值是0.01，默认值是1，值为0表示拒绝。</li>
+</ul>
+<h1 id="分块传输"><a href="#分块传输" class="headerlink" title="分块传输"></a>分块传输</h1><p>Http协议使用chunked分块传输编码，在响应报文用<strong>Transfer-Encoding:chunked</strong>来表示需要分块发送。</p>
+<ul>
+<li><strong>Transfer-Encoding: chunked</strong>和<strong>Content-Length</strong>这两个字段是互斥的，不能同时出现，一个报文要么是长度已知，要么是长度未知（分块）</li>
+</ul>
+<h1 id="Cookie属性"><a href="#Cookie属性" class="headerlink" title="Cookie属性"></a>Cookie属性</h1><p>Cookie可以通过响应包的<strong>Set-Cookie</strong>设置。有效期可以通过Expires和Max-Age两个属性来设置。</p>
+<ul>
+<li>Expire，过期时间，用的是绝对时间</li>
+<li>Max-Age，用二十相对时间，单位是秒</li>
+</ul>
+<p>Domain和Path可以设定Cookie所属的域名和路径。浏览器在发送Cookie的时候，会从uri提取出host和path部分，对比Cookie属性，如果不满足条件，就不会在请求头里面发送Cookie</p>
+<h1 id="Cache属性"><a href="#Cache属性" class="headerlink" title="Cache属性"></a>Cache属性</h1><p>头部字段：Cache-Control，里面可以设置max-age=30，意味着缓存30秒，但是这个字段不仅仅只存在于response，request也可以请求缓存。如果点击浏览器的前进或者后退按钮，是可以触发的。</p>
+<h1 id="什么是安全"><a href="#什么是安全" class="headerlink" title="什么是安全"></a>什么是安全</h1><p>通信过程具备了四个特性，就可以认为是<strong>安全</strong>，分别是：机密性、完整性、身份认证、不可否认。只有具备了四个特性，通信双方的利益才有保障，才能算得上是真正的安全。</p>
+<ul>
+<li>机密性：对数据保密，不能让不相干的人看到</li>
+<li>完整性：数据在传输过程没有被篡改</li>
+<li>身份认证：确认对方真实身份，保证消息只发给可信的人</li>
+<li>不可否认：不能否认发生过的行为</li>
+</ul>
+<h1 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h1><p>Https的秘密在于这个s，它把Http下层的传输协议由TCP/IP换成了SSL/TLS，让Http运行在了安全的SSL/TLS协议上，收发报文不再使用Socket API，而是调用专门的安全接口。</p>
+<h2 id="TLS"><a href="#TLS" class="headerlink" title="TLS"></a>TLS</h2><p>TLS密码套件命令很规范，格式很固定。基本就是:密钥交互算法+签名算法+对称加密算法+摘要算法</p>
+<ul>
+<li>ECDHE-RSA-AES256-GCM-SHA384</li>
+<li>对应：握手时使用 ECDHE 算法进行密钥交换，用 RSA 签名和身份认证，握手后的通信使用 AES 对称算法，密钥长度 256 位，分组模式是 GCM，摘要算法 SHA384 用于消息认证和产生随机数</li>
+</ul>
+<h1 id="HTTP2-0"><a href="#HTTP2-0" class="headerlink" title="HTTP2.0"></a>HTTP2.0</h1><h2 id="头部压缩"><a href="#头部压缩" class="headerlink" title="头部压缩"></a>头部压缩</h2><p>一般报文的Header都会携带UserAgent，Cookie，Accept，Server等许多固定的头字段。但是Http1.0中的头字段<strong>content-Encoding</strong>只有指定Body的编码方式，如用gzip压缩来节约带宽，而对非Body部门没有处理。</p>
+<p>Http2.0对头部进行了压缩，使用的是专门开发的HPACK算法，可以达到50-90的高压缩率。</p>
+<h2 id="二进制格式"><a href="#二进制格式" class="headerlink" title="二进制格式"></a>二进制格式</h2><p>Http2.0去除了1.0中的文本传输，而改成了二进制传输。原先的Header被封装成了Frame，用Header帧存放头数据。Data帧存放实体数据。</p>
+<h2 id="虚拟的流"><a href="#虚拟的流" class="headerlink" title="虚拟的流"></a>虚拟的流</h2><p>Http2.0中，同一个往返的帧会分配一个唯一的流ID，可以把它想象成一个虚拟的<strong>数据流</strong>，HTTP2.0可以在同一个TCP连接中，用流同时发送多个碎片化消息。这就是常说的<strong>多路复用</strong>，多个往返通信复用同一个连接来处理。</p>
+<p>Http2.0服务器还可以主动推送消息，比如在浏览器请求Html的时候，就提前把一些JS、CSS文件发给客户端，减少等待的延时。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/http/" rel="tag"># http</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/30/设计模式笔记/" rel="next" title="设计模式记录笔记">
+                <i class="fa fa-chevron-left"></i> 设计模式记录笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="vcomments"></div>
+    
+  </div>
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="/images/background.jpg" alt="南浔">
+          
+            <p class="site-author-name" itemprop="name">南浔</p>
+            <p class="site-description motion-element" itemprop="description">做一个热爱生活的程序猿</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fjlyx97" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fjlyx99@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/dbd1e2f444a7" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-简书"></i>
+                  
+                    
+                      简书
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP是什么"><span class="nav-text">HTTP是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#协议"><span class="nav-text">协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传输"><span class="nav-text">传输</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#超文本"><span class="nav-text">超文本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#万维网"><span class="nav-text">万维网</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#域名的形式"><span class="nav-text">域名的形式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用头字段"><span class="nav-text">常用头字段</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Host字段"><span class="nav-text">Host字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-Agent字段"><span class="nav-text">User-Agent字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Date"><span class="nav-text">Date</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Server"><span class="nav-text">Server</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#标准请求方法"><span class="nav-text">标准请求方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GET-HEAD"><span class="nav-text">GET/HEAD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POST-PUT"><span class="nav-text">POST/PUT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他方法"><span class="nav-text">其他方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#状态码"><span class="nav-text">状态码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1XX"><span class="nav-text">1XX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2xx"><span class="nav-text">2xx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3xx"><span class="nav-text">3xx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4xx"><span class="nav-text">4xx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5xx"><span class="nav-text">5xx</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Http协议的特点"><span class="nav-text">Http协议的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#灵活可拓展"><span class="nav-text">灵活可拓展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可靠传输"><span class="nav-text">可靠传输</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用层协议"><span class="nav-text">应用层协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无状态"><span class="nav-text">无状态</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内容协商的质量值"><span class="nav-text">内容协商的质量值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分块传输"><span class="nav-text">分块传输</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cookie属性"><span class="nav-text">Cookie属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cache属性"><span class="nav-text">Cache属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是安全"><span class="nav-text">什么是安全</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTPS"><span class="nav-text">HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TLS"><span class="nav-text">TLS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP2-0"><span class="nav-text">HTTP2.0</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#头部压缩"><span class="nav-text">头部压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制格式"><span class="nav-text">二进制格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟的流"><span class="nav-text">虚拟的流</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 &mdash; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">南浔</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.2</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问数
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine@1.1.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    new Valine({
+        av: AV,
+        el: '#vcomments' ,
+        verify: false,
+        notify: false,
+        app_id: '8o01RDlvmUIKLHHQ1iQfu8Kr-gzGzoHsz',
+        app_key: 'BplxQMyA3T3qbYMzAavmHRvE',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，哈皮啊!'
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
